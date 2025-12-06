@@ -1,57 +1,48 @@
 ---
 title: "Week 11 Worklog"
-date: "`r Sys.Date()`"
-weight: 2
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
-
 ### Week 11 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Architecture Audit: Review entire infrastructure based on AWS Well-Architected Tool.
+* Quota Management: Check Service Quotas and understand the process for requesting quota increases.
+* Resource Cleanup: Find and delete "orphaned" resources.
+* Advanced Budgets: Set up AWS Budgets with forecasted breach alerts.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
+| --- | --- | --- | --- | --- | --- | --- |
+| T11.1 | 2 | **Governance - Quota Check:** <br> - Check vCPU quota for instance family <br> - Running On-Demand Standard instances | 11/17/2025 | 11/17/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T11.2 | 2 | **Cost - Budget Forecast:** <br> - Create Budget to alert if forecast exceeds $10 by month end <br> - Instead of waiting for breach to alert | 11/17/2025 | 11/18/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T11.3 | 3 | **WAF - Tool Review:** <br> - Open AWS Well-Architected Tool <br> - Create new Workload <br> - Answer questions in Security pillar | 11/18/2025 | 11/18/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T11.4 | 4 | **Cleanup - EBS Audit:** <br> - Find EBS Volumes with Available status <br> - Delete to reduce costs | 11/19/2025 | 11/19/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T11.5 | 5 | **Cleanup - EIP Audit:** <br> - Release Elastic IPs not attached to any instance <br> - AWS charges penalty for unused EIPs | 11/20/2025 | 11/20/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T11.6 | 6 | **Documentation & Best Practices:** <br> - Compile Well-Architected Review documentation <br> - Write improvement recommendation report <br> - Update architecture diagram with findings | 11/21/2025 | 11/21/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 11 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Risk Report:**
+  * Well-Architected Tool indicated High Risk Issue
+  * Week 4 Database running Single-AZ
+  * If AZ fails, DB loses connection
+  * Need to consider Multi-AZ for production
 
-* Successfully created and configured an AWS Free Tier account.
+* **Optimization:**
+  * Deleted 2 leftover 10GB EBS volumes
+  * Save approximately $2/month
+  * Released 1 unused Elastic IP
+  * Avoid penalty fee of $3.6/month
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* **Awareness:**
+  * "Good architecture" is a continuous process
+  * Not a destination
+  * Need regular review and improvement
+  * Well-Architected Framework is the guiding principle
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* **Governance:**
+  * Understanding of Service Quotas and Limits
+  * Know how to request quota increase
+  * Can forecast when scaling is needed
+  * Proactive capacity planning

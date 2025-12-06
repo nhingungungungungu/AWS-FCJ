@@ -1,59 +1,48 @@
 ---
 title: "Worklog Tuần 10"
-date: "`r Sys.Date()`"
-weight: 2
+weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 10:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Xây dựng API: Tạo RESTful API cho ứng dụng quản lý sách (Book Store).
+* Logic Serverless: Viết các hàm Lambda thực hiện CRUD (Create, Read, Update, Delete).
+* Lưu trữ NoSQL: Thiết kế bảng DynamoDB hiệu năng cao.
+* Tích hợp: Kết nối API Gateway -> Lambda -> DynamoDB.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T10.1 | 2 | **DynamoDB - Create Table:** <br> - Tạo bảng `Books` với Partition Key là ISBN (String) <br> - Cấu hình chế độ On-Demand Capacity | 10/11/2025 | 10/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T10.2 | 2 | **IAM - Lambda Role:** <br> - Tạo Role cho Lambda <br> - Quyền: PutItem, GetItem, Scan trên bảng Books <br> - Quyền ghi log CloudWatch | 10/11/2025 | 11/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T10.3 | 3 | **Lambda - Function Logic:** <br> - Viết hàm `add_book` (Python) nhận JSON và ghi DynamoDB <br> - Viết hàm `get_books` để đọc dữ liệu | 11/11/2025 | 12/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T10.4 | 4 | **API Gateway - REST API:** <br> - Tạo API `BookStoreAPI` <br> - Tạo resource `/books` và method POST, GET <br> - Tích hợp với Lambda functions | 12/11/2025 | 13/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T10.5 | 5 | **API Gateway - Deploy:** <br> - Deploy API ra Stage `dev` <br> - Lấy Invoke URL | 13/11/2025 | 14/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T10.6 | 6 | **Testing - Postman:** <br> - Gửi POST request thêm sách <br> - Gửi GET request kiểm tra danh sách trả về | 14/11/2025 | 14/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 10:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Sản phẩm:**
+  * Một backend API hoàn chỉnh hoạt động
+  * Không cần bất kỳ máy chủ nào (No EC2)
+  * Truly serverless architecture
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Hiệu năng:**
+  * Tốc độ phản hồi cực nhanh (< 100ms)
+  * Khả năng chịu tải hàng nghìn request/giây mặc định
+  * Auto scaling không cần cấu hình
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **Chi phí:**
+  * Gần như $0 trong giai đoạn phát triển
+  * Nhờ Free Tier của Lambda và DynamoDB
+  * Pay-per-request model
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* **Kiến trúc:**
+  * Hiểu về Microservices architecture
+  * Event-driven programming
+  * API-first design
+  * NoSQL data modeling
 
 

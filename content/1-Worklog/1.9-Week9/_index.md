@@ -1,57 +1,45 @@
 ---
 title: "Week 9 Worklog"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 9 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Network Transparency: Collect and analyze network traffic to detect unusual connections.
+* Log Querying: Use CloudWatch Logs Insights to run queries on massive log data.
+* Cost Optimization: Identify wasted resources and perform "Right Sizing".
+* Billing Permissions: Configure Billing access permissions for IAM accounts.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
+| --- | --- | --- | --- | --- | --- | --- |
+| T9.1 | 2 | **VPC - Enable Flow Logs:** <br> - Enable Flow Logs for VPC <br> - Destination: CloudWatch Logs Group `/aws/vpc/flowlogs` | 11/03/2025 | 11/03/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T9.2 | 2 | **Testing - Generate Deny:** <br> - Try SSH from IP not in Security Group <br> - Generate REJECT records | 11/03/2025 | 11/04/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T9.3 | 3 | **Logs - Insights Query:** <br> - Write query to count rejected packets by Source IP <br> - `filter action="REJECT" stats count() by srcAddr` | 11/04/2025 | 11/04/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T9.4 | 4 | **Cost - Compute Optimizer:** <br> - Access Compute Optimizer <br> - View recommendations (requires at least 12-24h of data) | 11/05/2025 | 11/05/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T9.5 | 5 | **Cost - Cost Explorer:** <br> - Analyze cost by day and service <br> - Group by Service <br> - Identify whether EC2 or RDS costs most | 11/06/2025 | 11/06/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T9.6 | 6 | **Report & Recommendations:** <br> - Compile cost report and optimization recommendations <br> - Analyze Flow Logs to find security issues <br> - Propose architecture improvements | 11/07/2025 | 11/07/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 9 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Investigation:**
+  * Identified which IP addresses are attempting to scan SSH port
+  * Discovered attack patterns
+  * Can trace network path
 
-* Successfully created and configured an AWS Free Tier account.
+* **Savings:**
+  * Compute Optimizer indicated instances running below 5% CPU
+  * Confirmed t3.micro is appropriate or can be consolidated
+  * Discovered unused resources
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* **Skills:**
+  * Proficient in Logs Insights query syntax
+  * Critical skill for rapid troubleshooting
+  * Understanding of VPC Flow Logs format
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* **FinOps:**
+  * Know how to analyze costs from multiple dimensions
+  * Understanding of Cost Allocation Tags
+  * Can forecast monthly costs

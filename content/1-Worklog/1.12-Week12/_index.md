@@ -1,57 +1,49 @@
 ---
 title: "Week 12 Worklog"
-date: "`r Sys.Date()`"
-weight: 2
+weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
 
 ### Week 12 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Knowledge Synthesis: Deploy capstone final project combining IaaS and PaaS.
+* Certification: Complete Mock Exam for SAA-C03 certification with score >70%.
+* Capability Portfolio: Update CV, GitHub Profile with completed projects.
+* Cleanup: Terminate all resources to avoid post-course charges.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
+| --- | --- | --- | --- | --- | --- | --- |
+| T12.1 | 2 | **Capstone - Architecture:** <br> - Draw architecture diagram for final project (AWS Icons) <br> - Include: ALB, ASG, RDS, S3, CloudFront | 11/24/2025 | 11/24/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T12.2 | 3 | **Capstone - Deployment:** <br> - Deploy project using CDK or CloudFormation <br> - Ensure application runs well, DB connection successful | 11/25/2025 | 11/26/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T12.3 | 4 | **Career - Community:** <br> - Join "AWS Study Group" on Facebook/LinkedIn <br> - Connect with FCJ Workforce mentors | 11/26/2025 | 11/27/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T12.4 | 5 | **Exam - Practice Test:** <br> - Complete 65-question test in 130 minutes (simulating actual exam) <br> - Review incorrect answers | 11/27/2025 | 11/28/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T12.5 | 6 | **Cleanup - NUKE:** <br> - Use aws-nuke tool (or manual deletion) <br> - Clean account <br> - Verify in all Regions | 11/28/2025 | 11/30/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 12 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Product:**
+  * A GitHub Repository containing CDK code
+  * Standard 3-Tier architecture
+  * Complete documentation
+  * README with architecture diagram
 
-* Successfully created and configured an AWS Free Tier account.
+* **Confidence:**
+  * Ready for AWS SAA-C03 certification exam
+  * Ready for Cloud internship interviews
+  * Have portfolio to showcase
+  * Clear understanding of core AWS services
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* **Completion:**
+  * Clean AWS account
+  * No ongoing charges
+  * Backed up all important artifacts
+  * Ready for next journey
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* **Journey:**
+  * From "knowing nothing" about Cloud
+  * To genuine "AWS Builder"
+  * 12 weeks = 84 days of transformation
+  * Solid foundation for Cloud Engineer career

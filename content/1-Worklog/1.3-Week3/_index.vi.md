@@ -1,59 +1,53 @@
 ---
 title: "Worklog Tuần 3"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 3:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Triển khai Điện toán: Khởi chạy thành công một EC2 Instance trong Public Subnet của VPC đã tạo.
+* Quản lý Truy cập: Cấu hình Key Pair (ED25519) và Security Group để truy cập an toàn qua SSH.
+* Ủy quyền Ứng dụng: Sử dụng IAM Role để cấp quyền truy cập S3 cho EC2 mà không cần lưu trữ Access Keys trên máy.
+* Lưu trữ Khối: Tạo, gắn và định dạng thêm một EBS Volume để hiểu về lưu trữ bền vững.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T3.1 | 2 | **EC2 - AMI Selection:** <br> - Lựa chọn Amazon Linux 2023 AMI (HVM) <br> - Tối ưu hóa hiệu năng và bảo mật mặc định | 22/09/2025 | 22/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T3.2 | 2 | **Security - Key Management:** <br> - Tạo Key Pair loại ED25519 (an toàn hơn RSA) <br> - Lưu trữ file .pem cục bộ với quyền 400 | 22/09/2025 | 22/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T3.3 | 3 | **Compute - Launch Instance:** <br> - Khởi chạy instance t3.micro (Free Tier) <br> - Trong Public Subnet 1 <br> - Gán Security Group `Web-SG` đã tạo ở Tuần 2 | 23/09/2025 | 23/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T3.4 | 4 | **IAM - Role Creation:** <br> - Tạo IAM Role `EC2-S3-Access-Role` <br> - Policy: `AmazonS3ReadOnlyAccess` <br> - Trust entity: `ec2.amazonaws.com` | 24/09/2025 | 24/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T3.5 | 4 | **Compute - Attach Role:** <br> - Gán IAM Role vào instance đang chạy <br> - Thông qua Actions > Security > Modify IAM Role | 24/09/2025 | 25/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T3.6 | 5 | **CLI - Verification:** <br> - SSH vào instance <br> - Cài đặt AWS CLI (nếu chưa có) <br> - Chạy lệnh `aws s3 ls` để kiểm chứng quyền truy cập | 25/09/2025 | 26/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T3.7 | 6 | **Storage - EBS Operations:** <br> - Tạo volume EBS gp3 1GB cùng AZ với instance <br> - Gán vào instance <br> - Dùng lệnh `lsblk`, `mkfs -t xfs`, và `mount` | 26/09/2025 | 28/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 3:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Hạ tầng hoạt động:**
+  * Máy chủ Web đầu tiên đã online, có Public IP
+  * Truy cập được qua SSH an toàn
+  * Hiểu rõ sự khác biệt giữa các Instance Types (T3, C5, R5)
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Bảo mật Ứng dụng:**
+  * Đã chứng minh EC2 có thể truy cập S3 Buckets mà không cần `aws configure`
+  * Không cần lưu Access Keys trên server
+  * Áp dụng cơ chế "Temporary Credentials" thông qua IAM Role
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **Lưu trữ:**
+  * Hiểu sự khác biệt giữa EBS (bền vững) và Instance Store (tạm thời)
+  * Thực hành gắn và mount EBS volume
+  * Biết cách format và sử dụng ổ đĩa mới
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* **Khắc phục sự cố:**
+  * Ban đầu gặp lỗi "Connection Timeout" khi SSH
+  * Nguyên nhân: Quên thêm rule Inbound Port 22 trong Security Group
+  * Đã khắc phục và rút kinh nghiệm về troubleshooting
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* **Kỹ năng:**
+  * Thành thạo việc khởi chạy và quản lý EC2 instances
+  * Hiểu về vòng đời instance (Launch, Stop, Start, Terminate)
+  * Nắm vững khái niệm Instance Profiles và IAM Roles for EC2
 
 

@@ -1,58 +1,49 @@
 ---
 title: "Worklog Tuần 6"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 6:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Khả năng Quan sát (Observability): Xây dựng Dashboard tập trung để theo dõi sức khỏe hệ thống.
+* Cảnh báo Chủ động: Thiết lập hệ thống cảnh báo qua Email/SMS khi tài nguyên gặp sự cố.
+* Tự động hóa: Viết hàm Lambda (Python/Node.js) để tương tác với tài nguyên AWS.
+* Lập lịch: Sử dụng Amazon EventBridge để kích hoạt Lambda theo lịch trình (Cron job).
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T6.1 | 2 | **CloudWatch - Dashboard:** <br> - Tạo Dashboard hiển thị CPU Utilization của ASG <br> - Hiển thị Freeable Memory của RDS | 13/10/2025 | 13/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T6.2 | 2 | **SNS - Setup Topic:** <br> - Tạo SNS Topic `DevOps-Alerts` <br> - Đăng ký email cá nhân và xác nhận | 13/10/2025 | 14/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T6.3 | 3 | **CloudWatch - Create Alarm:** <br> - Tạo Alarm: CPU > 70% trong 2 chu kỳ liên tiếp <br> - Kích hoạt SNS Topic gửi email | 14/10/2025 | 14/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T6.4 | 4 | **Lambda - IAM Role:** <br> - Tạo IAM Role cho Lambda <br> - Quyền: AmazonEC2FullAccess (lưu ý: nên giới hạn Start/Stop) | 15/10/2025 | 15/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T6.5 | 4 | **Lambda - Coding:** <br> - Viết hàm Python (boto3) <br> - Liệt kê instances đang chạy và thực hiện stop_instances | 15/10/2025 | 16/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T6.6 | 5 | **EventBridge - Scheduler:** <br> - Tạo Rule "Cost-Saver" <br> - Cron: 0 18 * * ? * (6:00 PM mỗi ngày) <br> - Kích hoạt Lambda | 16/10/2025 | 16/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T6.7 | 6 | **Testing & Review:** <br> - Kiểm tra Lambda function hoạt động đúng theo lịch <br> - Review CloudWatch Logs của Lambda <br> - Tổng hợp báo cáo monitoring tuần này | 17/10/2025 | 17/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Tầm nhìn:**
+  * Có cái nhìn thời gian thực về hiệu năng hệ thống
+  * Không còn phải SSH vào từng máy để gõ lệnh `top`
+  * Dashboard tập trung cho toàn bộ tài nguyên
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **Phản ứng:**
+  * Nhận email cảnh báo ngay lập tức khi CPU cao
+  * Đã test lại với Stress Test từ Tuần 5
+  * Hệ thống cảnh báo hoạt động tốt
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* **FinOps:**
+  * Tự động tắt môi trường Development vào cuối ngày
+  * Tiết kiệm khoảng 65% chi phí EC2 (8h thay vì 24h)
+  * Lambda chạy với chi phí gần như $0
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* **Kỹ năng:**
+  * Viết Lambda function với Python và boto3
+  * Hiểu về Event-Driven Architecture
+  * Cấu hình EventBridge (CloudWatch Events)
+  * Tích hợp SNS cho notification system
 
 

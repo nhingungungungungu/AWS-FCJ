@@ -1,115 +1,169 @@
 ---
 title: "Proposal"
-date: "`r Sys.Date()`"
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
-
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+# The EV Station-based Rental System
+## Electric Vehicle Rental and Return Software at Fixed Stations – A Green Mobility Solution for Smart Cities
 
 ### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+The EV Station-based Rental System is developed to provide an all-in-one platform for electric vehicle rental and charging management. It integrates real-time rental, payment, and charging station access through a unified cloud-native solution. The system features a React Native mobile app and a Spring Boot backend deployed on AWS ECS Fargate, with PostgreSQL (RDS) and Redis (ElastiCache) for data and caching. User authentication is managed via Amazon Cognito, and global delivery is optimized using CloudFront. Designed under the AWS Well-Architected Framework, the platform ensures scalability, high availability, and security while maintaining cost efficiency.
 
 ### 2. Problem Statement
 ### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+Current electric vehicle (EV) rental services are fragmented, requiring users to switch between multiple apps to locate, book, and manage rentals at fixed points. This creates inconvenience, slow performance, and unreliable experiences — users often arrive at “unavailable” or “offline” rental points, leading to frustration and loss of trust.
+
+For vehicle owners and operators, manual fleet management, booking coordination, and maintenance tracking result in operational inefficiencies and lost revenue. Currently, there is no unified, real-time platform connecting renters, vehicle owners, and rental point operators.
 
 ### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+The EV Station-based Rental System consolidates EV rental and return at fixed points into a single, cloud-native platform. Built with React Native for mobile and Spring Boot for backend, the system delivers real-time booking, vehicle tracking, and payment integration.
+
+Key AWS services include ECS Fargate for compute, RDS PostgreSQL for data storage, ElastiCache for low-latency performance, API Gateway and Cognito for secure access, and CloudFront for global content delivery. The platform supports both fleet-based and peer-to-peer (P2P) vehicle registration, providing a centralized interface for users and operators to manage rentals efficiently, securely, and at scale.
 
 ### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+The platform eliminates manual coordination and fragmented applications, offering a unified, automated experience for renters and fleet owners. Real-time data ensures reliability and transparency regarding vehicle availability and rental point status.
+
+Designed under the AWS Well-Architected Framework, the system minimizes operational costs with a serverless, pay-per-use model while maintaining scalability and 99.99% uptime. Within 12–24 months, the platform is projected to reach 50,000+ monthly active users, onboard 200+ rental points, and deliver significant time, cost, and operational efficiencies for both users and operators.
 
 ### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+The VoltGo platform adopts a serverless and fully private AWS architecture for secure and scalable backend operations. Backend run on Amazon ECS Fargate, connecting to Aurora PostgreSQL Serverless v2 for relational data and ElastiCache Serverless (Redis) for caching.
+All workloads are deployed in private subnets across multiple Availability Zones and accessed securely through API Gateway via AWS PrivateLink to an internal Network Load Balancer. User authentication is managed by Amazon Cognito, while the frontend is hosted on Amazon S3 and delivered globally via CloudFront, protected by AWS WAF and ACM SSL/TLS.
+Monitoring and secrets management are handled by CloudWatch and Secrets Manager, with the entire infrastructure provisioned through Terraform IaC. This architecture ensures high security, elasticity, and cost efficiency suitable for the current development stage and future production scaling.
+
 
 ![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
 
 ![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
 
 ### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+- **Amazon ECS Fargate**: Serverless container orchestration for backend microservices.
+- **Amazon Aurora PostgreSQL Serverless v2**: Scalable, multi-AZ relational database.
+- **Amazon ElastiCache Serverless (Redis)**: In-memory caching for low-latency data access.
+- **Amazon API Gateway**: Secure REST API entry point integrated via PrivateLink.
+- **Amazon Cognito**: User authentication and authorization with JWT and MFA.
+- **Amazon CloudFront + S3**: Global content delivery and static hosting with WAF protection.
+- **AWS Secrets Manager**: Centralized secret storage and automatic rotation.
+- **Amazon CloudWatch**: Unified monitoring, logging, and alerting for all services.
+- **AWS WAF + ACM**: Edge-level security and SSL/TLS certificate management.
+
 
 ### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+- **Frontend**:React/Vue.js web application hosted on Amazon S3 and delivered via CloudFront, secured with AWS WAF and ACM SSL/TLS certificates.
+- **API Layer**: Amazon API Gateway provides the public API endpoint, connecting privately to backend services through AWS PrivateLink to an internal Network Load Balancer.
+- **Compute Layer**:  Amazon ECS Fargate runs containerized microservices across multiple Availability Zones, scaling automatically based on CPU and memory utilization.
+- **Database Layer**:Amazon Aurora PostgreSQL Serverless v2 stores relational data with a writer and read replica for high availability and automated scaling.
+- **Caching Layer**: Amazon ElastiCache Serverless (Redis) caches session and booking data to reduce database load and improve response time.
+- **Authentication**: Amazon Cognito handles user registration, login, and JWT-based authorization with optional MFA support.
+- **Storage**: Amazon S3 manages static assets and user uploads, accessible only through CloudFront via Origin Access Control (OAC).
+- **Monitoring & Security**: Amazon CloudWatch tracks logs and performance metrics, while AWS Secrets Manager securely stores credentials with automatic rotation.
 
 ### 4. Technical Implementation
 **Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+This project has two main parts—developing the backend locally and deploying it to the AWS cloud—each following four key phases:
+   - 1.Build and Design Architecture:
+ Develop and test backend services locally using Docker Compose, PostgreSQL, and Redis. Design the AWS serverless architecture including ECS Fargate, Aurora Serverless, ElastiCache, and API Gateway with PrivateLink connections. (Pre-deployment phase)
+   - 2.Estimate Cost and Validate Feasibility:
+ Use AWS Pricing Calculator to estimate the monthly cost of ECS tasks, Aurora capacity units, and CloudFront bandwidth. Adjust design decisions to ensure cost-effectiveness and smooth migration.
+   - 3.Configure and Deploy Infrastructure:
+ Build and deploy cloud infrastructure using Terraform for IaC. Configure VPC, ECS, Aurora, ElastiCache, Cognito, and CloudFront. Validate IAM roles, networking, and private-only access via VPC Endpoints. 
+   - 4.Test, Optimize, and Release:
+ Deploy Dockerized services to ECS Fargate, test API Gateway → PrivateLink → NLB → ECS flow, and verify database connections. Enable CloudWatch monitoring, auto-scaling, and WAF protection. Optimize scaling thresholds and document final architecture. 
+
 
 **Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+- Backend Services:
+ Node.js or Spring Boot microservices for Auth, Booking, and Payment, containerized with Docker and deployed to ECS Fargate (2–10 tasks, auto-scaling).
+- Database Layer:
+ Amazon Aurora PostgreSQL Serverless v2 with writer and reader instances, supporting automatic scaling and multi-AZ high availability.
+- Caching Layer:
+ Amazon ElastiCache Serverless (Redis 7.1) for session caching and frequently accessed data.
+- Authentication:
+ Amazon Cognito manages user registration, JWT-based authentication, and optional MFA, integrated with API Gateway.
+- Storage & Content Delivery:
+ Frontend hosted on Amazon S3 and distributed via CloudFront, protected by AWS WAF and ACM SSL/TLS certificates.
+- Secrets & Monitoring:
+ AWS Secrets Manager for storing credentials (DB, Redis, JWT keys) with 30-day rotation. Amazon CloudWatch for logging, metrics, and scaling alarms.
+
 
 ### 5. Timeline & Milestones
 **Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+- Phase 1: Foundation & Design (Weeks 1-2)
+  - Week 1: Finalize MVP scope (P0 User Stories), define user flows, and approve the AWS architecture.
+  - Week 2: FE Lead finalizes UI/UX mockups. Backend provisions core AWS (VPC, S3, ECR, Aurora).
+- Phase 2: Core MVP Development (Weeks 3-8)
+    - Weeks 3-4: Backend builds User Auth (Cognito) & core APIs (API Gateway, ECS).
+    - Weeks 5-6: All teams (FE/BE/Mobile) build core screens (Login, Search, Details) and the Booking Engine APIs.
+    - Weeks 7-8: Integration of KYC flow (Lambda, Textract, Rekognition) and Payment Gateway integration.
+- Phase 3: Testing & UAT (Weeks 9-10)
+    - Week 9: Full End-to-End (E2E) testing. QA is performed by the 5-person dev team, as no dedicated QA is allocated.
+    - Week 10: Stakeholder User Acceptance Testing (UAT) and final critical bug fixing.
+- Phase 4: Launch (Week 11)
+    - Week 11: Production deployment, Go-live, and intensive Hypercare monitoring via CloudWatch. 
+
 
 ### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+This budget estimate is based on the provided AWS architecture diagram and the "cheapest possible" MVP launch strategy, maximizing Free Tier usage.
 
 ### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+- AWS Services (Monthly Estimate):
+    - Amazon Route 53: $0.50/month (1 hosted zone).
+    - AWS WAF: $6.00/month (1 WebACL + 1 Rule + minimal requests).
+    - AWS S3 Standard: $0.00/month (Stays within 5GB Always Free tier).
+    - Amazon CloudFront: $0.00/month (Stays within 1TB/10M request Always Free tier).
+    - AWS Cognito: $0.00/month (Stays within 10,000 MAU free tier).
+    - Amazon API Gateway: $0.00/month (Stays within 1M request 12-month free tier).
+    - AWS Lambda: $0.00/month (Stays within 1M request Always Free tier).
+    - Amazon Textract/Rekognition: $0.00/month (Stays within 12-month free tier for KYC).
+    - Application Load Balancer: $17.52/month (1 ALB, minimal processing).
+    - VPC Endpoint (PrivateLink): $7.30/month (1 Endpoint, 1 AZ, 1GB data).
+    - Amazon ECS on Fargate: ~$20.00/month (Assumes 2 minimal 24/7 containers, e.g., 0.25 vCPU/0.5GB RAM).
+    - Amazon Aurora Serverless v2: ~$25.00/month (Minimal ACUs, configured to scale to near-zero).
+    - Amazon ElastiCache Serverless: ~$10.00/month (Minimal usage).
+    - Amazon CloudWatch: $0.00/month (Stays within 5GB log Always Free tier).
+    - Amazon ECR: ~$0.10/month (Minimal storage over 500MB free tier).
 
-Total: $0.7/month, $8.40/12 months
+Total: ~$86.42/month, ~$1,037.04/12 months
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
 
 ### 7. Risk Assessment
 #### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
+- System Downtime: High impact, medium probability.
+- Data Sync Errors (Between Stations & Server): Medium impact, high probability.
+- OCR Verification Failure: Medium impact, medium probability.
+- Vehicle Shortage or Low Battery at Stations: High impact, high probability.
+- Operational Mistakes by Staff: Medium impact, medium probability.
 - Cost Overruns: Medium impact, low probability.
 
 #### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+- System: Use load-balanced cloud servers with auto-scaling and failover backup.
+- Data Sync: Implement offline caching and periodic background synchronization.
+- OCR Verification: Combine AI-based ID recognition with manual approval option.
+- Vehicle Management: Real-time tracking of battery and vehicle status; predictive restocking via analytics.
+- Staff Operations: Provide training and digital checklists to reduce human error.
+- Cost: Set up cloud cost monitoring and optimization alerts.
 
 #### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+- Enable offline mode for station staff when Internet is unavailable.
+- Activate backup servers in case of major downtime.
+- Provide manual check-in/out workflow for rentals during system outages.
+- Deploy mobile maintenance team to handle vehicle or battery issues at stations.
+- Suspend or limit reservations dynamically if vehicle supply falls below safe threshold.
 
 ### 8. Expected Outcomes
 #### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
+- Real-time monitoring of all EV stations and rental status.
+- Automated verification and e-contract signing replace manual paperwork.
+- Centralized dashboard for admins to manage fleet, customers, and staff.
+- System scalable to 20+ rental stations in the next deployment phase.
 #### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+- Establishes a reliable EV mobility infrastructure for urban areas.
+- Builds data foundation for future AI-powered demand forecasting.
+- Enables integration with smart city and green transportation networks.
+- Serves as a reusable platform for expanding to nationwide EV-sharing projects.
+#### Short to Medium-term Benefits
+- Faster customer onboarding (from 15 mins → <5 mins).
+- Increased fleet utilization rate by 30% through data-driven scheduling.
+- Improved accuracy of rental records and payment reconciliation.
+- Enhanced user satisfaction via seamless booking and transparent billing.

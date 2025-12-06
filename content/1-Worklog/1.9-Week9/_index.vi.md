@@ -1,59 +1,47 @@
 ---
 title: "Worklog Tuần 9"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 9:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Minh bạch Mạng: Thu thập và phân tích lưu lượng mạng để phát hiện các kết nối bất thường.
+* Truy vấn Log: Sử dụng CloudWatch Logs Insights để chạy query trên dữ liệu log khổng lồ.
+* Tối ưu Chi phí: Xác định các tài nguyên đang lãng phí và thực hiện "Right Sizing".
+* Phân quyền Billing: Cấu hình quyền truy cập Billing cho tài khoản IAM.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T9.1 | 2 | **VPC - Enable Flow Logs:** <br> - Bật Flow Logs cho VPC <br> - Đích đến: CloudWatch Logs Group `/aws/vpc/flowlogs` | 03/11/2025 | 03/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T9.2 | 2 | **Testing - Generate Deny:** <br> - Thử SSH từ IP không có trong Security Group <br> - Tạo ra các bản ghi REJECT | 03/11/2025 | 04/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T9.3 | 3 | **Logs - Insights Query:** <br> - Viết query đếm số gói tin bị từ chối theo Source IP <br> - `filter action="REJECT" stats count() by srcAddr` | 04/11/2025 | 04/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T9.4 | 4 | **Cost - Compute Optimizer:** <br> - Truy cập Compute Optimizer <br> - Xem khuyến nghị (cần ít nhất 12-24h dữ liệu) | 05/11/2025 | 05/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T9.5 | 5 | **Cost - Cost Explorer:** <br> - Phân tích chi phí theo ngày và dịch vụ <br> - Group by Service <br> - Xác định EC2 hay RDS tốn nhiều tiền nhất | 06/11/2025 | 06/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T9.6 | 6 | **Report & Recommendations:** <br> - Tổng hợp báo cáo chi phí và khuyến nghị tối ưu <br> - Phân tích Flow Logs để tìm vấn đề bảo mật <br> - Đề xuất cải tiến kiến trúc | 07/11/2025 | 07/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 9:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Điều tra số:**
+  * Đã xác định địa chỉ IP nào đang cố quét port SSH
+  * Phát hiện các pattern tấn công
+  * Có thể trace được network path
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Tiết kiệm:**
+  * Compute Optimizer chỉ ra instances đang chạy dưới 5% CPU
+  * Xác nhận t3.micro phù hợp hoặc có thể gom lại
+  * Phát hiện tài nguyên không sử dụng
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **Kỹ năng:**
+  * Thành thạo cú pháp query của Logs Insights
+  * Kỹ năng quan trọng để xử lý sự cố nhanh
+  * Hiểu về VPC Flow Logs format
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* **FinOps:**
+  * Biết cách phân tích chi phí theo nhiều chiều
+  * Hiểu về Cost Allocation Tags
+  * Có thể dự báo chi phí hàng tháng
 
 

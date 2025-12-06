@@ -1,57 +1,49 @@
 ---
 title: "Week 4 Worklog"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
 
 ### Week 4 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Dev Environment: Set up AWS Cloud9 as a unified development environment.
+* Serverless Web: Deploy a static website on S3, configure Bucket Policy to allow safe public access.
+* Database: Initialize Amazon RDS MySQL in Private Subnet to ensure security.
+* Multi-Tier Connectivity: Establish connection from EC2/Cloud9 (Public Subnet) to RDS (Private Subnet).
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
+| --- | --- | --- | --- | --- | --- | --- |
+| T4.1 | 2 | **Cloud9 - Setup IDE:** <br> - Initialize Cloud9 environment (EC2 t3.small) in VPC <br> - Enable Auto-hibernate after 30 minutes | 09/29/2025 | 09/29/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T4.2 | 3 | **S3 - Static Hosting:** <br> - Create S3 Bucket with unique name <br> - Enable "Static website hosting" <br> - Upload index.html and error.html | 09/30/2025 | 09/30/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T4.3 | 3 | **S3 - Public Policy:** <br> - Disable "Block Public Access" <br> - Write Bucket Policy (JSON) allowing s3:GetObject | 09/30/2025 | 10/01/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T4.4 | 4 | **RDS - Subnet Group:** <br> - Create DB Subnet Group <br> - Include 2 Private Subnets created in Week 2 | 10/01/2025 | 10/01/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T4.5 | 4 | **RDS - Launch DB:** <br> - Launch RDS MySQL (Free Tier) <br> - Disable Multi-AZ <br> - Disable Public Accessibility | 10/01/2025 | 10/02/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T4.6 | 5 | **Security - Security Chaining:** <br> - Configure RDS Security Group <br> - Only allow Inbound Port 3306 from Cloud9/EC2 SG | 10/02/2025 | 10/03/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T4.7 | 6 | **Database - Connection Test:** <br> - Use terminal on Cloud9 <br> - Connect MySQL: `mysql -h <endpoint> -u admin -p` | 10/03/2025 | 10/05/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 4 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Web:**
+  * Static website operational at S3 Endpoint URL
+  * Clear understanding of how S3 can host websites without servers
+  * Solid grasp of writing Bucket Policy for safe public access
 
-* Successfully created and configured an AWS Free Tier account.
+* **Database:**
+  * DB instance operating isolated in internal network
+  * Cannot access DB directly from Internet (correct security standard)
+  * Understanding of RDS Managed Service and its benefits
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* **Skills:**
+  * Mastered JSON syntax for S3 Policy
+  * Understanding of "Security Group Referencing" (nested SG references)
+  * Critical technique for building dynamic N-tier architecture
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* **Architecture:**
+  * Completed preliminary "3-Tier Web Architecture" model:
+    * Presentation Tier (S3)
+    * Application Tier (Cloud9/EC2)
+    * Data Tier (RDS)
+  * Understanding of separation of concerns in cloud architecture

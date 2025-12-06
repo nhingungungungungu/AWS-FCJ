@@ -1,59 +1,50 @@
 ---
 title: "Worklog Tuần 5"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 5:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* VPS Nhanh: Triển khai ứng dụng WordPress hoàn chỉnh trong 5 phút sử dụng Amazon Lightsail.
+* Container hóa: Đóng gói ứng dụng nhỏ thành Docker Image và triển khai trên Lightsail Container Service.
+* Tính Đàn hồi: Thiết lập kiến trúc tự phục hồi (Self-healing) và tự mở rộng với EC2 Auto Scaling Group.
+* Cân bằng Tải: Phân phối traffic người dùng thông qua Application Load Balancer (ALB).
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T5.1 | 2 | **Lightsail - WordPress Deploy:** <br> - Khởi tạo Lightsail Instance với Blueprint "WordPress" <br> - Gán Static IP | 06/10/2025 | 06/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T5.2 | 2 | **Container - Docker Intro:** <br> - Viết Dockerfile đơn giản cho trang web Hello World <br> - Build và chạy thử trên Cloud9 | 06/10/2025 | 07/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T5.3 | 3 | **Lightsail - Container Deploy:** <br> - Đẩy Docker Image lên Lightsail Container Service <br> - Cấu hình Public Endpoint | 07/10/2025 | 08/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T5.4 | 4 | **EC2 - Launch Template:** <br> - Tạo Launch Template: Amazon Linux 2023, t3.micro <br> - User Data script tự động cài Apache Web Server | 08/10/2025 | 09/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T5.5 | 4 | **Networking - Target Group:** <br> - Tạo Target Group rỗng <br> - Sẵn sàng để ASG đăng ký instance vào | 09/10/2025 | 10/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T5.6 | 5 | **EC2 - Create ALB:** <br> - Khởi tạo Application Load Balancer internet-facing <br> - Lắng nghe port 80, trỏ traffic về Target Group | 09/10/2025 | 10/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T5.7 | 5 | **EC2 - Auto Scaling Group:** <br> - Tạo ASG: Min=1, Desired=2, Max=4 <br> - Sử dụng Launch Template <br> - Tích hợp với ALB Target Group | 09/10/2025 | 10/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T5.8 | 6 | **Testing - Stress Test:** <br> - SSH vào instance, cài công cụ stress <br> - Ép CPU 100% và quan sát ASG Scale Out | 10/10/2025 | 12/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 5:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **So sánh:**
+  * Lightsail cực kỳ nhanh để triển khai nhưng thiếu tính tùy biến sâu về mạng
+  * VPC Peering của Lightsail có hạn chế
+  * Phù hợp cho các dự án nhỏ, blog, prototype
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Hệ thống Đàn hồi:**
+  * Đã xây dựng hệ thống Web có khả năng chịu lỗi (Fault Tolerant)
+  * Khi Terminate 1 instance thủ công, ASG lập tức khởi tạo instance mới thay thế
+  * Hệ thống tự động scale up/down theo nhu cầu
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **Cân bằng tải:**
+  * ALB phân phối đều request giữa các instance
+  * Đảm bảo người dùng không bị gián đoạn dịch vụ khi một máy chủ chết
+  * Hiểu về Health Checks và Drain Connection
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* **Kiến trúc:**
+  * Nắm vững khái niệm Stateless Architecture
+  * Không được lưu file upload hay session trên ổ cứng EC2
+  * Kết hợp S3 (file) và RDS (dữ liệu) cho hệ thống Cloud-Native
+  * User Data để Bootstrapping là kỹ thuật then chốt tự động hóa
 
 

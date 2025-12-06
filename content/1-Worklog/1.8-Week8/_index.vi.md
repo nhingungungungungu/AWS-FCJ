@@ -1,48 +1,52 @@
 ---
 title: "Worklog Tuần 8"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Tự động hóa Hạ tầng: Tái tạo lại kiến trúc mạng (VPC) và máy chủ (EC2) bằng code.
+* Hiểu bản chất: Nắm vững cấu trúc CloudFormation (Parameters, Resources, Outputs).
+* Công cụ Hiện đại: Làm quen với AWS CDK và quy trình cdk init, cdk synth, cdk deploy.
+* Quản lý Vòng đời: Thực hành xóa sạch (Destroy) và tạo lại (Deploy) toàn bộ stack trong vài phút.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T8.1 | 2 | **CloudFormation - Write Template:** <br> - Viết file `vpc.yaml` định nghĩa VPC <br> - Bao gồm: Subnet, Internet Gateway, Route Table | 27/10/2025 | 27/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T8.2 | 2 | **CloudFormation - Deploy Stack:** <br> - Upload file lên CloudFormation Console <br> - Tạo stack `FCJ-VPC-Stack` <br> - Kiểm tra tài nguyên được tạo | 27/10/2025 | 28/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T8.3 | 3 | **CDK - Init Project:** <br> - Cài đặt AWS CDK <br> - Khởi tạo dự án TypeScript: `cdk init app --language typescript` | 28/10/2025 | 28/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T8.4 | 4 | **CDK - Define S3:** <br> - Trong `lib/stack.ts`, thêm code tạo S3 Bucket <br> - Bật versioning và encryption (L2 Construct) | 29/10/2025 | 29/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T8.5 | 5 | **CDK - Deploy:** <br> - Chạy `cdk deploy` <br> - Quan sát quá trình tạo ChangeSet và thực thi | 30/10/2025 | 30/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T8.6 | 5 | **IaC - Drift Detection:** <br> - Thay đổi thủ công tag của S3 bucket trên Console <br> - Chạy Drift Detection để phát hiện sự sai lệch | 30/10/2025 | 31/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T8.7 | 6 | **IaC - Cleanup:** <br> - Chạy `cdk destroy` để xóa toàn bộ tài nguyên <br> - Đảm bảo không sót chi phí | 31/10/2025 | 31/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 8:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Tốc độ:**
+  * Có thể dựng lại toàn bộ môi trường mạng chỉ trong 2 phút chạy lệnh
+  * Thay vì 30 phút click chuột thủ công
+  * Giảm thiểu human errors
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Kiểm soát:**
+  * Code hạ tầng được lưu trong Git
+  * Xem lại lịch sử thay đổi (Ai đã sửa Subnet? Tại sao?)
+  * Code review cho infrastructure changes
+  * Version control cho infrastructure
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **Trải nghiệm:**
+  * CDK trực quan và viết ít code hơn CloudFormation thuần túy
+  * Nhờ các Construct cấp cao (L2, L3)
+  * Có type checking và autocomplete
+  * Dễ test infrastructure code
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* **Kỹ năng:**
+  * Hiểu về Infrastructure as Code (IaC)
+  * Nắm vững CloudFormation template structure
+  * Thành thạo AWS CDK với TypeScript
+  * Biết cách sử dụng Drift Detection
 
 * Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
 

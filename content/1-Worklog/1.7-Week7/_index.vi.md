@@ -1,59 +1,49 @@
 ---
 title: "Worklog Tuần 7"
-date: "`r Sys.Date()`"
-weight: 1
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 7:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Bảo mật Truy cập: Loại bỏ nhu cầu sử dụng SSH Key và Port 22 bằng SSM Session Manager.
+* Quản lý Tài nguyên: Tổ chức tài nguyên bằng Resource Groups và Tagging Strategy.
+* Vận hành Quy mô lớn: Thực thi lệnh trên nhiều máy chủ đồng thời không cần đăng nhập từng máy.
+* Vá lỗi: Tự động hóa quy trình cập nhật bản vá bảo mật.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T7.1 | 2 | **Tagging - Tag Audit:** <br> - Rà soát và gắn tag chuẩn cho tất cả tài nguyên <br> - Format: `Env:Dev`, `Project:FCJ`, `Owner:Student` | 20/10/2025 | 20/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T7.2 | 2 | **SSM - Role Update:** <br> - Cập nhật IAM Role của EC2 <br> - Thêm policy `AmazonSSMManagedInstanceCore` | 20/10/2025 | 21/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T7.3 | 3 | **SSM - Session Manager:** <br> - Truy cập EC2 Instance qua Console <br> - Sử dụng Session Manager thay vì SSH | 21/10/2025 | 22/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T7.4 | 4 | **Security - Hardening:** <br> - Xóa Rule Port 22 trong Security Group `Web-SG` <br> - Kiểm tra truy cập qua SSM (thành công) <br> - Kiểm tra qua SSH (thất bại như mong đợi) | 22/10/2025 | 23/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T7.5 | 5 | **Resource Groups - Grouping:** <br> - Tạo Resource Group dựa trên tag `Project:FCJ` <br> - Quản lý tập trung tài nguyên | 23/10/2025 | 24/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T7.6 | 6 | **SSM - Run Command:** <br> - Sử dụng Run Command <br> - Chạy `yum update -y` trên toàn bộ instances `Env:Dev` | 24/10/2025 | 25/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 7:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Tăng cường Bảo mật:**
+  * Bề mặt tấn công (Attack Surface) giảm đáng kể
+  * Không còn port quản trị nào mở ra Internet
+  * Mọi phiên truy cập được log trong CloudTrail và Session Manager logs
+  * Có thể ghi hình (record) phiên làm việc để audit
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Hiệu quả Vận hành:**
+  * Đã thực hiện cập nhật phần mềm cho cả Autoscaling Group chỉ với vài cú click
+  * Không cần quản lý SSH keys cho từng user
+  * Có thể chạy scripts trên hàng trăm servers cùng lúc
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **Tư duy:**
+  * Chuyển từ "Quản lý từng máy chủ" sang "Quản lý đội hình máy chủ" (Fleet Management)
+  * Hiểu về Zero Trust Network Access
+  * Không cần bastion host hay VPN
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* **Kỹ năng:**
+  * Thành thạo SSM Session Manager
+  * Hiểu về IAM Instance Profile
+  * Biết cách tổ chức tài nguyên với Tags và Resource Groups
+  * Sử dụng SSM Run Command cho automation
 
 
