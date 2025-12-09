@@ -7,41 +7,26 @@ pre: " <b> 1.7. </b> "
 
 ### Week 7 Objectives:
 
-* Access Security: Eliminate the need for SSH Keys and Port 22 using SSM Session Manager.
-* Resource Management: Organize resources using Resource Groups and Tagging Strategy.
-* Large-Scale Operations: Execute commands on multiple servers simultaneously without logging into each machine.
-* Patching: Automate security patch update process.
+* Practice migration strategies to AWS.
+* Build disaster recovery (DR) plan.
+* Increase system durability, load tolerance, and resiliency.
 
 ### Tasks to be carried out this week:
+
 | Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
 | --- | --- | --- | --- | --- | --- | --- |
-| T7.1 | 2 | **Tagging - Tag Audit:** <br> - Review and apply standard tags to all resources <br> - Format: `Env:Dev`, `Project:FCJ`, `Owner:Student` | 10/20/2025 | 10/20/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T7.2 | 2 | **SSM - Role Update:** <br> - Update EC2 IAM Role <br> - Add policy `AmazonSSMManagedInstanceCore` | 10/20/2025 | 10/21/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T7.3 | 3 | **SSM - Session Manager:** <br> - Access EC2 Instance via Console <br> - Use Session Manager instead of SSH | 10/21/2025 | 10/22/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T7.4 | 4 | **Security - Hardening:** <br> - Remove Port 22 Rule in Security Group `Web-SG` <br> - Verify access via SSM (success) <br> - Verify via SSH (fail as expected) | 10/22/2025 | 10/23/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T7.5 | 5 | **Resource Groups - Grouping:** <br> - Create Resource Group based on tag `Project:FCJ` <br> - Centrally manage resources | 10/23/2025 | 10/24/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T7.6 | 6 | **SSM - Run Command:** <br> - Use Run Command <br> - Run `yum update -y` on all instances with `Env:Dev` | 10/24/2025 | 10/25/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T7.1 | 15 | **VM Import/Export – Lift & Shift Migration:** <br> - Export VM from VirtualBox (.ova/.vmdk) <br> - Upload to S3 <br> - Import as AMI and launch EC2 | 15/10/2025 | 15/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.2 | 16 | **SCT – Database Schema Conversion:** <br> - Convert Oracle → Aurora PostgreSQL schema <br> - Generate report for manual fixes <br> - Validate objects after conversion | 16/10/2025 | 16/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.3 | 17 | **DMS – Database Migration:** <br> - Create Replication Instance <br> - Configure Source/Target endpoints <br> - Set up Full Load + CDC to minimize downtime | 17/10/2025 | 17/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.4 | 18 | **Elastic Disaster Recovery (DRS):** <br> - Install DRS Agent <br> - Monitor continuous replication <br> - Perform Recovery Drill to test data integrity | 18/10/2025 | 18/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.5 | 19 | **AWS Backup – Data Protection:** <br> - Create Backup Plan for EC2/EBS/RDS/DynamoDB <br> - Enable Cross-Region copy <br> - Monitor backup compliance | 19/10/2025 | 19/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.6 | 20 | **SQS & SNS – Reliability Messaging:** <br> - Use SQS as overload buffer <br> - Create SNS fan-out → multiple SQS queues <br> - Compare reliability between push/pull models | 20/10/2025 | 20/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.7 | 21 | **EBS Multi-Attach & EFS – Shared Storage:** <br> - Test Multi-Attach for io2 to multiple EC2 instances <br> - Compare GFS2 vs EFS <br> - Deploy NFS share on EFS | 21/10/2025 | 21/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
 ### Week 7 Achievements:
 
-* **Enhanced Security:**
-  * Significantly reduced Attack Surface
-  * No admin ports exposed to Internet
-  * All access sessions logged in CloudTrail and Session Manager logs
-  * Can record sessions for audit
-
-* **Operational Efficiency:**
-  * Updated software for entire Autoscaling Group with just a few clicks
-  * No need to manage SSH keys for each user
-  * Can run scripts on hundreds of servers simultaneously
-
-* **Mindset:**
-  * Shifted from "Managing individual servers" to "Fleet Management"
-  * Understanding of Zero Trust Network Access
-  * No need for bastion host or VPN
-
-* **Skills:**
-  * Proficient in SSM Session Manager
-  * Understanding of IAM Instance Profile
-  * Know how to organize resources with Tags and Resource Groups
-  * Use SSM Run Command for automation
+* Successfully migrated virtual machines and databases to AWS.  
+* Established continuous DR using DRS and performed Recovery Drill.  
+* Automated centralized backups across multiple services using AWS Backup.  
+* Increased system reliability with SQS, SNS, and decoupled architecture.  
+* Applied shared storage solution using EFS and Multi-Attach for clustered workloads.  

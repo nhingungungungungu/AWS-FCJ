@@ -1,125 +1,97 @@
 ---
-title: "Blog 2"
+title: "AWS Training and Certification – March 2025 Updates"
 weight: 1
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# AWS Training and Certification – March 2025 Course and Certification Updates
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+Welcome to the March update announcing new training and certification releases—helping you and your team build skills with AWS services and solutions.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+Missed the February course update? View it here.
 
----
+This month, AWS launched **13 new digital training products** on AWS Skill Builder, including:
 
-## Architecture Guidance
-
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
-
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
-
-**The solution architecture is now as follows:**
-
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+- **9 new AWS Builder Labs**
+- **3 new AWS Jam Journeys**
+- **1 new Digital Classroom course**
 
 ---
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+## AWS Skill Builder Subscription – New Features
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+AWS Skill Builder subscriptions are now available globally, unlocking access to advanced AWS Certification exam prep and hands-on cloud training through interactive learning and lab experiences such as:
 
----
+- AWS Cloud Quest  
+- AWS Industry Quest  
+- AWS Builder Labs  
+- AWS Jam challenges  
 
-## Technology Choices and Communication Scope
-
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Some subscription plans also provide access to **AWS Digital Classroom courses**, where you can learn in depth with expert-led instruction. These courses are included in the **Individual annual subscription** and **Team subscription**.
 
 ---
 
-## The Pub/Sub Hub
+## Latest Content on AWS Skill Builder Subscription
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+### **AWS Builder Labs**
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+AWS Builder Labs help you learn cloud skills through direct hands-on practice inside the AWS Management Console.  
+You can learn at your own pace with more than **200+ labs**, available in the Individual and Team subscriptions.
 
----
+**New labs:**
 
-## Core Microservice
+**Fundamental level:**
+- Query Data with Amazon Athena  
+- Implement In-Memory Databases with Amazon MemoryDB  
+- Explore Graph Databases with Amazon Neptune  
+- Configure and Analyze Data with Amazon OpenSearch Service  
+- Configure DNS and Routing Policies with Amazon Route 53  
+- Fundamentals of AWS Certificate Manager  
+- Create Topics and Subscriptions using Amazon SNS  
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
-
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+**Intermediate level:**
+- Design and Manage Pub/Sub Messaging with Amazon SNS  
+- Secure and Rotate Secrets with AWS Secrets Manager  
 
 ---
 
-## Staging ER7 Microservice
+## AWS Jam
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+Test your cloud-building skills with **AWS Jam Journey challenges**.  
+Solve real-world, open-ended problems inside an AWS Console environment with only directional hints.
+
+**Intermediate:**
+- DevOps on AWS (Foundational)
+
+**Advanced:**
+- DevOps on AWS (Advanced)  
+- Modernization on AWS  
 
 ---
 
-## New Features in the Solution
+## AWS Digital Classroom
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+AWS Digital Classroom courses combine the depth of live classroom training with the flexibility of online learning.
+
+They deliver comprehensive knowledge and hands-on experience through:
+
+- Expert instructor–led video recordings  
+- Demonstrations  
+- Hands-on labs  
+- Knowledge checks and assessments  
+
+You can learn anytime, anywhere, with the ability to pause, replay, or review lessons.  
+Digital Classroom courses are available in the **Individual annual subscription** and **Team subscription**.
+
+**New Digital Classroom course this month:**
+
+**Advanced:**
+- Digital Classroom – Data Warehousing on AWS  
+
+---
+
+## AWS Digital Training from AWS Training Partners
+
+**Fundamental level:**
+- AWS Services Overview for IT Professionals on Udemy

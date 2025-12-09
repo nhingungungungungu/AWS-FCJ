@@ -1,48 +1,36 @@
 ---
-title: "Week 11 Worklog"
+title: "Worklog Week 11"
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
+
 ### Week 11 Objectives:
 
-* Architecture Audit: Review entire infrastructure based on AWS Well-Architected Tool.
-* Quota Management: Check Service Quotas and understand the process for requesting quota increases.
-* Resource Cleanup: Find and delete "orphaned" resources.
-* Advanced Budgets: Set up AWS Budgets with forecasted breach alerts.
+* Transition an application from Monolith to Microservices architecture.
+* Apply DevOps culture and full CI/CD automation.
+* Split functional modules and databases following the database-per-service model.
+* Use messaging/eventing to decouple microservice communication.
+* Understand and deploy Elastic Beanstalk and large-scale WordPress architecture.
 
 ### Tasks to be carried out this week:
+
 | Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
 | --- | --- | --- | --- | --- | --- | --- |
-| T11.1 | 2 | **Governance - Quota Check:** <br> - Check vCPU quota for instance family <br> - Running On-Demand Standard instances | 11/17/2025 | 11/17/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T11.2 | 2 | **Cost - Budget Forecast:** <br> - Create Budget to alert if forecast exceeds $10 by month end <br> - Instead of waiting for breach to alert | 11/17/2025 | 11/18/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T11.3 | 3 | **WAF - Tool Review:** <br> - Open AWS Well-Architected Tool <br> - Create new Workload <br> - Answer questions in Security pillar | 11/18/2025 | 11/18/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T11.4 | 4 | **Cleanup - EBS Audit:** <br> - Find EBS Volumes with Available status <br> - Delete to reduce costs | 11/19/2025 | 11/19/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T11.5 | 5 | **Cleanup - EIP Audit:** <br> - Release Elastic IPs not attached to any instance <br> - AWS charges penalty for unused EIPs | 11/20/2025 | 11/20/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T11.6 | 6 | **Documentation & Best Practices:** <br> - Compile Well-Architected Review documentation <br> - Write improvement recommendation report <br> - Update architecture diagram with findings | 11/21/2025 | 11/21/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T11.1 | 15 | **Monolith Decomposition Strategy:** <br> - Study the Strangler Fig Pattern <br> - Identify the Cart module to extract into a Microservice | 15/11/2025 | 15/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.2 | 16 | **Building a Microservice:** <br> - Rebuild the Cart module using Node.js running on Lambda or Fargate <br> - Split data into a separate DynamoDB table (Database-per-service) | 16/11/2025 | 16/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.3 | 17 | **Microservices Communication:** <br> - Implement messaging/eventing using EventBridge or SNS | 17/11/2025 | 17/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.4 | 18 | **Release Automation (CI/CD):** <br> - Build a Release Pipeline with CodePipeline <br> - Source → Build → Test → Deploy <br> - Add Manual Approval before Production deployment | 18/11/2025 | 18/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.5 | 19 | **Advanced DevOps:** <br> - Adopt DevOps culture <br> - Shift-left security: add SAST/DAST to Build stage | 19/11/2025 | 19/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.6 | 20 | **Elastic Beanstalk:** <br> - Study Beanstalk <br> - Deploy Node.js app without managing EC2/ALB <br> - Compare Beanstalk vs ECS/EKS | 20/11/2025 | 20/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.7 | 21 | **Large-scale WordPress:** <br> - Build WordPress on AWS <br> - Aurora Serverless + EFS + ElastiCache + CloudFront | 21/11/2025 | 21/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
 ### Week 11 Achievements:
 
-* **Risk Report:**
-  * Well-Architected Tool indicated High Risk Issue
-  * Week 4 Database running Single-AZ
-  * If AZ fails, DB loses connection
-  * Need to consider Multi-AZ for production
-
-* **Optimization:**
-  * Deleted 2 leftover 10GB EBS volumes
-  * Save approximately $2/month
-  * Released 1 unused Elastic IP
-  * Avoid penalty fee of $3.6/month
-
-* **Awareness:**
-  * "Good architecture" is a continuous process
-  * Not a destination
-  * Need regular review and improvement
-  * Well-Architected Framework is the guiding principle
-
-* **Governance:**
-  * Understanding of Service Quotas and Limits
-  * Know how to request quota increase
-  * Can forecast when scaling is needed
-  * Proactive capacity planning
+* Clear understanding of the Strangler Fig strategy for monolith decomposition.  
+* Built an independent Microservice with its own logic and database.  
+* Implemented asynchronous communication via EventBridge/SNS.  
+* Completed CI/CD Release Pipeline with Manual Approval.  
+* Applied shift-left security via SAST/DAST scanning in the pipeline.  
+* Deployed an app using Elastic Beanstalk and compared with ECS/EKS.  
+* Designed a large-scale WordPress architecture optimized for performance and cost.

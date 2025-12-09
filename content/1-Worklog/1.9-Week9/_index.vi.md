@@ -7,41 +7,27 @@ pre: " <b> 1.9. </b> "
 
 ### Mục tiêu tuần 9:
 
-* Minh bạch Mạng: Thu thập và phân tích lưu lượng mạng để phát hiện các kết nối bất thường.
-* Truy vấn Log: Sử dụng CloudWatch Logs Insights để chạy query trên dữ liệu log khổng lồ.
-* Tối ưu Chi phí: Xác định các tài nguyên đang lãng phí và thực hiện "Right Sizing".
-* Phân quyền Billing: Cấu hình quyền truy cập Billing cho tài khoản IAM.
+* Làm chủ Docker và các nền tảng điều phối container hàng đầu của AWS: ECS và EKS.
+* Triển khai, tự động hóa và vận hành ứng dụng container bằng CI/CD.
+* Hiểu lựa chọn giữa ECS (Fargate) và EKS (Kubernetes) cho các kịch bản khác nhau.
 
 ### Các công việc cần triển khai trong tuần này:
-| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+
+| Task ID | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
 | --- | --- | --- | --- | --- | --- | --- |
-| T9.1 | 2 | **VPC - Enable Flow Logs:** <br> - Bật Flow Logs cho VPC <br> - Đích đến: CloudWatch Logs Group `/aws/vpc/flowlogs` | 03/11/2025 | 03/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T9.2 | 2 | **Testing - Generate Deny:** <br> - Thử SSH từ IP không có trong Security Group <br> - Tạo ra các bản ghi REJECT | 03/11/2025 | 04/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T9.3 | 3 | **Logs - Insights Query:** <br> - Viết query đếm số gói tin bị từ chối theo Source IP <br> - `filter action="REJECT" stats count() by srcAddr` | 04/11/2025 | 04/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T9.4 | 4 | **Cost - Compute Optimizer:** <br> - Truy cập Compute Optimizer <br> - Xem khuyến nghị (cần ít nhất 12-24h dữ liệu) | 05/11/2025 | 05/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T9.5 | 5 | **Cost - Cost Explorer:** <br> - Phân tích chi phí theo ngày và dịch vụ <br> - Group by Service <br> - Xác định EC2 hay RDS tốn nhiều tiền nhất | 06/11/2025 | 06/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T9.6 | 6 | **Report & Recommendations:** <br> - Tổng hợp báo cáo chi phí và khuyến nghị tối ưu <br> - Phân tích Flow Logs để tìm vấn đề bảo mật <br> - Đề xuất cải tiến kiến trúc | 07/11/2025 | 07/11/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T9.1 | 1 | **Docker Fundamentals:** <br> - Containerization with Docker <br> - Viết Dockerfile tối ưu (Multi-stage build) <br> - Tạo ECR repo và docker push image private | 01/11/2025 | 01/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T9.2 | 2 | **Amazon ECS & Fargate:** <br> - Triển khai ECS với Fargate <br> - Định nghĩa Task (CPU/RAM) <br> - Tạo Service và tích hợp ALB | 02/11/2025 | 02/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T9.3 | 3 | **ECS với IaC (CDK):** <br> - Áp dụng CDK cho ECS <br> - Sử dụng ApplicationLoadBalancedFargateService (L3 Construct) | 03/11/2025 | 03/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T9.4 | 4 | **Amazon EKS – Setup:** <br> - Khởi tạo EKS cluster (eksctl / CDK EKS Blueprints) <br> - Cấu hình Managed Node Groups | 04/11/2025 | 04/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T9.5 | 5 | **Triển khai ứng dụng trên EKS:** <br> - Viết manifests (Deployment, Service, Ingress) <br> - Cài AWS Load Balancer Controller để tạo ALB từ Ingress | 05/11/2025 | 05/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T9.6 | 6 | **CI/CD cho Container:** <br> - Xây dựng pipeline: CodeCommit → CodeBuild → CodeDeploy <br> - Thực hành Blue/Green deployment cho ECS/EKS | 06/11/2025 | 06/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T9.7 | 7 | **ROSA – Red Hat OpenShift on AWS:** <br> - Tìm hiểu ROSA (Managed OpenShift) <br> - Trường hợp sử dụng: migrate OpenShift on-prem → AWS | 07/11/2025 | 07/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
 
 ### Kết quả đạt được tuần 9:
 
-* **Điều tra số:**
-  * Đã xác định địa chỉ IP nào đang cố quét port SSH
-  * Phát hiện các pattern tấn công
-  * Có thể trace được network path
-
-* **Tiết kiệm:**
-  * Compute Optimizer chỉ ra instances đang chạy dưới 5% CPU
-  * Xác nhận t3.micro phù hợp hoặc có thể gom lại
-  * Phát hiện tài nguyên không sử dụng
-
-* **Kỹ năng:**
-  * Thành thạo cú pháp query của Logs Insights
-  * Kỹ năng quan trọng để xử lý sự cố nhanh
-  * Hiểu về VPC Flow Logs format
-
-* **FinOps:**
-  * Biết cách phân tích chi phí theo nhiều chiều
-  * Hiểu về Cost Allocation Tags
-  * Có thể dự báo chi phí hàng tháng
-
-
+* Hiểu sâu Dockerfile tối ưu và quản lý image private trên ECR.  
+* Triển khai container serverless bằng ECS Fargate và tích hợp ALB.  
+* Tự động hóa triển khai ECS bằng CDK (L3 Construct).  
+* Khởi tạo EKS cluster, quản lý Node Groups và deploy ứng dụng K8s bằng manifest.  
+* Thiết lập CI/CD cho workflow container và thực hành Blue/Green deployment.  
+* Nắm được use-case ROSA cho doanh nghiệp dùng OpenShift on-premise.

@@ -1,43 +1,35 @@
 ---
-title: "Internship Report"
+title: "Báo cáo thực tập"
 weight: 1
 chapter: false
 ---
 
-    
-# Internship Report
+# Báo cáo thực tập
+### Thông tin sinh viên:
+&emsp; **Họ và tên:** Tăng Khánh Nhi
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+&emsp; **Số điện thoại:** 0944865947
 
-### Student Information:
-&emsp; **Full Name:** Nguyen Van A
+&emsp; **Email:** tangkhanhnhi111@gmail.com
 
-&emsp; **Phone Number:** 0989888999 
+&emsp; **Trường:** Đại học FPT TP. Hồ Chí Minh
 
-&emsp; **Email:** Anguyenvan@gmail.com
+&emsp; **Ngành:** Công nghệ thông tin
 
-&emsp; **University:** Ho Chi Minh City University of Technology and Education
+&emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Vietnam
 
-&emsp; **Major:** Information Technology
+&emsp; **Vị trí thực tập:** FCJ Cloud Intern
 
-&emsp; **Class:** AWS082025
+&emsp; **Thời gian thực tập:** Từ 12/08/2025 đến 12/12/2025
 
-&emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
+![Ảnh đại diện của bạn](/images/avater.png)
 
-&emsp; **Internship Position:** FCJ Cloud Intern
-
-&emsp; **Internship Duration:** From 12/08/2025 to 12/11/2025
-
-![Your profile picture](/images/avatar.png)
-
-### Report Content
+### Nội dung báo cáo
 
 1.  [Worklog](1-Worklog/)
 2.  [Proposal](2-Proposal/)
-3.  [Translated Blogs](3-BlogsTranslated/)
-4.  [Events Participated](4-EventParticipated/)
+3.  [Các bài blogs đã dịch](3-BlogsTranslated/)
+4.  [Các events đã tham gia](4-EventParticipated/)
 5.  [Workshop](5-Workshop/)
-6.  [Self-evaluation](6-Self-evaluation/)
-7.  [Sharing and Feedback](7-Feedback/)
+6.  [Tự đánh giá](6-Self-evaluation/)
+7.  [Chia sẻ, đóng góp ý kiến](7-Feedback/)

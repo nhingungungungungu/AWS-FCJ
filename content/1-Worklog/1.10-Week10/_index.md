@@ -1,5 +1,5 @@
 ---
-title: "Week 10 Worklog"
+title: "Worklog Week 10"
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
@@ -7,40 +7,30 @@ pre: " <b> 1.10. </b> "
 
 ### Week 10 Objectives:
 
-* Build API: Create RESTful API for a Book Store management application.
-* Serverless Logic: Write Lambda functions to perform CRUD (Create, Read, Update, Delete).
-* NoSQL Storage: Design high-performance DynamoDB table.
-* Integration: Connect API Gateway -> Lambda -> DynamoDB.
+* Build fully serverless applications focusing solely on business logic.
+* Combine Lambda – API Gateway – DynamoDB for a complete backend.
+* Apply event-driven architecture and workflow orchestration with Step Functions.
+* Use AppSync for GraphQL and real-time Subscriptions.
+* Monitor serverless with X-Ray and deploy using AWS SAM.
 
 ### Tasks to be carried out this week:
+
 | Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
 | --- | --- | --- | --- | --- | --- | --- |
-| T10.1 | 2 | **DynamoDB - Create Table:** <br> - Create `Books` table with Partition Key ISBN (String) <br> - Configure On-Demand Capacity mode | 11/10/2025 | 11/10/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T10.2 | 2 | **IAM - Lambda Role:** <br> - Create Role for Lambda <br> - Permissions: PutItem, GetItem, Scan on Books table <br> - CloudWatch log write permission | 11/10/2025 | 11/11/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T10.3 | 3 | **Lambda - Function Logic:** <br> - Write `add_book` function (Python) to receive JSON and write to DynamoDB <br> - Write `get_books` function to read data | 11/11/2025 | 11/12/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T10.4 | 4 | **API Gateway - REST API:** <br> - Create API `BookStoreAPI` <br> - Create resource `/books` and methods POST, GET <br> - Integrate with Lambda functions | 11/12/2025 | 11/13/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T10.5 | 5 | **API Gateway - Deploy:** <br> - Deploy API to Stage `dev` <br> - Get Invoke URL | 11/13/2025 | 11/14/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T10.6 | 6 | **Testing - Postman:** <br> - Send POST request to add book <br> - Send GET request to verify returned list | 11/14/2025 | 11/14/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T10.1 | 8 | **Serverless Trio (Lambda, API Gateway, DynamoDB):** <br> - Write Lambda for CRUD logic <br> - Integrate Lambda ↔ DynamoDB via AWS SDK <br> - Build REST API on API Gateway with Resource/Method & Proxy Integration | 08/11/2025 | 08/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T10.2 | 9 | **Authentication & Security:** <br> - Authentication with Amazon Cognito <br> - Configure Cognito Authorizer to block unauthorized requests <br> - Custom Domain + SSL for API | 09/11/2025 | 09/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T10.3 | 10 | **Event-Driven Architecture:** <br> - Asynchronous processing with SQS/SNS <br> - S3 Trigger → Lambda to auto-generate thumbnails | 10/11/2025 | 10/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T10.4 | 11 | **Workflow Orchestration with Step Functions:** <br> - Build State Machine for order approval workflow <br> - Implement Retry/Catch and Branching to avoid “Lambda Pinball” anti-pattern | 11/11/2025 | 11/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T10.5 | 12 | **GraphQL with AppSync:** <br> - Build GraphQL API <br> - Add real-time Subscriptions via WebSocket | 12/11/2025 | 12/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T10.6 | 13 | **Serverless Monitoring – X-Ray:** <br> - Enable Distributed Tracing <br> - View Service Map API Gateway → Lambda → DynamoDB | 13/11/2025 | 13/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T10.7 | 14 | **Development & Deployment with AWS SAM:** <br> - Serverless IaC with SAM <br> - Local testing using `sam local start-api` | 14/11/2025 | 14/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
 ### Week 10 Achievements:
 
-* **Product:**
-  * A complete operational backend API
-  * No servers needed (No EC2)
-  * Truly serverless architecture
-
-* **Performance:**
-  * Extremely fast response time (< 100ms)
-  * Can handle thousands of requests/second by default
-  * Auto scaling without configuration
-
-* **Cost:**
-  * Nearly $0 during development phase
-  * Thanks to Lambda and DynamoDB Free Tier
-  * Pay-per-request model
-
-* **Architecture:**
-  * Understanding of Microservices architecture
-  * Event-driven programming
-  * API-first design
-  * NoSQL data modeling
+* Built a complete serverless backend with Lambda – API Gateway – DynamoDB.  
+* Implemented Cognito authentication and Custom Domain/SSL.  
+* Mastered event-driven workflow using SQS, SNS, and S3 triggers.  
+* Used Step Functions to orchestrate workflows and reduce Lambda complexity.  
+* Created real-time GraphQL API with AppSync Subscriptions.  
+* Monitored serverless apps with X-Ray for performance insights.  
+* Deployed and tested serverless apps locally using AWS SAM.

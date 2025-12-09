@@ -5,47 +5,32 @@ chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
-
 ### Mục tiêu tuần 4:
-
-* Môi trường Dev: Thiết lập AWS Cloud9 để làm môi trường phát triển thống nhất.
-* Web Serverless: Triển khai website tĩnh trên S3, cấu hình Bucket Policy để cho phép truy cập công khai an toàn.
-* Cơ sở dữ liệu: Khởi tạo Amazon RDS MySQL trong Private Subnet để đảm bảo bảo mật.
-* Kết nối Đa tầng: Thực hiện kết nối từ EC2/Cloud9 (Public Subnet) tới RDS (Private Subnet).
+* Tự động hóa khả năng mở rộng hệ thống với Auto Scaling.
+* Thiết lập hệ thống giám sát toàn diện bằng CloudWatch.
+* Tối ưu hóa phân phối nội dung toàn cầu với CloudFront và Route 53.
+* Tăng cường hiểu biết về DNS, CDN và Edge Computing.
+* Thành thạo AWS CLI để tự động hóa quy trình vận hành.
+* Kết nối mạng nâng cao với VPC Peering.
 
 ### Các công việc cần triển khai trong tuần này:
-| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| Task ID | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
 | --- | --- | --- | --- | --- | --- | --- |
-| T4.1 | 2 | **Cloud9 - Setup IDE:** <br> - Khởi tạo môi trường Cloud9 (EC2 t3.small) trong VPC <br> - Kích hoạt tính năng Auto-hibernate sau 30 phút | 29/09/2025 | 29/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T4.2 | 3 | **S3 - Static Hosting:** <br> - Tạo S3 Bucket với tên duy nhất <br> - Bật "Static website hosting" <br> - Upload index.html và error.html | 30/09/2025 | 30/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T4.3 | 3 | **S3 - Public Policy:** <br> - Tắt "Block Public Access" <br> - Viết Bucket Policy (JSON) cho phép s3:GetObject | 30/09/2025 | 01/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T4.4 | 4 | **RDS - Subnet Group:** <br> - Tạo DB Subnet Group <br> - Bao gồm 2 Private Subnets đã tạo ở Tuần 2 | 01/10/2025 | 01/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T4.5 | 4 | **RDS - Launch DB:** <br> - Khởi chạy RDS MySQL (Free Tier) <br> - Tắt Multi-AZ <br> - Tắt Public Accessibility | 01/10/2025 | 02/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T4.6 | 5 | **Security - Security Chaining:** <br> - Cấu hình Security Group của RDS <br> - Chỉ cho phép Inbound Port 3306 từ SG của Cloud9/EC2 | 02/10/2025 | 03/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T4.7 | 6 | **Database - Connection Test:** <br> - Sử dụng terminal trên Cloud9 <br> - Kết nối MySQL: `mysql -h <endpoint> -u admin -p` | 03/10/2025 | 05/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T4.1 | 22 | **EC2 Auto Scaling:** <br> - Tạo Launch Template <br> - Tạo Auto Scaling Group (Min=2, Max=4, Desired=2) <br> - Thiết lập Target Tracking Policy (CPU = 50%) <br> - Stress test để quan sát Scale Out | 22/09/2025 | 22/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.2 | 23 | **CloudWatch Monitoring:** <br> - Theo dõi CPU, Disk I/O, Network <br> - Cài đặt CloudWatch Agent để thu thập Memory Usage <br> - Tạo Alarm CPU > 80% + SNS Notification | 23/09/2025 | 23/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.3 | 24 | **CloudWatch Advanced & Logs:** <br> - Đẩy log ứng dụng lên CloudWatch Logs <br> - Tạo Dashboard giám sát tổng thể <br> - Tìm hiểu tích hợp Grafana | 24/09/2025 | 24/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.4 | 25 | **Route 53 – DNS:** <br> - Tạo Hosted Zone <br> - Thực hành Simple / Failover / Latency Routing <br> - Cấu hình Health Check cho Failover | 25/09/2025 | 25/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.5 | 26 | **CloudFront – CDN:** <br> - Triển khai CloudFront phân phối nội dung S3 <br> - Cấu hình OAC (Origin Access Control) <br> - Tối ưu TTL trong Caching Policies | 26/09/2025 | 26/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.6 | 27 | **Edge Computing:** <br> - Tìm hiểu Lambda@Edge <br> - Viết hàm Lambda chỉnh sửa HTTP Header hoặc redirect tại Edge Location | 27/09/2025 | 27/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.7 | 28 | **AWS CLI – Tự động hóa:** <br> - Làm quen thao tác CLI <br> - Viết script Bash dừng các instance có tag Env=Dev <br> - Sử dụng query/filter để trích xuất JSON | 28/09/2025 | 28/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.8 | 29 | **VPC Peering – Mạng nâng cao:** <br> - Kết nối hai VPC qua VPC Peering <br> - Cập nhật Route Table <br> - Hiểu rõ giới hạn Non-Transitive | 29/09/2025 | 29/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T4.9 | 30 | **Tổng kết tháng 9:** <br> - Đánh giá kiến trúc 3-tier đã xây dựng <br> - Kiểm tra Auto Scaling, CloudWatch, Route 53 và CloudFront | 30/09/2025 | 30/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
 
 ### Kết quả đạt được tuần 4:
-
-* **Web:**
-  * Website tĩnh đã hoạt động tại S3 Endpoint URL
-  * Hiểu rõ cách S3 có thể host website mà không cần server
-  * Nắm vững cách viết Bucket Policy cho public access an toàn
-
-* **Database:**
-  * DB instance hoạt động biệt lập trong mạng nội bộ
-  * Không thể truy cập DB trực tiếp từ Internet (đúng chuẩn bảo mật)
-  * Hiểu về RDS Managed Service và lợi ích của nó
-
-* **Kỹ năng:**
-  * Đã nắm vững cú pháp JSON cho S3 Policy
-  * Hiểu khái niệm "Security Group Referencing" (tham chiếu SG lồng nhau)
-  * Kỹ thuật quan trọng để xây dựng kiến trúc N-tier năng động
-
-* **Kiến trúc:**
-  * Hoàn thiện mô hình "3-Tier Web Architecture" sơ khai:
-    * Presentation Tier (S3)
-    * Application Tier (Cloud9/EC2)
-    * Data Tier (RDS)
-  * Hiểu về separation of concerns trong cloud architecture
-
-
+* Tự động mở rộng hệ thống với Auto Scaling và Stress Test.
+* Thiết lập giám sát đầy đủ gồm CPU, Memory, Logs, Alarms.
+* Tối ưu hóa phân phối nội dung bằng CloudFront + OAC.
+* Làm chủ các chiến lược DNS nâng cao của Route 53.
+* Tự động hóa vận hành EC2 bằng AWS CLI.
+* Kết nối mạng giữa các VPC một cách an toàn qua VPC Peering.
+* Hoàn thiện kiến trúc toàn diện cho tháng 9.

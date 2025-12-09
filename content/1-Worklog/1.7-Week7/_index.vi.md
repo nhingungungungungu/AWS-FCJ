@@ -1,49 +1,32 @@
 ---
-title: "Worklog Tuần 7"
+title: "Week 7 Worklog"
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-### Mục tiêu tuần 7:
+### Week 7 Objectives:
 
-* Bảo mật Truy cập: Loại bỏ nhu cầu sử dụng SSH Key và Port 22 bằng SSM Session Manager.
-* Quản lý Tài nguyên: Tổ chức tài nguyên bằng Resource Groups và Tagging Strategy.
-* Vận hành Quy mô lớn: Thực thi lệnh trên nhiều máy chủ đồng thời không cần đăng nhập từng máy.
-* Vá lỗi: Tự động hóa quy trình cập nhật bản vá bảo mật.
+* Thực hành chiến lược di chuyển (Migration Strategy) lên AWS.
+* Xây dựng kế hoạch phục hồi thảm họa (Disaster Recovery).
+* Tăng cường độ bền, khả năng chịu tải và khả năng phục hồi cho hệ thống.
 
-### Các công việc cần triển khai trong tuần này:
-| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+### Tasks to be carried out this week:
+
+| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
 | --- | --- | --- | --- | --- | --- | --- |
-| T7.1 | 2 | **Tagging - Tag Audit:** <br> - Rà soát và gắn tag chuẩn cho tất cả tài nguyên <br> - Format: `Env:Dev`, `Project:FCJ`, `Owner:Student` | 20/10/2025 | 20/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T7.2 | 2 | **SSM - Role Update:** <br> - Cập nhật IAM Role của EC2 <br> - Thêm policy `AmazonSSMManagedInstanceCore` | 20/10/2025 | 21/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T7.3 | 3 | **SSM - Session Manager:** <br> - Truy cập EC2 Instance qua Console <br> - Sử dụng Session Manager thay vì SSH | 21/10/2025 | 22/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T7.4 | 4 | **Security - Hardening:** <br> - Xóa Rule Port 22 trong Security Group `Web-SG` <br> - Kiểm tra truy cập qua SSM (thành công) <br> - Kiểm tra qua SSH (thất bại như mong đợi) | 22/10/2025 | 23/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T7.5 | 5 | **Resource Groups - Grouping:** <br> - Tạo Resource Group dựa trên tag `Project:FCJ` <br> - Quản lý tập trung tài nguyên | 23/10/2025 | 24/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T7.6 | 6 | **SSM - Run Command:** <br> - Sử dụng Run Command <br> - Chạy `yum update -y` trên toàn bộ instances `Env:Dev` | 24/10/2025 | 25/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T7.1 | 15 | **VM Import/Export – Lift & Shift Migration:** <br> - Xuất VM từ VirtualBox (.ova/.vmdk) <br> - Upload lên S3 <br> - Import thành AMI và launch EC2 | 15/10/2025 | 15/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.2 | 16 | **SCT – Database Schema Conversion:** <br> - Chuyển schema Oracle → Aurora PostgreSQL <br> - Tạo báo cáo phần cần sửa thủ công <br> - Validate objects sau chuyển đổi | 16/10/2025 | 16/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.3 | 17 | **DMS – Database Migration:** <br> - Tạo Replication Instance <br> - Cấu hình Source/Target endpoints <br> - Thiết lập Full Load + CDC để giảm downtime | 17/10/2025 | 17/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.4 | 18 | **Elastic Disaster Recovery (DRS):** <br> - Cài DRS Agent <br> - Theo dõi replication liên tục <br> - Thực hiện Recovery Drill để test tính toàn vẹn | 18/10/2025 | 18/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.5 | 19 | **AWS Backup – Data Protection:** <br> - Tạo Backup Plan cho EC2/EBS/RDS/DynamoDB <br> - Enable Cross-Region copy <br> - Theo dõi backup compliance | 19/10/2025 | 19/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.6 | 20 | **SQS & SNS – Reliability Messaging:** <br> - Dùng SQS làm buffer chống quá tải <br> - Tạo SNS fan-out → nhiều SQS queues <br> - So sánh reliability giữa push/pull models | 20/10/2025 | 20/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T7.7 | 21 | **EBS Multi-Attach & EFS – Shared Storage:** <br> - Thử Multi-Attach cho io2 vào nhiều EC2 <br> - So sánh GFS2 vs EFS <br> - Triển khai NFS share trên EFS | 21/10/2025 | 21/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
-### Kết quả đạt được tuần 7:
+### Week 7 Achievements:
 
-* **Tăng cường Bảo mật:**
-  * Bề mặt tấn công (Attack Surface) giảm đáng kể
-  * Không còn port quản trị nào mở ra Internet
-  * Mọi phiên truy cập được log trong CloudTrail và Session Manager logs
-  * Có thể ghi hình (record) phiên làm việc để audit
-
-* **Hiệu quả Vận hành:**
-  * Đã thực hiện cập nhật phần mềm cho cả Autoscaling Group chỉ với vài cú click
-  * Không cần quản lý SSH keys cho từng user
-  * Có thể chạy scripts trên hàng trăm servers cùng lúc
-
-* **Tư duy:**
-  * Chuyển từ "Quản lý từng máy chủ" sang "Quản lý đội hình máy chủ" (Fleet Management)
-  * Hiểu về Zero Trust Network Access
-  * Không cần bastion host hay VPN
-
-* **Kỹ năng:**
-  * Thành thạo SSM Session Manager
-  * Hiểu về IAM Instance Profile
-  * Biết cách tổ chức tài nguyên với Tags và Resource Groups
-  * Sử dụng SSM Run Command cho automation
-
-
+* Di chuyển thành công máy chủ ảo và cơ sở dữ liệu sang AWS.  
+* Thiết lập DR liên tục bằng DRS và diễn tập Recovery Drill.  
+* Tự động hóa sao lưu tập trung đa dịch vụ bằng AWS Backup.  
+* Tăng độ tin cậy hệ thống bằng SQS, SNS và kiến trúc tách lớp (decoupling).  
+* Áp dụng lưu trữ dùng chung bằng EFS và Multi-Attach cho workloads cluster.  

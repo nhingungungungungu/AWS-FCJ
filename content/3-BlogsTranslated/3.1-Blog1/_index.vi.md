@@ -1,125 +1,105 @@
 ---
-title: "Blog 1"
+title: "Quét bảo mật mã nguồn với Amazon Q Developer"
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+# Quét Bảo Mật Mã Nguồn với Amazon Q Developer
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Các lập trình viên luôn hướng đến việc xây dựng phần mềm tuân thủ các tiêu chuẩn cao nhất về quyền riêng tư và bảo mật dữ liệu, nhằm tạo dựng niềm tin nơi người dùng và khách hàng. Nhà phát triển muốn bảo vệ phần mềm bằng cách xác định và giảm thiểu các lỗ hổng bảo mật trong mã nguồn, giúp hệ thống tăng khả năng chống chịu trước các mối đe dọa mạng. **Amazon Q Developer**, trợ lý lập trình dựa trên trí tuệ nhân tạo sinh (generative AI), hỗ trợ nhà phát triển “shift-left” và ưu tiên bảo mật sớm trong vòng đời phát triển phần mềm (SDLC) bằng cách cung cấp hướng dẫn trực tiếp trong IDE khi lập trình viên viết mã.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Với tư cách là lập trình viên, bạn có thể sử dụng **tính năng quét bảo mật mã nguồn của Amazon Q Developer** để chủ động phát hiện và loại bỏ các lỗ hổng trong cả mã nguồn hiện tại và mã mới được viết trong IDE. Amazon Q Developer được trang bị hàng nghìn **bộ phát hiện bảo mật** trên nhiều ngôn ngữ lập trình, giúp bạn xây dựng phần mềm đáp ứng yêu cầu bảo mật và mang lại trải nghiệm đáng tin cậy cho khách hàng. Việc xử lý các phát hiện do Amazon Q Developer tạo ra sẽ giúp giảm thiểu lỗ hổng sớm, từ đó giảm chi phí khắc phục khi dự án phát triển về sau.
 
----
-
-## Hướng dẫn kiến trúc
-
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
-
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
-
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Bài viết này khám phá tính năng quét bảo mật mã nguồn của Amazon Q Developer và các bộ phát hiện bảo mật mà nó sử dụng để đánh giá mã. Đầu tiên, chúng tôi trình diễn khả năng **tự động quét (auto-scan)**, đánh giá mã theo thời gian thực khi bạn đang viết. Sau đó, chúng tôi hướng dẫn cách chạy thủ công một phiên quét bảo mật cho toàn bộ dự án và các dependencies, xem kết quả phát hiện lỗ hổng và sử dụng **đề xuất khắc phục tự động** do Amazon Q Developer tạo ra. Cuối cùng, chúng tôi phân tích độ chính xác và hiệu năng của các phiên quét bảo mật, đồng thời so sánh Amazon Q với các công cụ hàng đầu dựa trên các benchmark công khai.
 
 ---
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+## Quét Bảo Mật Mã Nguồn
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Amazon Q Developer hỗ trợ thực hành lập trình an toàn thông qua hai hình thức quét:
+
+- **Scan your project** (quét toàn bộ dự án theo yêu cầu)  
+- **Scan as you code** (quét theo thời gian thực trong IDE)
+
+Amazon Q Developer bao gồm hàng nghìn bộ phát hiện bảo mật trên hơn 12 ngôn ngữ lập trình — mỗi bộ có ưu điểm riêng để mang lại phạm vi phát hiện lỗ hổng rộng. Mỗi phiên quét tạo ra một **thông điệp phát hiện**, mô tả vấn đề và đề xuất hướng khắc phục. Một số phát hiện còn đi kèm **gợi ý sửa mã** có thể áp dụng trực tiếp trong IDE.
 
 ---
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+## Chạy Quét Bảo Mật
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Để thực hiện quét, bạn cần cài đặt plugin Amazon Q Developer cho IDE được hỗ trợ. Trong hướng dẫn này, chúng tôi sử dụng **JetBrains IntelliJ**. Sau khi xác thực với Amazon Q Developer, bạn sẽ thấy mục **Security Scans**, bao gồm **Run Project Scan**, trong menu Amazon Q Developer.
 
----
+Nếu bạn đăng ký **Amazon Q Developer Pro**, chế độ auto-scan sẽ được bật mặc định và bạn sẽ thấy thêm tùy chọn **Pause Auto-Scans**.
 
-## The pub/sub hub
+Khi auto-scan được bật, các phiên quét ở chế độ nền diễn ra định kỳ và đánh dấu các vấn đề bảo mật trong tệp bạn đang chỉnh sửa. Ví dụ, hãy xem đoạn mã chứa **mật khẩu hard-code** dùng để kết nối với cơ sở dữ liệu — đây là lỗ hổng nghiêm trọng vì nếu bị commit, kẻ tấn công có thể lợi dụng để truy cập trái phép.
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Khi lập trình viên đang gõ mã, Amazon Q sẽ đánh dấu lời gọi hàm có vấn đề. Khi rê chuột qua dòng được đánh dấu, một pop-up xuất hiện với các thông tin như:
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+- **CWE** liên quan  
+- **Thư viện phát hiện** được sử dụng  
+- **Gợi ý sửa mã**, nếu có  
 
----
+### Scan as You Code  
+(Quét theo thời gian thực trong IDE)
 
-## Core microservice
+Dù auto-scan chỉ có trong bản Pro, **quét dự án thủ công** vẫn khả dụng ở cả Pro Tier và Free Tier. Bạn có thể đánh giá toàn bộ mã nguồn bằng cách chọn **Run Project Scan**, lệnh này sẽ kích hoạt tất cả các bộ phát hiện trên dự án.
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+### Full Project Scan
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+Sau khi Amazon Q hoàn tất việc quét toàn bộ dự án và các dependencies, một tab mới tên **Amazon Q Security Issues** xuất hiện, liệt kê tất cả các lỗ hổng phát hiện được. Khi chọn vào một mục, IDE sẽ mở tệp chứa lỗ hổng và đánh dấu vị trí mã có vấn đề. Khi rê chuột qua vùng đánh dấu, IDE sẽ hiển thị chi tiết lỗ hổng, bao gồm CWE (ví dụ: **CWE-798**) và gợi ý khắc phục.
 
----
+### Xác định Vị Trí Mã Có Lỗ Hổng  
+### Hiểu Về Phát Hiện
 
-## Front door microservice
+Chọn **Amazon Q: Explain** trong cửa sổ thông tin sẽ cung cấp mô tả chi tiết về lỗ hổng — cách hoạt động, mức độ nguy hiểm và cách khắc phục. Trong ví dụ, Amazon Q khuyến nghị thay mật khẩu hard-code bằng biến môi trường và giải thích lý do tại sao cách này an toàn hơn.
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+### Khắc Phục Mã
+
+Nếu Amazon Q Developer hỗ trợ sửa tự động, bạn sẽ thấy mục **“Yes”** tại *Code fix available*. Khi nhấn **Suggested code fix preview**, bạn sẽ xem trước đoạn mã được thay đổi. Khi hài lòng, chọn **Apply fix** để tự động cập nhật mã. Trong ví dụ, mật khẩu hard-code được thay bằng cách đọc từ biến môi trường.
 
 ---
 
-## Staging ER7 microservice
+## Độ Chính Xác & Benchmark
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+Chúng tôi đánh giá độ chính xác bằng cách kiểm tra **false positive** và **false negative**:
+
+- **False positive**: Công cụ báo lỗ hổng dù nó không tồn tại  
+- **False negative**: Lỗ hổng có thật nhưng công cụ không phát hiện ra  
+
+Các bộ phát hiện của Amazon Q được thiết kế theo hướng **tối ưu độ chính xác**, ưu tiên giảm tỷ lệ false positive nhưng vẫn giữ được khả năng phát hiện tốt. Chúng tôi so sánh Amazon Q Developer với các công cụ hàng đầu khác. Nhờ thiết kế ưu tiên độ chính xác, Amazon Q đạt hoặc vượt mức **precision** của các công cụ hàng đầu và vượt trội về **recall** trong nhiều benchmark.
+
+### So sánh với Benchmark Công Khai
+
+| Benchmark       | Ngôn ngữ | Metric     | Amazon Q | Công cụ tốt nhất khác |
+|-----------------|----------|-----------|----------|------------------------|
+| OWASP Top Rules | Java     | Precision | 84.7     | 75.7                   |
+|                 |          | Recall    | 100      | 92.1                   |
+| RailsGoat       | Ruby     | Precision | 100      | 100                    |
+|                 |          | Recall    | 13.3     | 26.6                   |
+| WebGoat         | Java     | Precision | 100      | 100                    |
+|                 |          | Recall    | 28.7     | 28.7                   |
+| CredData        | All      | Precision | 88.2     | 82.3                   |
+|                 |          | Recall    | 83.3     | 77.7                   |
+
+Ngoài benchmark công khai, Amazon Q Developer còn thể hiện hiệu suất mạnh mẽ trong các **benchmark nội bộ**, bao gồm:
+
+- Datasets công khai  
+- Các ví dụ được tuyển chọn thêm  
+- Tập hợp lỗi false positive và false negative đã được xác minh  
+
+Trên toàn bộ benchmark nội bộ, Amazon Q vượt trội về **precision**, và dẫn đầu về **recall** trong 10/13 benchmark.
 
 ---
 
-## Tính năng mới trong giải pháp
+## Kết luận
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Tính năng quét bảo mật mã nguồn của Amazon Q Developer giúp lập trình viên phát hiện và sửa lỗ hổng nhanh chóng. Bằng cách cung cấp đề xuất trực tiếp trong IDE, Amazon Q hỗ trợ áp dụng lập trình an toàn từ sớm trong SDLC. Nhà phát triển có thể chủ động quét mã cũ để khắc phục lỗ hổng, trong khi mã mới được kiểm tra liên tục bằng auto-scan cùng với các gợi ý thời gian thực.
+
+Các giải thích bằng ngôn ngữ tự nhiên giúp lập trình viên hiểu rõ lỗ hổng và viết mã an toàn hơn. Amazon Q cho phép nhà phát triển xây dựng phần mềm an toàn và linh hoạt hơn, đồng thời giảm chi phí và rủi ro xử lý lỗ hổng trong giai đoạn sau.
+
+### Tìm hiểu thêm về Amazon Q Developer:
+
+- Bắt đầu với Amazon Q  
+- Amazon Q Developer User Guide  
+- Quét mã nguồn với Amazon Q  

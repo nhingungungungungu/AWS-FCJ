@@ -5,51 +5,37 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-During my internship at **AMAZON WEB SERVICES VIETNAM COMPANY LIMITED** from **09/08** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in the **VoltGo - EV Station-based Rental System** project as a Frontend (FE) developer. This is a green mobility solution for smart cities, aiming to provide an "all-in-one" cloud-based platform that unifies searching, real-time booking, and payment, addressing the current service fragmentation.
+During my internship at **AMAZON WEB SERVICES VIETNAM COMPANY LIMITED** from **09/08** to **[end date]**, I participated in the **Jewelry Web Application** project as a **Frontend developer** and content contributor. My main responsibilities included implementing user interface components using **React/Next.js** and preparing product content for the website.  
 
-Through my participation in project development, I have accumulated and significantly expanded my professional skill set, including:<br>
-- **Frontend and Application Development:** I have become proficient in building cross-platform mobile applications using React Native and developing Web Dashboard management interfaces with Next.js. Additionally, I have practical experience in deploying and hosting web interfaces through AWS Amplify.<br>
-- **Understanding of Cloud Architecture & Backend:** Although focused on Frontend, I have grasped the operational workflow of the Spring Boot Backend system and its integration with the comprehensive AWS ecosystem.<br>
-I have approached and clearly understood the role of core services in the project, including:<br>
-- **Compute & Containers:** Amazon ECS Fargate operates the backend and AWS Lambda for serverless processing.<br>
-- **Storage & Databases:** Amazon S3 (Data Lake), Amazon RDS PostgreSQL (relational storage), and Amazon ElastiCache for Redis (caching).<br>
-- **Connectivity & IoT:** AWS IoT Core (receiving sensor data), Amazon API Gateway (API management), and Amazon Cognito (secure user authentication).<br>
-- **Data Processing & Distribution:** AWS Glue (ETL and Crawlers) and Amazon CloudFront (global content delivery network).<br>
-- **Supporting Tools:** Using AWS CDK/SDK during infrastructure development and deployment.<br>
+Based on our **AWS architecture**, the project backend was developed in **.NET**, and I collaborated with the team to integrate frontend components. While I did not directly work on backend services, I became familiar with the **AWS services** used in the project, including:  
+- **Amazon S3:** storing product images and static assets.  
+- **Amazon RDS:** database for products, users, and orders.  
+- **Amazon CloudFront:** content delivery to improve page load speed.  
+- **AWS Lambda:** serverless tasks handled by backend team.  
+- **Amazon API Gateway & Cognito:** managing APIs and authentication.  
 
-In my work, I always uphold a sense of responsibility, strive to complete all assigned targets, and comply with organizational regulations. Additionally, I proactively collaborate closely with colleagues to ensure smooth workflow and optimal efficiency.
+This experience helped me understand how frontend interacts with backend and cloud services, coordinate within a team, and maintain a workflow consistent with real-world cloud-based web projects.
 
-To objectively reflect on my internship process, I would like to evaluate myself based on the following criteria:
+---
 
+### Self-Evaluation
 
-| No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Understanding of the field, applying knowledge in practice, proficiency with tools, work quality | ☐    | ✅    | ☐       |
-| 2   | **Ability to learn**                | Ability to absorb new knowledge and learn quickly                                                | ☐    | ✅    | ☐       |
-| 3   | **Proactiveness**                   | Taking initiative, seeking out tasks without waiting for instructions                            | ✅    | ☐    | ☐       |
-| 4   | **Sense of responsibility**         | Completing tasks on time and ensuring quality                                                    | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ☐    | ✅    | ☐       |
-| 6   | **Progressive mindset**             | Willingness to receive feedback and improve oneself                                              | ✅    | ☐    | ☐       |
-| 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                      | ✅    | ☐    | ☐       |
-| 8   | **Teamwork**                        | Working effectively with colleagues and participating in teams                                   | ✅    | ☐    | ☐       |
-| 9   | **Professional conduct**            | Respecting colleagues, partners, and the work environment                                        | ✅    | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Identifying problems, proposing solutions, and showing creativity                                | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Work effectiveness, innovative ideas, recognition from the team                                  | ✅    | ☐    | ☐       |
-| 12  | **Overall**                         | General evaluation of the entire internship period                                               | ✅    | ☐    | ☐       |
+| No. | Criteria                         | Description                                      | Good | Fair | Average |
+| --- | -------------------------------- | ----------------------------------------------- | ---- | ---- | ------- |
+| 1   | Professional knowledge & skills | Applying frontend knowledge, preparing content  | ✅    | ☐    | ☐       |
+| 2   | Ability to learn                | Quickly absorb new tools or guidance            | ✅    | ☐    | ☐       |
+| 3   | Proactiveness                   | Take initiative within my role                  | ✅    | ☐    | ☐       |
+| 4   | Sense of responsibility         | Complete tasks on time                           | ✅    | ☐    | ☐       |
+| 5   | Discipline                      | Follow schedules and team guidelines           | ✅    | ☐    | ☐       |
+| 6   | Communication                   | Communicate issues and updates clearly          | ✅    | ☐    | ☐       |
+| 7   | Teamwork                        | Collaborate effectively with team members       | ✅    | ☐    | ☐       |
+| 8   | Contribution to project/team    | Deliver frontend components, support content   | ✅    | ☐    | ☐       |
+| 9   | Overall                         | General internship evaluation                   | ✅    | ☐    | ☐       |
 
-### Needs Improvement
+---
 
-Through my work experience at Amazon Web Services Vietnam, I recognize that I still have some limitations that need to be addressed:
+### Areas to Improve
 
-* Regarding discipline:<br>
-Current situation: Sometimes I am not strict enough with myself in absolutely adhering to administrative procedures or schedules.<br>
-Plan: I will cultivate stricter time management habits and commit to strictly complying with company regulations as well as any organization I join in the future.
-
-* Regarding problem-solving thinking:<br>
-Current situation: When encountering complex technical issues in the project (e.g., real-time data processing or AWS integration), I sometimes feel confused and don't have an optimal solution immediately.<br>
-Plan: I will develop the habit of analyzing root causes and thoroughly studying technical documentation (AWS Well-Architected Framework) to propose more systematic solutions.
-
-* Regarding communication skills:<br>
-Current situation: Expressing technical ideas or daily progress reports is sometimes not concise enough.<br>
-Plan: I will learn to present issues more briefly and succinctly, and actively participate in group discussions to practice handling work situations.
+**Technical skills:** Gain more understanding of .NET backend and AWS integration to improve coordination with backend team.  
+**Problem-solving:** Handle unexpected frontend issues or UI/content conflicts more efficiently.  
+**Communication:** Summarize updates concisely and proactively share progress with team.
