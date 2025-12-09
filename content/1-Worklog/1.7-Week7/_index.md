@@ -1,32 +1,27 @@
 ---
-title: "Week 7 Worklog"
-weight: 7
+title: "Worklog Week 7"
+date: 2025-10-24
+weight: 1
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
+### Week 7 Goals:
 
-### Week 7 Objectives:
+* Bootstrap AWS Jewelry backend repository and core project structure.
+* Define shared domain model (entities, enums, payloads, utils, API constants) and enable CORS for SPA frontend on CloudFront.
 
-* Practice migration strategies to AWS.
-* Build disaster recovery (DR) plan.
-* Increase system durability, load tolerance, and resiliency.
+### Tasks for Week 7
 
-### Tasks to be carried out this week:
+| Day | Task | Start Date | End Date | Reference Material |
+|-----|------|------------|----------|--------------------|
+| 1   | Initialize Git repository, set up solution folders (API, Models, Utils, Payload). | 20/10/2025 | 20/10/2025 | `AWSJewelry` proposal |
+| 2   | Define base entities/enums for jewelry, orders, users; add DTO/payload contracts. | 21/10/2025 | 21/10/2025 | `AWSJewelry` proposal |
+| 3   | Add API constants, error codes, response wrappers; wire shared helpers (validation, mapping). | 22/10/2025 | 22/10/2025 | Team guidelines |
+| 4   | Configure global CORS for React frontend domain (CloudFront) and local dev origins. | 23/10/2025 | 23/10/2025 | AWS docs |
+| 5   | Internal review of base structure; adjust naming conventions and folder layout. | 24/10/2025 | 24/10/2025 | Codebase |
 
-| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
-| --- | --- | --- | --- | --- | --- | --- |
-| T7.1 | 15 | **VM Import/Export – Lift & Shift Migration:** <br> - Export VM from VirtualBox (.ova/.vmdk) <br> - Upload to S3 <br> - Import as AMI and launch EC2 | 15/10/2025 | 15/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T7.2 | 16 | **SCT – Database Schema Conversion:** <br> - Convert Oracle → Aurora PostgreSQL schema <br> - Generate report for manual fixes <br> - Validate objects after conversion | 16/10/2025 | 16/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T7.3 | 17 | **DMS – Database Migration:** <br> - Create Replication Instance <br> - Configure Source/Target endpoints <br> - Set up Full Load + CDC to minimize downtime | 17/10/2025 | 17/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T7.4 | 18 | **Elastic Disaster Recovery (DRS):** <br> - Install DRS Agent <br> - Monitor continuous replication <br> - Perform Recovery Drill to test data integrity | 18/10/2025 | 18/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T7.5 | 19 | **AWS Backup – Data Protection:** <br> - Create Backup Plan for EC2/EBS/RDS/DynamoDB <br> - Enable Cross-Region copy <br> - Monitor backup compliance | 19/10/2025 | 19/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T7.6 | 20 | **SQS & SNS – Reliability Messaging:** <br> - Use SQS as overload buffer <br> - Create SNS fan-out → multiple SQS queues <br> - Compare reliability between push/pull models | 20/10/2025 | 20/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T7.7 | 21 | **EBS Multi-Attach & EFS – Shared Storage:** <br> - Test Multi-Attach for io2 to multiple EC2 instances <br> - Compare GFS2 vs EFS <br> - Deploy NFS share on EFS | 21/10/2025 | 21/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-
-### Week 7 Achievements:
-
-* Successfully migrated virtual machines and databases to AWS.  
-* Established continuous DR using DRS and performed Recovery Drill.  
-* Automated centralized backups across multiple services using AWS Backup.  
-* Increased system reliability with SQS, SNS, and decoupled architecture.  
-* Applied shared storage solution using EFS and Multi-Attach for clustered workloads.  
+### Achievements of Week 7:
+* Repository scaffolded with clear separation for models, payloads, enums, utils, and API constants aligned to AWS Jewelry requirements.
+* CORS configured for CloudFront/S3 frontend and localhost to allow authenticated SPA calls.
+* Shared helpers (response envelope, error handling, mapping/validation) centralized to reduce duplication.
+* Base domain objects ready for subsequent auth, upload, and service layers.

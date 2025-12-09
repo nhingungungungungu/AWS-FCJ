@@ -1,37 +1,28 @@
 ---
-title: "Week 8 Worklog"
-weight: 8
+title: "Worklog Tuần 8"
+date: 2025-10-31
+weight: 1
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
+### Mục tiêu Tuần 8:
 
-### Week 8 Objectives:
+* Triển khai luồng xác thực JWT với Amazon Cognito cho backend.
+* Hoàn thiện Account service sử dụng thuộc tính người dùng Cognito và domain dự án.
 
-* Tối ưu hóa chi phí (FinOps) bằng công cụ theo dõi, phân tích và tối ưu tài nguyên.
-* Xây dựng mô hình mạng nâng cao cho môi trường đa VPC và phân tách workload.
-* Tăng mức độ chủ động trong quản trị hạn ngạch, giám sát mạng và phân quyền thanh toán.
+### Các nhiệm vụ trong Tuần 8
 
-### Tasks to be carried out this week:
+| Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+|-----|-----------|--------------|-----------------|--------------------|
+| 1   | Tạo Cognito User Pool/App Client; ghi nhận pool ID, client ID, JWKS endpoint. | 27/10/2025 | 27/10/2025 | Tài liệu AWS Cognito |
+| 2   | Tích hợp middleware xác thực JWT (public keys Cognito, kid rotation, audience). | 28/10/2025 | 28/10/2025 | AWS SDK docs |
+| 3   | Xây Account service: lấy/cập nhật hồ sơ, đăng ký gắn với Cognito, cập nhật thông tin. | 29/10/2025 | 29/10/2025 | Đề xuất `AWSJewelry` |
+| 4   | Ánh xạ role/claim (admin/customer) và bảo vệ route bằng middleware/attribute. | 30/10/2025 | 30/10/2025 | Quy ước nhóm |
+| 5   | Kiểm thử E2E: đăng nhập → nhận token → truy cập API từ React SPA. | 31/10/2025 | 31/10/2025 | Postman collection |
 
-| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
-| --- | --- | --- | --- | --- | --- | --- |
-| T8.1 | 22 | **Cost Explorer & CUR – Cost Analysis:** <br> - Phân tích chi phí theo Service/Region/Tag <br> - Kích hoạt Cost & Usage Report (CUR) <br> - Truy vấn CUR bằng Athena | 22/10/2025 | 22/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.2 | 23 | **Compute Optimizer – Right-Sizing:** <br> - Phân tích instance over-provisioned <br> - Gợi ý giảm size dựa trên dữ liệu lịch sử <br> - Thu thập thêm RAM metrics qua CloudWatch Agent | 23/10/2025 | 23/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.3 | 24 | **Savings Plans & Reserved Instances:** <br> - So sánh Compute SP vs EC2 Instance SP <br> - Lập chiến lược mua SP 1 năm cho Base Load <br> - Phân tích chi phí & mức độ linh hoạt | 24/10/2025 | 24/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.4 | 25 | **Service Quotas – Quản lý hạn ngạch:** <br> - Kiểm tra quota vCPU, VPC, NAT… <br> - Thiết lập cảnh báo khi đạt 80% quota <br> - Tạo yêu cầu tăng hạn mức chủ động | 25/10/2025 | 25/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.5 | 26 | **Transit Gateway – Advanced Networking:** <br> - Kết nối 3 VPC + VPN vào TGW <br> - Thiết kế mô hình Hub-and-Spoke <br> - Cấu hình route tách biệt Dev & Prod | 26/10/2025 | 26/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.6 | 27 | **VPC Flow Logs – Network Monitoring:** <br> - Kích hoạt Flow Logs cho VPC <br> - Phân tích traffic REJECT <br> - Xác định SG/NACL chặn kết nối | 27/10/2025 | 27/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.7 | 28 | **Billing Delegation – Phân quyền Thanh toán:** <br> - Tạo Billing IAM Role cho Finance Team <br> - Áp dụng Separation of Duties <br> - Giới hạn truy cập vào tài nguyên kỹ thuật | 28/10/2025 | 28/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.8 | 29 | **EBS Lifecycle – Snapshot Automation:** <br> - Tự động hóa Snapshot với DLM <br> - Giữ 7 ngày backup gần nhất <br> - Bật Anomaly Detection cho backup | 29/10/2025 | 29/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T8.9 | 30 | **Tổng kết tháng 10:** <br> - Đánh giá mức độ vận hành chuyên nghiệp <br> - Hệ thống tối ưu, bảo mật, DR-ready <br> - Sẵn sàng cho giai đoạn hiện đại hóa | 30/10/2025 | 30/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-
-### Week 8 Achievements:
-
-* Phân tích chi phí chi tiết với Cost Explorer & CUR và truy vấn dữ liệu bằng Athena.  
-* Tối ưu hóa tài nguyên EC2 bằng Compute Optimizer dựa trên dữ liệu thực tế.  
-* Xây dựng chiến lược tiết kiệm dài hạn với Savings Plans & Reserved Instances.  
-* Chủ động kiểm soát hạn ngạch với cảnh báo trước 80% usage.  
-* Thiết kế mạng nâng cao với Transit Gateway thay thế mô hình VPC Peering chằng chịt.  
-* Giám sát mạng chuyên sâu bằng VPC Flow Logs để xác định lỗi kết nối.  
-* Áp dụng phân quyền thanh toán an toàn cho Finance Team.  
-* Tự động hóa quản lý Snapshot và phát hiện bất thường backup.  
+### Thành tựu Tuần 8:
+* Cấu hình Cognito User Pool với SPA client; lưu biến môi trường cho triển khai.
+* Middleware JWT xác thực chữ ký, audience, issuer, hết hạn bằng JWKS Cognito.
+* Account service cung cấp API xem/cập nhật hồ sơ và đăng ký gắn với danh tính Cognito.
+* Bảo vệ route theo role admin/customer; CORS không lỗi khi gọi từ frontend.
+* Đăng nhập từ React thành công, lấy token và gọi API bảo vệ trọn vẹn.

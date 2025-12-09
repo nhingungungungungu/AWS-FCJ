@@ -1,33 +1,30 @@
 ---
-title: "Week 6 Worklog"
-weight: 6
+title: "Worklog Tuần 6"
+date: 2025-10-17
+weight: 1
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-### Week 6 Objectives:
+### Mục tiêu Tuần 6:
 
-* Triển khai bảo mật đa lớp (Layered Security Architecture).
-* Bảo vệ ứng dụng Web, dữ liệu, danh tính và mạng nội bộ.
-* Tự động hóa giám sát, tuân thủ và phát hiện mối đe dọa.
+* Tìm hiểu về **AWS Auto Scaling** và **Elastic Load Balancing** để đảm bảo ứng dụng có thể mở rộng và phân phối tải hiệu quả.  
+* Học về **AWS Elastic Container Service (ECS)** và **AWS Fargate**.  
+* Thực hành triển khai ứng dụng container trên ECS và sử dụng Auto Scaling để tự động điều chỉnh tài nguyên.
 
-### Tasks to be carried out this week:
+### Các nhiệm vụ trong Tuần 6
 
-| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
-| --- | --- | --- | --- | --- | --- | --- |
-| T6.1 | 8 | **AWS WAF – Application Firewall:** <br> - Gắn WAF vào ALB/CloudFront <br> - Cấu hình rule SQLi, XSS <br> - Tạo rate limit 100 req/5 min | 08/10/2025 | 08/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T6.2 | 9 | **AWS KMS – Encryption:** <br> - Tạo CMK và chỉnh Key Policy <br> - Bật encryption cho EBS & S3 bằng CMK <br> - Quản lý quyền sử dụng khóa | 09/10/2025 | 09/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T6.3 | 10 | **Secrets Manager – Secret Rotation:** <br> - Lưu mật khẩu RDS trong Secrets Manager <br> - Enable automatic rotation (Lambda) <br> - Chỉnh app gọi secret qua API | 10/10/2025 | 10/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T6.4 | 11 | **GuardDuty – Threat Detection:** <br> - Enable GuardDuty <br> - Phân tích events từ CloudTrail, VPC Flow Logs <br> - Tạo cảnh báo qua EventBridge | 11/10/2025 | 11/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T6.5 | 12 | **Cognito – Identity Security:** <br> - Tạo User Pool <br> - Tạo Identity Pool <br> - Cho phép người dùng upload S3 trực tiếp bằng temporary credentials | 12/10/2025 | 12/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T6.6 | 13 | **Security Hub & Config – Compliance:** <br> - Enable Security Hub <br> - Theo dõi CIS Benchmark Score <br> - Tổng hợp findings từ GuardDuty, Macie, Inspector | 13/10/2025 | 13/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T6.7 | 14 | **VPC Endpoints – Private Connectivity:** <br> - Tạo S3 Gateway Endpoint <br> - Cập nhật route table private subnet <br> - Truy cập S3 mà không đi Internet | 14/10/2025 | 14/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+|-----|------------|---------------|-----------------|----------------|
+| 1   | - **Học về AWS Auto Scaling** <br>&emsp;+ Cấu hình Auto Scaling cho EC2 <br>&emsp;+ Thiết lập chính sách mở rộng và thu hẹp | 12/10/2025 | 12/10/2025 | **[Tài liệu học](https://cloudjourney.awsstudygroup.com/)** |
+| 2   | - **Học về Elastic Load Balancer (ELB)** <br>&emsp;+ Cấu hình và sử dụng ELB để phân phối tải | 13/10/2025 | 13/10/2025 | **[Tài liệu học](https://cloudjourney.awsstudygroup.com/)** |
+| 3   | - **Học về AWS ECS và Fargate** <br>&emsp;+ Giới thiệu về ECS và Fargate <br>&emsp;+ Triển khai ứng dụng container trên ECS | 14/10/2025 | 14/10/2025 | **[Tài liệu học](https://cloudjourney.awsstudygroup.com/)** |
+| 4   | - **Thực hành triển khai ứng dụng trên ECS và Fargate** <br>&emsp;+ Triển khai ứng dụng đơn giản trên ECS <br>&emsp;+ Sử dụng Fargate để chạy container mà không cần quản lý máy chủ | 15/10/2025 | 15/10/2025 | **[Tài liệu học](https://cloudjourney.awsstudygroup.com/)** |
+| 5   | - **Thực hành với Auto Scaling và ELB** <br>&emsp;+ Cấu hình Auto Scaling và ELB cho ứng dụng trên ECS | 16/10/2025 | 16/10/2025 | **[Tài liệu học](https://cloudjourney.awsstudygroup.com/)** |
 
-### Week 6 Achievements:
+### Thành tựu Tuần 6:
+* Đã cấu hình **AWS Auto Scaling** và **Elastic Load Balancing** cho các ứng dụng trên EC2.
+* Làm quen với **AWS ECS** và **Fargate**, triển khai ứng dụng container.
+* Thực hành triển khai ứng dụng trên **ECS** và sử dụng **Fargate** để tự động mở rộng tài nguyên mà không cần quản lý máy chủ.
 
-* Bảo vệ ứng dụng bằng WAF và chặn các cuộc tấn công web phổ biến.  
-* Tự động hóa mã hóa dữ liệu bằng KMS và quản lý khóa theo chuẩn bảo mật.  
-* Bảo vệ bí mật hệ thống với Secrets Manager và secret rotation.  
-* Tăng cường giám sát mối đe dọa bằng GuardDuty và Security Hub.  
-* Xây dựng mô hình truy cập riêng tư đến S3 thông qua VPC Endpoint.  
-* Hoàn thiện lớp bảo mật đa tầng (WAF → KMS → Secrets → Identity → Network).  
+---
