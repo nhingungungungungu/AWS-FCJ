@@ -1,48 +1,42 @@
 ---
-title: "Week 5 Worklog"
+title: "Worklog Week 5"
 weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
 ### Week 5 Objectives:
+Eliminate manual operations, manage large-scale server fleets, and fully codify infrastructure using IaC.
 
-* Fast VPS: Deploy a complete WordPress application in 5 minutes using Amazon Lightsail.
-* Containerization: Package a small application into a Docker Image and deploy on Lightsail Container Service.
-* Elasticity: Set up self-healing and auto-scaling architecture with EC2 Auto Scaling Group.
-* Load Balancing: Distribute user traffic through Application Load Balancer (ALB).
+### Tasks completed this week:
 
-### Tasks to be carried out this week:
-| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
+| Task ID | Day | Task | Start Date | End Date | Status | Reference |
 | --- | --- | --- | --- | --- | --- | --- |
-| T5.1 | 2 | **Lightsail - WordPress Deploy:** <br> - Initialize Lightsail Instance with "WordPress" Blueprint <br> - Assign Static IP | 10/06/2025 | 10/06/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T5.2 | 2 | **Container - Docker Intro:** <br> - Write simple Dockerfile for Hello World webpage <br> - Build and test on Cloud9 | 10/06/2025 | 10/07/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T5.3 | 3 | **Lightsail - Container Deploy:** <br> - Push Docker Image to Lightsail Container Service <br> - Configure Public Endpoint | 10/07/2025 | 10/08/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T5.4 | 4 | **EC2 - Launch Template:** <br> - Create Launch Template: Amazon Linux 2023, t3.micro <br> - User Data script to auto-install Apache Web Server | 10/08/2025 | 10/09/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T5.5 | 4 | **Networking - Target Group:** <br> - Create empty Target Group <br> - Ready for ASG to register instances | 10/09/2025 | 10/10/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T5.6 | 5 | **EC2 - Create ALB:** <br> - Initialize internet-facing Application Load Balancer <br> - Listen on port 80, route traffic to Target Group | 10/09/2025 | 10/10/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T5.7 | 5 | **EC2 - Auto Scaling Group:** <br> - Create ASG: Min=1, Desired=2, Max=4 <br> - Use Launch Template <br> - Integrate with ALB Target Group | 10/09/2025 | 10/10/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
-| T5.8 | 6 | **Testing - Stress Test:** <br> - SSH into instance, install stress tool <br> - Push CPU to 100% and observe ASG Scale Out | 10/10/2025 | 10/12/2025 | Completed | <https://cloudjourney.awsstudygroup.com/> |
+| T5.1 | 01 | **AWS Systems Manager:** <br> - Ensure EC2 has AmazonSSMManagedInstanceCore role <br> - Use Run Command to execute shell commands across instances without SSH <br> - Enable Inventory for audit data collection | 01/10/2025 | 01/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.2 | 02 | **Session Manager:** <br> - Remove SSH access entirely, close port 22 <br> - Access EC2 via Session Manager (IAM + HTTPS) <br> - Log all sessions to S3/CloudWatch Logs | 02/10/2025 | 02/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.3 | 03 | **CloudFormation – IaC:** <br> - Understand IaC and CloudFormation workflow <br> - Write YAML template for VPC + EC2 <br> - Practice Stack create/update/delete + Drift Detection | 03/10/2025 | 03/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.4 | 04 | **AWS CDK – Basics:** <br> - Learn CDK and Imperative IaC <br> - Define infrastructure using TypeScript/Python <br> - Create VPC using L2 Construct | 04/10/2025 | 04/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.5 | 05 | **AWS CDK – Advanced:** <br> - Build custom Constructs (e.g., StandardS3Bucket) <br> - Participate in IaC Workshop to handle circular dependencies <br> - Manage Context and environment configs | 05/10/2025 | 05/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.6 | 06 | **Tagging & Resource Groups:** <br> - Design consistent tagging strategy (CostCenter, Env, Owner) <br> - Create Resource Groups based on tags | 06/10/2025 | 06/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.7 | 07 | **Tag-based Access Control – ABAC:** <br> - Learn ABAC <br> - Write IAM Policy allowing Developers to Start/Stop EC2 with tags Env=Dev & Owner=User | 07/10/2025 | 07/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
 ### Week 5 Achievements:
 
-* **Comparison:**
-  * Lightsail extremely fast to deploy but lacks deep network customization
-  * Lightsail VPC Peering has limitations
-  * Suitable for small projects, blogs, prototypes
+* **Systems Manager & Session Manager:**
+  * Manage systems without SSH access.
+  * Improve EC2 security through IAM + HTTPS.
+  * Collect logs and inventory from all instances.
 
-* **Elastic System:**
-  * Built a Fault Tolerant Web system
-  * When manually terminating 1 instance, ASG immediately creates a new replacement instance
-  * System automatically scales up/down based on demand
+* **Infrastructure as Code:**
+  * Automate infrastructure using CloudFormation.
+  * Use AWS CDK to write IaC with TypeScript/Python.
+  * Build reusable Constructs for organizational standards.
 
-* **Load Balancing:**
-  * ALB distributes requests evenly between instances
-  * Ensures users don't experience service interruption when a server fails
-  * Understanding of Health Checks and Drain Connection
+* **Resource Management:**
+  * Implement consistent tagging strategy.
+  * Build Resource Groups based on tags.
+  * Apply flexible access control using ABAC.
 
-* **Architecture:**
-  * Solid grasp of Stateless Architecture concept
-  * Cannot store uploaded files or sessions on EC2 hard drive
-  * Combine S3 (files) and RDS (data) for Cloud-Native system
-  * User Data for Bootstrapping is a key automation technique
+* **Summary:**
+  * Strengthened DevOps mindset and Operational Excellence.
+  * Ready for Week 6: CI/CD, Lambda, and Containers.

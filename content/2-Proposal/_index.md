@@ -25,7 +25,7 @@ Key AWS services include ECS Fargate for compute, RDS PostgreSQL for data storag
 ### Benefits and Return on Investment
 The platform eliminates manual coordination and fragmented applications, offering a unified, automated experience for renters and fleet owners. Real-time data ensures reliability and transparency regarding vehicle availability and rental point status.
 
-Designed under the AWS Well-Architected Framework, the system minimizes operational costs with a serverless, pay-per-use model while maintaining scalability and 99.99% uptime. Within 12–24 months, the platform is projected to reach 50,000+ monthly active users, onboard 200+ rental points, and deliver significant time, cost, and operational efficiencies for both users and operators.
+Designed under the AWS Well-Architected Framework, the system minimizes operational costs with a serverless, pay-per-use model while maintaining scalability and 99.99% uptime. Within 12–24 months, the platform is projected to reach 50,000+ monthly active users, onboard 200+ rental points, and deliver significant time, cost, and operational efficiencies for both users and operators. hihi
 
 ### 3. Solution Architecture
 The VoltGo platform adopts a serverless and fully private AWS architecture for secure and scalable backend operations. Backend run on Amazon ECS Fargate, connecting to Aurora PostgreSQL Serverless v2 for relational data and ElastiCache Serverless (Redis) for caching.

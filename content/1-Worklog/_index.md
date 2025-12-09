@@ -1,46 +1,37 @@
----
-title: "Worklog"
-weight: 1
-chapter: false
-pre: " <b> 1. </b> "
----
-
-This is a detailed worklog of the **First Cloud Journey (FCJ) Workforce** program completed over **12 weeks** (84 days). Each week focuses on different aspects of AWS Cloud, from fundamental basics to advanced services, helping build a solid foundation for the **AWS Cloud Engineer** role.
-
 ### 12-Week Learning Roadmap:
 
-**Week 1:** [AWS Foundations - Getting Started with Account, IAM, VPC and EC2](1.1-week1/)
-- Create AWS account, configure IAM, understand VPC and EC2 basics
+**Week 1:** [Identity Management & Network Architecture (IAM, VPC)](1.1-week1/)  
+- Set up an enterprise-grade AWS account, configure IAM, and build a secure VPC architecture.
 
-**Week 2:** [Security and Networking - Security Foundations & Networking](1.2-week2/)
-- Set up IAM Users/Groups, MFA, build Custom VPC with Public/Private Subnets
+**Week 2:** [Fundamental Compute & Storage (EC2, EBS, S3, Lightsail)](1.2-week2/)  
+- Deploy EC2, understand storage types (EBS, S3), and explore simplified compute models with Lightsail.
 
-**Week 3:** [Compute and Application Identity - EC2 & Instance Profiling](1.3-week3/)
-- Launch EC2, use IAM Roles, manage EBS Volumes
+**Week 3:** [Database & Managed Services (RDS, DynamoDB)](1.3-week3/)  
+- Transition from self-managed databases on EC2 to fully managed Database Services to reduce operational overhead.
 
-**Week 4:** [Storage and Database - Cloud9, S3 & RDS](1.4-week4/)
-- Set up Cloud9 environment, deploy S3 Static Website, initialize RDS MySQL
+**Week 4:** [Scalability, Monitoring & Content Delivery](1.4-week4/)  
+- Implement Auto Scaling, establish comprehensive monitoring, and optimize global content delivery using CDN.
 
-**Week 5:** [Scalability - Lightsail & Auto Scaling](1.5-week5/)
-- Get familiar with Docker, deploy Application Load Balancer and Auto Scaling Groups
+**Week 5:** [Operational Excellence & Infrastructure as Code](1.5-week5/)  
+- Eliminate manual operations, manage large-scale infrastructure, and adopt IaC using CloudFormation/CDK.
 
-**Week 6:** [Monitoring and Automation - CloudWatch & Lambda](1.6-week6/)
-- Build Dashboard, create Alarms, write Lambda functions for automation
+**Week 6:** [Multi-Layer Security Architecture](1.6-week6/)  
+- Build a multi-layer security architecture to protect data and applications against modern cyber threats.
 
-**Week 7:** [Systems Management - AWS Systems Manager](1.7-week7/)
-- Use SSM Session Manager, Run Command, manage fleet with Tagging
+**Week 7:** [Migration Strategy & Disaster Recovery](1.7-week7/)  
+- Migrate workloads from On-Premise to AWS and ensure business continuity with disaster recovery strategies.
 
-**Week 8:** [Infrastructure as Code - CloudFormation & CDK](1.8-week8/)
-- Learn CloudFormation, deploy infrastructure with AWS CDK (TypeScript)
+**Week 8:** [Cost Optimization & Advanced Networking](1.8-week8/)  
+- Apply FinOps principles to control cloud spending and deploy advanced networking architectures.
 
-**Week 9:** [Network and Cost Optimization - VPC Flow Logs & Cost Optimization](1.9-week9/)
-- Analyze network traffic, use Cost Explorer and Compute Optimizer
+**Week 9:** [Container Technologies (Docker, ECS, EKS)](1.9-week9/)  
+- Master Docker and container orchestration platforms on AWS: ECS and EKS.
 
-**Week 10:** [Serverless Architecture - API Gateway, Lambda & DynamoDB](1.10-week10/)
-- Build complete RESTful API with serverless architecture
+**Week 10:** [Serverless & Event-Driven Architecture](1.10-week10/)  
+- Build serverless applications and develop systems using event-driven architecture.
 
-**Week 11:** [Governance and Compliance - Governance & Well-Architected Review](1.11-week11/)
-- Audit infrastructure, manage Service Quotas, apply Well-Architected Framework
+**Week 11:** [Application Modernization & DevOps Culture](1.11-week11/)  
+- Modernize monolithic applications into Microservices and adopt DevOps best practices.
 
-**Week 12:** [Capstone Project and Career Preparation - Career Readiness](1.12-week12/)
-- Deploy comprehensive project, practice SAA-C03 certification exam, prepare portfolio
+**Week 12:** [Data Analytics & AI/ML](1.12-week12/)  
+- Build a Data Lake and implement data analytics workflows and AI/ML applications.

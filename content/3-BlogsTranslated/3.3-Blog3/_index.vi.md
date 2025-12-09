@@ -1,126 +1,69 @@
 ---
-title: "Blog 3"
+title: "AWS Developer Tools – Triển khai ứng dụng .NET trên nền tảng ARM"
 weight: 1
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# AWS Developer Tools – Triển khai ứng dụng .NET trên nền tảng ARM
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+Tác giả: Philippe El Asmar – ngày 08 tháng 05 năm 2025  
+Chuyên mục: .NET, Announcements, AWS .NET Development, AWS SDK for .NET, AWS Toolkit for Visual Studio, Developer Tools, Visual Studio
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
-
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Chúng tôi rất vui mừng thông báo rằng **AWS Deploy Tool for .NET** hiện đã hỗ trợ triển khai các ứng dụng .NET lên **nền tảng tính toán dựa trên ARM** trên AWS! Dù bạn triển khai từ Visual Studio hay sử dụng .NET CLI, giờ đây bạn có thể nhắm mục tiêu vào các cơ sở hạ tầng ARM tiết kiệm chi phí như **AWS Graviton** với trải nghiệm quen thuộc và mượt mà như trước.
 
 ---
 
-## Hướng dẫn kiến trúc
+## Tại sao nên triển khai lên ARM?
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Các instance dựa trên ARM, chẳng hạn như **AWS Graviton**, mang lại hiệu năng/giá thành tuyệt vời và tiết kiệm năng lượng — khiến chúng trở thành lựa chọn thông minh cho nhiều workload .NET. Với bản cập nhật này, bạn có thể tận dụng toàn bộ sức mạnh của ARM trên các dịch vụ được hỗ trợ mà không cần thay đổi cách triển khai ứng dụng.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
-
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Nếu bạn đã sử dụng AWS Deploy Tool for .NET, việc triển khai lên ARM đơn giản chỉ là chọn **tùy chọn compute dựa trên ARM**, như **AWS Elastic Beanstalk** hoặc **Amazon ECS với AWS Fargate**.
 
 ---
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+## Bắt đầu với Visual Studio
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Để bắt đầu trong Visual Studio:
 
----
+1. Cài đặt phiên bản mới nhất của **AWS Toolkit for Visual Studio** từ Visual Studio Marketplace (còn được gọi là **AWS Toolkit with Amazon Q**).  
+2. Sau khi cài đặt toolkit và cấu hình AWS credentials, nhấp chuột phải vào project trong **Solution Explorer**, chọn **Publish to AWS…**.  
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+Bạn có thể chọn một trong các **Publish Targets** đã được cập nhật để hỗ trợ kiến trúc ARM-based:
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+- ASP.NET Core App to AWS Elastic Beanstalk on Linux  
+- ASP.NET Core App to Amazon ECS using AWS Fargate  
+- Scheduled Task on Amazon ECS using AWS Fargate  
+- Service on Amazon ECS using AWS Fargate  
+
+Trong phần **Target Configuration**, chọn **Edit settings**. Trên màn hình cài đặt, chọn **Project Build** ở khung bên trái, sau đó chuyển **Environment Architecture** sang **Arm64**. Cuối cùng, nhấn **Publish** để triển khai ứng dụng lên nền tảng ARM.
 
 ---
 
-## The pub/sub hub
+## Bắt đầu từ .NET CLI
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Để bắt đầu từ .NET CLI:
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+1. Cài đặt AWS Deploy Tool CLI từ NuGet:
 
----
+dotnet tool install --global Aws.Deploy.Tools
 
-## Core microservice
+2. Bắt đầu quá trình triển khai:
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+dotnet aws deploy
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+CLI sẽ hướng dẫn bạn chọn **Deployment Option**. Chọn tùy chọn hỗ trợ triển khai ARM-based, cập nhật **Environment Architecture** thành **Arm64**, rồi nhấn Enter để bắt đầu triển khai.
 
 ---
 
-## Front door microservice
+## Kết luận
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+Với việc hỗ trợ ARM-based compute trong AWS Deploy Tool for .NET, việc triển khai ứng dụng .NET lên cơ sở hạ tầng Graviton trở nên dễ dàng hơn bao giờ hết. Bạn có thể tận hưởng hiệu năng/chi phí tốt hơn mà không cần thay đổi quy trình làm việc hiện tại.
 
----
+### Các bước tiếp theo
 
-## Staging ER7 microservice
+- Thử triển khai ứng dụng .NET của bạn lên ARM-based compute bằng cách cài đặt hoặc cập nhật phiên bản AWS Deploy Tool for .NET mới nhất.  
+- Khám phá **Developer Guide** và **GitHub repo** của chúng tôi để xem tài liệu và dự án mẫu.  
+- Đừng ngần ngại tạo issue hoặc pull request nếu bạn có ý tưởng cải tiến.
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+**Tags:** .NET, deploy, deployment, dotnet

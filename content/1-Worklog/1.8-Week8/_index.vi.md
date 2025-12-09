@@ -1,63 +1,37 @@
 ---
-title: "Worklog Tuần 8"
+title: "Week 8 Worklog"
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
-### Mục tiêu tuần 8:
+### Week 8 Objectives:
 
-* Tự động hóa Hạ tầng: Tái tạo lại kiến trúc mạng (VPC) và máy chủ (EC2) bằng code.
-* Hiểu bản chất: Nắm vững cấu trúc CloudFormation (Parameters, Resources, Outputs).
-* Công cụ Hiện đại: Làm quen với AWS CDK và quy trình cdk init, cdk synth, cdk deploy.
-* Quản lý Vòng đời: Thực hành xóa sạch (Destroy) và tạo lại (Deploy) toàn bộ stack trong vài phút.
+* Tối ưu hóa chi phí (FinOps) bằng công cụ theo dõi, phân tích và tối ưu tài nguyên.
+* Xây dựng mô hình mạng nâng cao cho môi trường đa VPC và phân tách workload.
+* Tăng mức độ chủ động trong quản trị hạn ngạch, giám sát mạng và phân quyền thanh toán.
 
-### Các công việc cần triển khai trong tuần này:
-| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+### Tasks to be carried out this week:
+
+| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
 | --- | --- | --- | --- | --- | --- | --- |
-| T8.1 | 2 | **CloudFormation - Write Template:** <br> - Viết file `vpc.yaml` định nghĩa VPC <br> - Bao gồm: Subnet, Internet Gateway, Route Table | 27/10/2025 | 27/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T8.2 | 2 | **CloudFormation - Deploy Stack:** <br> - Upload file lên CloudFormation Console <br> - Tạo stack `FCJ-VPC-Stack` <br> - Kiểm tra tài nguyên được tạo | 27/10/2025 | 28/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T8.3 | 3 | **CDK - Init Project:** <br> - Cài đặt AWS CDK <br> - Khởi tạo dự án TypeScript: `cdk init app --language typescript` | 28/10/2025 | 28/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T8.4 | 4 | **CDK - Define S3:** <br> - Trong `lib/stack.ts`, thêm code tạo S3 Bucket <br> - Bật versioning và encryption (L2 Construct) | 29/10/2025 | 29/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T8.5 | 5 | **CDK - Deploy:** <br> - Chạy `cdk deploy` <br> - Quan sát quá trình tạo ChangeSet và thực thi | 30/10/2025 | 30/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T8.6 | 5 | **IaC - Drift Detection:** <br> - Thay đổi thủ công tag của S3 bucket trên Console <br> - Chạy Drift Detection để phát hiện sự sai lệch | 30/10/2025 | 31/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T8.7 | 6 | **IaC - Cleanup:** <br> - Chạy `cdk destroy` để xóa toàn bộ tài nguyên <br> - Đảm bảo không sót chi phí | 31/10/2025 | 31/10/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T8.1 | 22 | **Cost Explorer & CUR – Cost Analysis:** <br> - Phân tích chi phí theo Service/Region/Tag <br> - Kích hoạt Cost & Usage Report (CUR) <br> - Truy vấn CUR bằng Athena | 22/10/2025 | 22/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.2 | 23 | **Compute Optimizer – Right-Sizing:** <br> - Phân tích instance over-provisioned <br> - Gợi ý giảm size dựa trên dữ liệu lịch sử <br> - Thu thập thêm RAM metrics qua CloudWatch Agent | 23/10/2025 | 23/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.3 | 24 | **Savings Plans & Reserved Instances:** <br> - So sánh Compute SP vs EC2 Instance SP <br> - Lập chiến lược mua SP 1 năm cho Base Load <br> - Phân tích chi phí & mức độ linh hoạt | 24/10/2025 | 24/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.4 | 25 | **Service Quotas – Quản lý hạn ngạch:** <br> - Kiểm tra quota vCPU, VPC, NAT… <br> - Thiết lập cảnh báo khi đạt 80% quota <br> - Tạo yêu cầu tăng hạn mức chủ động | 25/10/2025 | 25/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.5 | 26 | **Transit Gateway – Advanced Networking:** <br> - Kết nối 3 VPC + VPN vào TGW <br> - Thiết kế mô hình Hub-and-Spoke <br> - Cấu hình route tách biệt Dev & Prod | 26/10/2025 | 26/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.6 | 27 | **VPC Flow Logs – Network Monitoring:** <br> - Kích hoạt Flow Logs cho VPC <br> - Phân tích traffic REJECT <br> - Xác định SG/NACL chặn kết nối | 27/10/2025 | 27/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.7 | 28 | **Billing Delegation – Phân quyền Thanh toán:** <br> - Tạo Billing IAM Role cho Finance Team <br> - Áp dụng Separation of Duties <br> - Giới hạn truy cập vào tài nguyên kỹ thuật | 28/10/2025 | 28/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.8 | 29 | **EBS Lifecycle – Snapshot Automation:** <br> - Tự động hóa Snapshot với DLM <br> - Giữ 7 ngày backup gần nhất <br> - Bật Anomaly Detection cho backup | 29/10/2025 | 29/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T8.9 | 30 | **Tổng kết tháng 10:** <br> - Đánh giá mức độ vận hành chuyên nghiệp <br> - Hệ thống tối ưu, bảo mật, DR-ready <br> - Sẵn sàng cho giai đoạn hiện đại hóa | 30/10/2025 | 30/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
-### Kết quả đạt được tuần 8:
+### Week 8 Achievements:
 
-* **Tốc độ:**
-  * Có thể dựng lại toàn bộ môi trường mạng chỉ trong 2 phút chạy lệnh
-  * Thay vì 30 phút click chuột thủ công
-  * Giảm thiểu human errors
-
-* **Kiểm soát:**
-  * Code hạ tầng được lưu trong Git
-  * Xem lại lịch sử thay đổi (Ai đã sửa Subnet? Tại sao?)
-  * Code review cho infrastructure changes
-  * Version control cho infrastructure
-
-* **Trải nghiệm:**
-  * CDK trực quan và viết ít code hơn CloudFormation thuần túy
-  * Nhờ các Construct cấp cao (L2, L3)
-  * Có type checking và autocomplete
-  * Dễ test infrastructure code
-
-* **Kỹ năng:**
-  * Hiểu về Infrastructure as Code (IaC)
-  * Nắm vững CloudFormation template structure
-  * Thành thạo AWS CDK với TypeScript
-  * Biết cách sử dụng Drift Detection
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Phân tích chi phí chi tiết với Cost Explorer & CUR và truy vấn dữ liệu bằng Athena.  
+* Tối ưu hóa tài nguyên EC2 bằng Compute Optimizer dựa trên dữ liệu thực tế.  
+* Xây dựng chiến lược tiết kiệm dài hạn với Savings Plans & Reserved Instances.  
+* Chủ động kiểm soát hạn ngạch với cảnh báo trước 80% usage.  
+* Thiết kế mạng nâng cao với Transit Gateway thay thế mô hình VPC Peering chằng chịt.  
+* Giám sát mạng chuyên sâu bằng VPC Flow Logs để xác định lỗi kết nối.  
+* Áp dụng phân quyền thanh toán an toàn cho Finance Team.  
+* Tự động hóa quản lý Snapshot và phát hiện bất thường backup.  

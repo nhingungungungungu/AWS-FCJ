@@ -7,47 +7,48 @@ pre: " <b> 1.3. </b> "
 
 ### Mục tiêu tuần 3:
 
-* Triển khai Điện toán: Khởi chạy thành công một EC2 Instance trong Public Subnet của VPC đã tạo.
-* Quản lý Truy cập: Cấu hình Key Pair (ED25519) và Security Group để truy cập an toàn qua SSH.
-* Ủy quyền Ứng dụng: Sử dụng IAM Role để cấp quyền truy cập S3 cho EC2 mà không cần lưu trữ Access Keys trên máy.
-* Lưu trữ Khối: Tạo, gắn và định dạng thêm một EBS Volume để hiểu về lưu trữ bền vững.
+* Chuyển đổi từ việc tự quản lý cơ sở dữ liệu trên EC2 sang sử dụng các dịch vụ cơ sở dữ liệu được quản lý (Managed Database) như Amazon RDS và DynamoDB nhằm giảm tải vận hành.
+* Nắm vững mô hình Multi-AZ, cơ chế sao chép và quy trình failover của RDS.
+* Hiểu và thao tác với cơ sở dữ liệu NoSQL DynamoDB, bao gồm thiết kế bảng, thao tác đọc/ghi và sử dụng Indexes.
+* Tăng tốc ứng dụng bằng bộ nhớ đệm (Caching) thông qua ElastiCache.
+* Tổng hợp kiến thức để xây dựng kiến trúc Web Application có tính sẵn sàng cao (Highly Available).
+* Làm quen với AWS Directory Services để mô phỏng môi trường doanh nghiệp.
 
 ### Các công việc cần triển khai trong tuần này:
-| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| Task ID | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
 | --- | --- | --- | --- | --- | --- | --- |
-| T3.1 | 2 | **EC2 - AMI Selection:** <br> - Lựa chọn Amazon Linux 2023 AMI (HVM) <br> - Tối ưu hóa hiệu năng và bảo mật mặc định | 22/09/2025 | 22/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T3.2 | 2 | **Security - Key Management:** <br> - Tạo Key Pair loại ED25519 (an toàn hơn RSA) <br> - Lưu trữ file .pem cục bộ với quyền 400 | 22/09/2025 | 22/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T3.3 | 3 | **Compute - Launch Instance:** <br> - Khởi chạy instance t3.micro (Free Tier) <br> - Trong Public Subnet 1 <br> - Gán Security Group `Web-SG` đã tạo ở Tuần 2 | 23/09/2025 | 23/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T3.4 | 4 | **IAM - Role Creation:** <br> - Tạo IAM Role `EC2-S3-Access-Role` <br> - Policy: `AmazonS3ReadOnlyAccess` <br> - Trust entity: `ec2.amazonaws.com` | 24/09/2025 | 24/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T3.5 | 4 | **Compute - Attach Role:** <br> - Gán IAM Role vào instance đang chạy <br> - Thông qua Actions > Security > Modify IAM Role | 24/09/2025 | 25/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T3.6 | 5 | **CLI - Verification:** <br> - SSH vào instance <br> - Cài đặt AWS CLI (nếu chưa có) <br> - Chạy lệnh `aws s3 ls` để kiểm chứng quyền truy cập | 25/09/2025 | 26/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
-| T3.7 | 6 | **Storage - EBS Operations:** <br> - Tạo volume EBS gp3 1GB cùng AZ với instance <br> - Gán vào instance <br> - Dùng lệnh `lsblk`, `mkfs -t xfs`, và `mount` | 26/09/2025 | 28/09/2025 | Hoàn thành | <https://cloudjourney.awsstudygroup.com/> |
+| T3.1 | 15 | **RDS – Relational Database:** <br> - Triển khai Amazon RDS (MySQL hoặc PostgreSQL) <br> - Kích hoạt Multi-AZ Deployment <br> - Phân tích cơ chế sao chép đồng bộ & failover tự động | 15/09/2025 | 15/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T3.2 | 16 | **RDS – Vận hành & Kết nối:** <br> - Cấu hình Security Group chỉ cho phép EC2 truy cập RDS <br> - Tùy chỉnh Parameter Groups <br> - Cấu hình Automated Backup & tạo Manual Snapshot <br> - Kiểm thử Restore DB để đánh giá RPO | 16/09/2025 | 16/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T3.3 | 17 | **DynamoDB – NoSQL Cơ bản:** <br> - Tìm hiểu tư duy NoSQL <br> - Tạo bảng Users với Partition Key = UserId <br> - So sánh Provisioned vs On-Demand Capacity <br> - Chọn On-Demand cho môi trường dev | 17/09/2025 | 17/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T3.4 | 18 | **DynamoDB – Nâng cao:** <br> - Thực hành PutItem, GetItem, Query, Scan <br> - Đánh giá hiệu năng Query vs Scan <br> - Tạo Global Secondary Index (GSI) để truy vấn theo Email | 18/09/2025 | 18/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T3.5 | 19 | **ElastiCache – In-Memory Cache:** <br> - Triển khai ElastiCache Redis <br> - Áp dụng chiến lược Lazy Loading <br> - Đặt Redis cluster trong Private Subnet | 19/09/2025 | 19/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T3.6 | 20 | **Web Architecture – Highly Available:** <br> - Kết hợp EC2 + RDS Multi-AZ + S3 <br> - Triển khai Application Load Balancer (ALB) <br> - Mô phỏng failover khi 1 AZ gặp sự cố | 20/09/2025 | 20/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T3.7 | 21 | **Directory Services:** <br> - Tìm hiểu AWS Managed Microsoft AD <br> - Tích hợp Windows EC2 vào Domain <br> - Áp dụng GPO để quản lý tập trung | 21/09/2025 | 21/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
 
 ### Kết quả đạt được tuần 3:
 
-* **Hạ tầng hoạt động:**
-  * Máy chủ Web đầu tiên đã online, có Public IP
-  * Truy cập được qua SSH an toàn
-  * Hiểu rõ sự khác biệt giữa các Instance Types (T3, C5, R5)
+* **Cơ sở dữ liệu quan hệ (RDS):**
+  * Triển khai thành công DB MySQL/PostgreSQL.
+  * Hiểu và kiểm thử cơ chế Multi-AZ Failover.
+  * Thiết lập Parameter Groups và cấu hình Backup hoàn chỉnh.
 
-* **Bảo mật Ứng dụng:**
-  * Đã chứng minh EC2 có thể truy cập S3 Buckets mà không cần `aws configure`
-  * Không cần lưu Access Keys trên server
-  * Áp dụng cơ chế "Temporary Credentials" thông qua IAM Role
+* **Cơ sở dữ liệu NoSQL:**
+  * Tạo DynamoDB table đúng chuẩn Partition Key.
+  * Phân biệt rõ giữa Query và Scan về chi phí & hiệu năng.
+  * Xây dựng GSI để truy vấn linh hoạt hơn.
 
-* **Lưu trữ:**
-  * Hiểu sự khác biệt giữa EBS (bền vững) và Instance Store (tạm thời)
-  * Thực hành gắn và mount EBS volume
-  * Biết cách format và sử dụng ổ đĩa mới
+* **Caching:**
+  * Tích hợp Redis để giảm tải truy vấn RDS.
+  * Ứng dụng chiến lược Lazy Loading cho hiệu suất tối ưu.
 
-* **Khắc phục sự cố:**
-  * Ban đầu gặp lỗi "Connection Timeout" khi SSH
-  * Nguyên nhân: Quên thêm rule Inbound Port 22 trong Security Group
-  * Đã khắc phục và rút kinh nghiệm về troubleshooting
+* **Kiến trúc Web HA:**
+  * EC2 đa AZ + RDS Multi-AZ + S3 + ALB vận hành đồng bộ.
+  * Mô phỏng failover thành công khi 1 AZ ngừng hoạt động.
 
-* **Kỹ năng:**
-  * Thành thạo việc khởi chạy và quản lý EC2 instances
-  * Hiểu về vòng đời instance (Launch, Stop, Start, Terminate)
-  * Nắm vững khái niệm Instance Profiles và IAM Roles for EC2
+* **Directory Services:**
+  * Hiểu kiến trúc và use-case của AWS Managed Microsoft AD.
+  * Tích hợp Windows EC2 vào Domain và áp dụng GPO cơ bản.
 
-
+* **Tổng kết:**
+  * Hoàn thiện nền tảng Database & Application Architecture.
+  * Sẵn sàng bước sang tuần 4 với chủ đề Network Scaling, Auto Scaling và Monitoring.
