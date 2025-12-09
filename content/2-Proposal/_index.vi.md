@@ -1,109 +1,255 @@
 ---
 title: "Bản đề xuất"
+ 
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
+{{% notice warning %}}
+⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+{{% /notice %}}
 
-# Hệ thống cho thuê xe điện tại điểm cố định  
-## Phần mềm cho thuê và trả xe điện tại các điểm cố định – Giải pháp di chuyển xanh cho đô thị thông minh  
+Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
 
-### 1. Tóm tắt điều hành  
-Hệ thống EV Station-based Rental System được phát triển nhằm cung cấp một nền tảng tất cả trong một cho việc thuê và quản lý xe điện. Hệ thống tích hợp việc đặt xe theo thời gian thực, thanh toán và quản lý điểm thuê thông qua giải pháp đám mây thống nhất.
-Ứng dụng bao gồm app di động React Native và backend Spring Boot triển khai trên AWS ECS Fargate, với PostgreSQL (RDS) và Redis (ElastiCache) để lưu trữ dữ liệu và tăng tốc độ truy xuất. Xác thực người dùng được quản lý qua Amazon Cognito, trong khi phân phối nội dung toàn cầu được tối ưu bằng CloudFront. Thiết kế theo AWS Well-Architected Framework giúp nền tảng đảm bảo khả năng mở rộng, độ sẵn sàng cao, bảo mật, đồng thời tối ưu chi phí vận hành. 
+# **Nền tảng thương mại điện tử trang sức** 
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các dịch vụ thuê xe điện hiện nay còn phân mảnh, buộc người dùng phải sử dụng nhiều ứng dụng khác nhau để tìm, đặt và quản lý xe tại các điểm cố định. Điều này gây ra sự bất tiện, hiệu suất chậm và trải nghiệm thiếu tin cậy — người dùng thường đến các điểm thuê “không khả dụng” hoặc “ngoại tuyến”, dẫn đến bức xúc và mất niềm tin.
+## **Hệ thống bán hàng trực tuyến trên nền tảng đám mây sử dụng React, .NET và MySQL trên AWS Lightsail** 
 
-Đối với chủ xe và nhà vận hành, việc quản lý đội xe, điều phối đơn thuê và theo dõi bảo trì thủ công gây ra nhiều bất cập, giảm hiệu quả vận hành và mất doanh thu. Hiện chưa có nền tảng thống nhất và thời gian thực kết nối người thuê, chủ xe và nhà vận hành điểm thuê. 
+# AWS First Cloud AI Journey – **Project Plan**
 
-*Giải pháp*  
-Hệ thống cho thuê và trả xe điện tại điểm cố định hợp nhất việc thuê và trả xe vào một nền tảng đám mây duy nhất. Hệ thống được xây dựng với React Native cho di động và Spring Boot cho backend, cung cấp tính năng đặt xe theo thời gian thực, theo dõi phương tiện và tích hợp thanh toán.
+# T1VN – FPT University – Video Share
 
-Các dịch vụ AWS cốt lõi bao gồm ECS Fargate cho xử lý tính toán, RDS PostgreSQL cho lưu trữ dữ liệu, ElastiCache cho hiệu năng truy xuất nhanh, API Gateway và Cognito cho truy cập bảo mật, và CloudFront cho phân phối nội dung toàn cầu. Nền tảng hỗ trợ cả hình thức quản lý đội xe và chia sẻ xe P2P, cung cấp giao diện tập trung cho người dùng và nhà vận hành để quản lý việc thuê xe hiệu quả, an toàn và dễ mở rộng.
+# 09/12/2025
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Nền tảng loại bỏ sự phân mảnh ứng dụng và thao tác thủ công, mang lại trải nghiệm thống nhất, tự động cho cả người thuê và chủ xe. Dữ liệu thời gian thực đảm bảo độ tin cậy và minh bạch về tình trạng xe và điểm thuê.
+# Mục lục
 
-Thiết kế theo AWS Well-Architected Framework giúp tối ưu chi phí vận hành thông qua mô hình serverless, trả theo mức sử dụng, đồng thời duy trì khả năng mở rộng và độ sẵn sàng 99,99%. Trong vòng 12–24 tháng, nền tảng dự kiến đạt 50.000+ người dùng hoạt động hàng tháng, hợp tác với 200+ điểm thuê, và mang lại hiệu quả đáng kể về thời gian, chi phí và vận hành cho cả người dùng và nhà vận hành. 
+**[1 BỐI CẢNH VÀ ĐỘNG LỰC 3](#background-and-motivation)**
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+[1.1 TÓM TẮT ĐIỀU HÀNH 3](#executive-summary)
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+[1.2 TIÊU CHÍ THÀNH CÔNG CỦA DỰ ÁN 3](#heading=)
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+[1.3 GIẢ ĐỊNH 3](#heading=)
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+[**2 SƠ ĐỒ KIẾN TRÚC GIẢI PHÁP / SƠ ĐỒ KIẾN TRÚC 4**](#heading=)
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+[2.1 SƠ ĐỒ KIẾN TRÚC KỸ THUẬT 4](#technical-architecture-diagram)
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+[2.2 KẾ HOẠCH KỸ THUẬT 4](#technical-plan)
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+[2.3 KẾ HOẠCH DỰ ÁN 5](#heading=)
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+[2.4 NHỮNG CÂN NHẮC VỀ AN NINH 5](#security-considerations)
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+[**3 HOẠT ĐỘNG VÀ SẢN PHẨM GIAO 6**](#hoạt-động-và-sản-phẩm)
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+[3.1 HOẠT-ĐỘNG VÀ SẢN PHẨM GIAO 6](#hoạt-động-và-sản-phẩm-1)
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+[3.2 NGOÀI PHẠM VI 8](#ngoài-phạm-vi)
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+[3.3 ĐƯỜNG DẪN ĐẾN SẢN XUẤT 8](#đường-dẫn-đến-sản-xuất)
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+[**4 PHÂN TÍCH CHI PHÍ DỰ KIẾN CỦA AWS THEO DỊCH VỤ 9**](#phân-tích-chi-phí-aws-dự-đoán-theo-dịch-vụ)
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+[**5 NHÓM 10**](#nhóm)
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+[**6 TÀI NGUYÊN & ƯỚC TÍNH CHI PHÍ 10**](#tài-nguyên-&-ước-tính-chi-phí)
+
+[**7 CHẤP NHẬN 11**](#acceptance)
+
+# **BỐI CẢNH VÀ ĐỘNG LỰC**
+
+## 1. **TÓM TẮT TỔNG QUAN**
+
+Dự án Web Trang sức AWS bao gồm việc phát triển một Nền tảng Thương mại Điện tử Trang sức toàn diện. Kiến trúc hệ thống bao gồm cơ sở hạ tầng backend và cơ sở dữ liệu được lưu trữ trên AWS Lightsail, kết hợp với frontend dựa trên React được triển khai thông qua Amazon S3 và CloudFront. Kiến trúc này được thiết kế để đảm bảo khả năng mở rộng, bảo mật cao và tối ưu hóa chi phí vận hành bằng cách tận dụng các dịch vụ đám mây thiết yếu nhưng hiệu quả cao.
+
+**Hệ thống cung cấp các tính năng chính như:**
+
+* Quản lý sản phẩm trang sức.
+
+* Khả năng tải lên hình ảnh sản phẩm.
+
+* Chức năng giỏ hàng.
+
+* Đăng ký và xác thực người dùng thông qua AWS Cognito.
+
+* Các hoạt động API backend trên Lightsail với lưu trữ dữ liệu MySQL/Postgres.
+
+* Tăng tốc phân phối nội dung và xử lý SSL tiêu chuẩn quốc tế thông qua CDN.
+
+## 2.**TIÊU CHÍ THÀNH CÔNG CỦA DỰ ÁN**
+
+* **Hiệu suất:** Thời gian tải trang web dưới 2 giây khi truy cập quốc tế, được hỗ trợ bởi CloudFront CDN.
+* **Độ ổn định:** Phần backend hoạt động ổn định trên Lightsail trong điều kiện lưu lượng truy cập thực tế.
+* **Tính toàn vẹn dữ liệu:** Bảo mật các hoạt động cơ sở dữ liệu với tốc độ truy xuất nhanh chóng.
+* **Quản lý người dùng:** Quản lý người dùng ổn định và bảo mật thông qua Amazon Cognito.
+* **Bảo mật:** Quy trình tải lên hình ảnh an toàn thông qua Amazon S3.
+* **Giám sát:** Ghi nhật ký API toàn diện thông qua Amazon CloudWatch.
+
+## 3.**GIẢ ĐỊNH**
+
+* **Lưu lượng truy cập:** Mức lưu lượng truy cập trung bình (dưới 100.000 yêu cầu/tháng).
+* **Khả năng mở rộng:** Không yêu cầu cấu hình tự động mở rộng nâng cao.
+* **Tên miền:** Tên miền đã được mua trước hoặc sẽ được mua thông qua Amazon Route 53.
+
+* **Năng lực:** Đội ngũ phát triển có trình độ thành thạo về Node.js và React.
+
+# **SƠ ĐỒ KIẾN TRÚC GIẢI PHÁP / SƠ ĐỒ KIẾN TRÚC**
+
+## 1.**SƠ ĐỒ KIẾN TRÚC KỸ THUẬT**
+
+![Kiến trúc](/images/imageworkshop.png)
+
+## 2.**KẾ HOẠCH KỸ THUẬT**
+
+* **Giao diện người dùng:** Được lưu trữ trên Amazon S3 với Amazon CloudFront CDN và HTTPS được kích hoạt thông qua AWS Certificate Manager (ACM).
+
+* **API Backend:** Môi trường thời gian chạy .NET trên AWS Lightsail.
+
+* **Cơ sở dữ liệu:** MySQL/PostgreSQL được lưu trữ trên AWS Lightsail.
+
+* **Xác thực:** Nhóm người dùng Amazon Cognito.
+
+* **Lưu trữ hình ảnh:** Amazon S3.
+
+* **Ghi nhật ký:** Amazon CloudWatch.
+
+* **Quản lý bí mật:** AWS Secrets Manager.
+
+## 3.**KẾ HOẠCH DỰ ÁN**
+
+Thời gian triển khai ước tính từ 6 đến 12 tuần, tùy thuộc vào phạm vi dự án cuối cùng.
+
+## 4.**CÂN NHẮC BẢO MẬT**
+
+* **Kiểm soát truy cập:** Đã cấu hình quyền truy cập riêng tư S3, cấp quyền đọc độc quyền cho CloudFront.
+
+* **Quản lý thông tin xác thực:** API sử dụng khóa riêng được lưu trữ an toàn trong AWS Secrets Manager.
+* **Mã hóa:** Triển khai HTTPS toàn hệ thống.
+* **Bảo mật xác thực:** Đăng nhập người dùng được bảo vệ bởi Amazon Cognito.
+
+# **HOẠT ĐỘNG VÀ SẢN PHẨM**
+
+## 1.**HOẠT ĐỘNG VÀ SẢN PHẨM**
+
+| Giai đoạn dự án | Dòng thời gian | Hoạt động | Sản phẩm/Cột mốc | MD |
+| :---: | :---: | ----- | ----- | :---: |
+| **Đánh giá** | Tuần 1 | \- Phân tích các yêu cầu hệ thống của Trang sức Web. \- Soạn thảo Sơ đồ Kiến trúc. **\-** Thiết kế Sơ đồ Cơ sở dữ liệu (Lightsail MySQL/Postgres). \- Xác định các bí mật cần thiết (Mật khẩu DB, tên bucket). | \- Sơ đồ Kiến trúc \- Sơ đồ DB \- Danh sách Bí mật | **5** |
+| **Thiết lập Cơ sở hạ tầng Cơ sở** | Tuần 2 | \- Cấu hình lưu trữ S3 và bản dựng React. \- Cấu hình CloudFront CDN và ACM SSL. \- Ánh xạ miền thông qua Route 53\. \- Cung cấp phiên bản API Lightsail. \- Cung cấp Cơ sở dữ liệu Lightsail. \- Cấu hình Đăng nhập Cognito. \- Tạo các mục nhập Secrets Manager:   + Secret 1: DB\_PASSWORD   + Secret 2: APP\_CONFIG (bucket-name) \- Gán vai trò IAM cho các phiên bản API để có quyền truy xuất bí mật. \- Bật nhật ký CloudWatch. | \- CDN Frontend chức năng \- API Backend vận hành \- Thiết lập kết nối cơ sở dữ liệu \- Đăng nhập Cognito chức năng \- Secrets Manager được điền mật khẩu DB và tên bucket | **7** |
+
+| Thiết lập Thành phần 1 – API Backend | Tuần 3 | \- Triển khai logic API để truy xuất mật khẩu DB từ Secrets Manager. \- Triển khai logic API để truy xuất tên bucket từ Secrets Manager. \- Triển khai tải ảnh lên S3 (thông qua URL được chỉ định trước). \- Phát triển các hoạt động CRUD cho các sản phẩm trang sức. \- Tích hợp xác thực Cognito. \- Triển khai truyền nhật ký đến CloudWatch. | \- Hoạt động API ổn định \- Chức năng tải lên hình ảnh thành công \- Chức năng Đăng nhập thành công \- Cấu hình được mã hóa cứng được thay thế hoàn toàn bằng Secrets Manager | 7 |
+| :---: | :---: | :---- | :---- | :---: |
+| **Thành phần thiết lập 2 – Frontend React** | Tuần 4 | \- Phát triển Giao diện người dùng Cửa hàng Trang sức. \- Triển khai Giao diện đăng nhập Cognito. \- Triển khai Giao diện tải lên hình ảnh trang sức. \- Lấy dữ liệu từ API. \- Xây dựng và triển khai lên S3 \+ CloudFront. | \- Hoàn thiện Giao diện người dùng (UI) \- Thiết lập Tích hợp API | **7** |
+| **Kiểm thử & Go-live** | Tuần 5 | \- Kiểm thử tích hợp (FE ↔ BE ↔ S3 ↔ DB). \- Kiểm thử bảo mật (IAM \+ Secrets Manager). \- Kiểm thử đầu cuối. | \- Báo cáo kiểm thử \- Danh sách kiểm tra bảo mật | **5** |
+| **Bàn giao** | Tuần 6 | \- Cung cấp hướng dẫn sử dụng Secrets Manager để cập nhật tên bucket/mật khẩu DB. \- Chuyển quyền sở hữu tài khoản AWS. \- Cung cấp Tài liệu Runbook. | \- Runbook Toàn diện \- Đóng Dự án | **5** |
+
+##
+
+## 2.**NGOÀI PHẠM VI**
+
+* Các tính năng AI/Học máy.
+* Các chức năng thương mại điện tử phức tạp.
+* Khả năng xử lý hình ảnh tiên tiến.
+* Triển khai đa vùng hoặc các site Phục hồi Thảm họa (DR).
+* Hệ thống quản trị phức tạp.
+* Tích hợp với các hệ thống của bên thứ ba.
+
+## 3.**ĐƯỜNG DẪN ĐẾN SẢN XUẤT**
+
+* Tối ưu hóa Hoạt động Xuất sắc.
+* Quản lý Bí mật – Củng cố Sản xuất.
+* Xử lý Lỗi Mở rộng.
+* Xác minh Triển khai & Sản xuất.
+* Kế hoạch Phục hồi Thảm họa.
+* Bàn giao Sản xuất.
+
+# **PHÂN TÍCH CHI PHÍ AWS DỰ KIẾN THEO DỊCH VỤ**
+
+| Tên dịch vụ | Chi phí trả trước | Chi phí hàng tháng | Khu vực |
+| :---- | :---- | :---- | :---- |
+| Amazon S3 | 0.00 USD | 0.26 USD | Châu Á Thái Bình Dương (Singapore) |
+| Amazon CloudFront (CDN cho FE) | 0,00 USD | 0,17 USD | Châu Á - Thái Bình Dương (Singapore) |
+| AWS ACM | 0,00 USD | 0 USD | Châu Á - Thái Bình Dương (Singapore) |
+| Amazon Route 53 | 0,00 USD | 0,50–1,00 USD | Châu Á - Thái Bình Dương (Singapore) |
+| AWS Lightsail – Cơ sở dữ liệu | 0,00 USD | 10–15 USD | Châu Á - Thái Bình Dương (Singapore) |
+| Amazon Cognito | 0,00 USD | 2,00 USD | Châu Á - Thái Bình Dương (Singapore) |
+| AWS Secrets Manager | 0,00 USD | 0,40 USD | Châu Á - Thái Bình Dương (Singapore) |
+| Amazon CloudWatch | 0,00 USD | 0,30 USD | Châu Á - Thái Bình Dương (Singapore) |
+| AWS Lightsail – Máy chủ API | 0,00 USD | 5 \- 10 USD | Châu Á - Thái Bình Dương (Singapore) |
+
+# **ĐỘI NGŨ**
+
+**Đối tác Tài trợ Điều hành**
+
+| Họ và tên | Chức danh | Mô tả | Email / Thông tin Liên hệ |
+| :---- | :---- | :---- | :---- |
+| | | |
+
+**Các Bên liên quan của Dự án**
+
+| Họ và tên | Chức danh | Bên liên quan của | Email / Thông tin Liên hệ |
+| :---- | :---- | :---- | :---- |
+| | | |
+
+**Nhóm Dự án Đối tác**
+
+| Họ và tên | Chức danh | Vai trò | Email / Thông tin Liên hệ |
+| :---- | :---- | :---- | :---- |
+| Nguyễn Duy Hiếu | Chủ sản phẩm | Quản lý Dự án (BE) | Hieundse185047@fpt.edu.vn |
+| Lưu Ngọc Ngân Giang | Lập trình viên Phần mềm | Lập trình viên (BE) | luungocngangiang25@gmail.com |
+| Nguyễn Huy Hoàng | Lập trình viên Phần mềm | Lập trình viên (FE) | Hoangnhse185092@fpt.edu.vn |
+| Trần Hồ Phương Khánh | Nhà phát triển phần mềm | Nhà phát triển (FE) | khanhthpse185070@fpt.edu.vn |
+| Tăng Khánh Nhi | Nhà phát triển phần mềm | Nhà phát triển (FE) | tangkhanhhi111@gmail.com |
+
+**Địa chỉ liên hệ nâng cao dự án**
+
+| Tên | Tiêu đề | Vai trò | Email / Thông tin liên hệ |
+| :---- | :---- | :---- | :---- |
+| | | | |
+
+# **TÀI NGUYÊN & ƯỚC TÍNH CHI PHÍ**
+| Tài nguyên | Trách nhiệm | Giá (USD)/Giờ |
+| :---- | :---- | ----- |
+| Kiến trúc sư Giải pháp \[số lượng nhân sự được phân công\] | \- Thiết kế và kiến ​​trúc hệ sinh thái cơ sở hạ tầng AWS, tích hợp các dịch vụ như S3, CloudFront, Lightsail, ACM, Route 53 và Secrets Manager \- |12|
+| Kiến trúc sư Giải pháp \[số lượng nhân sự được phân công\] |\- Cung cấp tư vấn chiến lược về các giao thức bảo mật và tối ưu hóa chi phí vận hành.|12|
+| Kiến trúc sư Giải pháp \[số lượng nhân sự được phân công\] |\- Thực hiện đánh giá toàn diện các quy trình triển khai để đảm bảo tuân thủ các thông lệ tốt nhất của ngành.|12|
+| Kỹ sư \[số lượng nhân sự được phân công\] | \- Thực hiện việc cung cấp và triển khai các thành phần cơ sở hạ tầng cốt lõi, bao gồm S3, CloudFront, Route 53, ACM và Lightsail. |6|
+| Kỹ sư \[số lượng nhân sự được phân công\] |\- Thiết lập các quy trình Tích hợp Liên tục/Triển khai Liên tục (CI/CD) và tạo điều kiện thuận lợi cho việc triển khai các tài sản giao diện người dùng lên Amazon S3. |6|
+| Kỹ sư \[số lượng nhân sự được phân công\] |\- Triển khai và cấu hình môi trường thời gian chạy API Node.js trong cơ sở hạ tầng AWS Lightsail.|6|
+| Kỹ sư \[số lượng nhân sự được phân công\] |\- Cấu hình quản lý thông tin xác thực an toàn thông qua AWS Secrets Manager và thiết lập cơ chế ghi nhật ký bằng Amazon CloudWatch. | 6 |
+| Khác (Vui lòng ghi rõ) | \- Thực hiện kiểm tra tích hợp và xác minh hệ thống nghiêm ngặt sau khi triển khai.|0|
+
+\* Lưu ý: Tham khảo phần “hoạt động & sản phẩm bàn giao” để biết danh sách các giai đoạn của dự án
+
+| Giai đoạn dự án | Kiến trúc sư giải pháp | Kỹ sư | Khác (Vui lòng nêu rõ) | Tổng Số Giờ |
+| :---: | :---: | :---: | :---: | :---: |
+| S3 \+ CloudFront | 1 | 2 | | 3 |
+| API Lightsail \+ DB | 1 | 4 | | 4 |
+| Nhận thức | 1 | 2 | | 5 |
+| Ghi nhật ký & Giám sát | 1 | 1 | | 3 |
+| Tổng số giờ | 4 | 12 | | 15 |
+| Tổng chi phí | | | | |
+
+Phân bổ đóng góp chi phí giữa Đối tác, Khách hàng, AWS:
+
+| Bên | Đóng góp (USD) | % Đóng góp trên Tổng |
+| :---- | :---- | :---- |
+| Khách hàng | | |
+| Đối tác | | |
+| AWS | | |
+
+# **CHẤP NHẬN**
+
+Dự án hoàn thành khi: 9/12/2025
+
+Website chạy ổn định trên tên miền thật.
+
+API kết nối hoàn toàn với DB.
+
+Tải lên hình ảnh sản phẩm hoạt động.
+
+Nhật ký CloudWatch & đăng nhập Cognito hoạt động.
+
+Được khách hàng/bên liên quan chấp nhận.
+
+## File TEMPLETE DOCX: [DOWLOAD Proposal (DOCX)](https://drive.google.com/drive/folders/1TLXOU4XDvSqv1hfWYhXhWilc5G53iN2H?usp=sharing)

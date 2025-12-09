@@ -1,50 +1,39 @@
 ---
 title: "Week 2 Worklog"
-weight: 2
+ 
+weight: 1
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
+{{% notice warning %}} 
+⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
+{{% /notice %}}
+
 
 ### Week 2 Objectives:
 
-* Compute: Launch and manage EC2 instances using best practices.
-* Storage: Understand and work with EBS, EBS Snapshots, and S3 object storage.
-* Development: Set up and use AWS Cloud9 as a cloud-based IDE.
-* Simplified Compute: Explore Amazon Lightsail for lightweight and quick deployments.
+* Implement a secure, multi-tier VPC and master advanced S3 storage features.
 
 ### Tasks to be carried out this week:
+| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
+| 2   | - Set up a 2-Tier VPC (Public/Private Subnets, IGW, Route Tables).                                                                                                 | 15/09/2025 | 17/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | - Deploy NAT Gateway/Instance for Private Subnet Internet access.                                              | 16/09/2025 | 18/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Understand and apply Security Groups (Stateful) and Network ACLs (Stateless). | 16/09/2025 | 18/09/2025      | <https://cloudjourney.awsstudygroup.com/>     |
+| 5   | - Configure S3 Bucket for Static Website Hosting.                            | 17/09/2025 | 19/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | - Practice S3 Storage Classes and Lifecycle Policies management.                                                                                     | 17/09/2025 | 19/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
-| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
-| --- | --- | --- | --- | --- | --- | --- |
-| T2.1 | 8 | **EC2 – Launch & Connect:** <br> - Select appropriate Instance Types (T3, C5, R5) <br> - Launch Amazon Linux 2023 AMI <br> - Create & use Key Pair to SSH into EC2 | 09/08/2025 | 09/08/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T2.2 | 9 | **EBS & Windows Workloads:** <br> - Create & attach gp3 EBS Volume <br> - Mount volume to EC2 <br> - Launch Windows Server & connect via RDP <br> - Install IIS Web Server <br> - Create EBS Snapshot | 09/09/2025 | 09/09/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T2.3 | 10 | **Cloud9 – Cloud IDE:** <br> - Set up AWS Cloud9 environment <br> - Test terminal, AWS CLI, SAM, and Docker <br> - Explore remote development without opening SSH ports | 09/10/2025 | 09/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T2.4 | 11 | **Amazon S3 – Basics:** <br> - Create S3 Bucket and upload files <br> - Enable Static Website Hosting <br> - Write JSON Bucket Policy for public read | 09/11/2025 | 09/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T2.5 | 12 | **Amazon S3 – Advanced:** <br> - Analyze Storage Classes (Standard, IA, Glacier, etc.) <br> - Configure Lifecycle Policy (move objects >30 days to Glacier) <br> - Enable Block Public Access, Versioning, and Default Encryption | 09/12/2025 | 09/12/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T2.6 | 13 | **Amazon Lightsail – VM Deployment:** <br> - Explore Lightsail features <br> - Deploy WordPress using LAMP Blueprint <br> - Compare EC2 vs Lightsail (cost & use-cases) | 09/13/2025 | 09/13/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
-| T2.7 | 14 | **Lightsail Containers:** <br> - Build a simple Node.js app into Docker Image <br> - Push and deploy with Lightsail Container Service <br> - Review differences with ECS/EKS | 09/14/2025 | 09/14/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
 ### Week 2 Achievements:
 
-* **Compute:**  
-  - Successfully launched EC2 Linux & Windows instances.  
-  - Understood instance families (T3, C5, R5) and their use-cases.  
-  - Connected securely using SSH and RDP.
+* Advanced Networking Implementation: Designed and deployed a robust 2-Tier VPC architecture, confirming fundamental networking concepts:
+    * Established distinct Public and Private Subnets across two Availability Zones for high resilience.
 
-* **Storage:**  
-  - Worked with EBS volumes (create, attach, mount).  
-  - Created incremental Snapshots for data backup.  
-  - Built static website hosting using S3 and configured Bucket Policies.  
-  - Implemented Lifecycle Policies, Versioning, and Default Encryption.
+    * Securely configured a NAT Gateway for controlled outbound access from Private Subnets.
 
-* **Development Environment:**  
-  - Set up Cloud9 as a cloud-based IDE with built-in AWS tooling.  
-  - Performed development without exposing SSH ports.
+* Implemented Security Controls: Understood the difference between and successfully implemented Security Groups and Network ACLs.
 
-* **Lightsail:**  
-  - Deployed WordPress using Lightsail VM.  
-  - Built and deployed containerized apps using Lightsail Container Service.
+* Enterprise Storage Configuration: Mastered and configured Amazon S3 for advanced use cases:
+    * Set up Bucket Policies and enabled Static Website Hosting.
 
-* **Overall:**  
-  - Completed foundational Compute & Storage services.  
-  - Ready for Week 3 focusing on Load Balancing, Auto Scaling, and deeper AWS Architecture.
+    * Implemented a comprehensive Lifecycle Policy to automatically transition data to lower-cost tiers

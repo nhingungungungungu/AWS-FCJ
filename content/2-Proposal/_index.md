@@ -1,169 +1,248 @@
 ---
 title: "Proposal"
+ 
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
+{{% notice warning %}}
+⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
+{{% /notice %}}
 
-# The EV Station-based Rental System
-## Electric Vehicle Rental and Return Software at Fixed Stations – A Green Mobility Solution for Smart Cities
+In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
 
-### 1. Executive Summary
-The EV Station-based Rental System is developed to provide an all-in-one platform for electric vehicle rental and charging management. It integrates real-time rental, payment, and charging station access through a unified cloud-native solution. The system features a React Native mobile app and a Spring Boot backend deployed on AWS ECS Fargate, with PostgreSQL (RDS) and Redis (ElastiCache) for data and caching. User authentication is managed via Amazon Cognito, and global delivery is optimized using CloudFront. Designed under the AWS Well-Architected Framework, the platform ensures scalability, high availability, and security while maintaining cost efficiency.
-
-### 2. Problem Statement
-### What’s the Problem?
-Current electric vehicle (EV) rental services are fragmented, requiring users to switch between multiple apps to locate, book, and manage rentals at fixed points. This creates inconvenience, slow performance, and unreliable experiences — users often arrive at “unavailable” or “offline” rental points, leading to frustration and loss of trust.
-
-For vehicle owners and operators, manual fleet management, booking coordination, and maintenance tracking result in operational inefficiencies and lost revenue. Currently, there is no unified, real-time platform connecting renters, vehicle owners, and rental point operators.
-
-### The Solution
-The EV Station-based Rental System consolidates EV rental and return at fixed points into a single, cloud-native platform. Built with React Native for mobile and Spring Boot for backend, the system delivers real-time booking, vehicle tracking, and payment integration.
-
-Key AWS services include ECS Fargate for compute, RDS PostgreSQL for data storage, ElastiCache for low-latency performance, API Gateway and Cognito for secure access, and CloudFront for global content delivery. The platform supports both fleet-based and peer-to-peer (P2P) vehicle registration, providing a centralized interface for users and operators to manage rentals efficiently, securely, and at scale.
-
-### Benefits and Return on Investment
-The platform eliminates manual coordination and fragmented applications, offering a unified, automated experience for renters and fleet owners. Real-time data ensures reliability and transparency regarding vehicle availability and rental point status.
-
-Designed under the AWS Well-Architected Framework, the system minimizes operational costs with a serverless, pay-per-use model while maintaining scalability and 99.99% uptime. Within 12–24 months, the platform is projected to reach 50,000+ monthly active users, onboard 200+ rental points, and deliver significant time, cost, and operational efficiencies for both users and operators. hihi
-
-### 3. Solution Architecture
-The VoltGo platform adopts a serverless and fully private AWS architecture for secure and scalable backend operations. Backend run on Amazon ECS Fargate, connecting to Aurora PostgreSQL Serverless v2 for relational data and ElastiCache Serverless (Redis) for caching.
-All workloads are deployed in private subnets across multiple Availability Zones and accessed securely through API Gateway via AWS PrivateLink to an internal Network Load Balancer. User authentication is managed by Amazon Cognito, while the frontend is hosted on Amazon S3 and delivered globally via CloudFront, protected by AWS WAF and ACM SSL/TLS.
-Monitoring and secrets management are handled by CloudWatch and Secrets Manager, with the entire infrastructure provisioned through Terraform IaC. This architecture ensures high security, elasticity, and cost efficiency suitable for the current development stage and future production scaling.
+# **Jewelry E-Commerce Platform**  
+## **Cloud-Based Online Sales System Using React, .NET, and MySQL on AWS Lightsail**  
 
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
-
-### AWS Services Used
-- **Amazon ECS Fargate**: Serverless container orchestration for backend microservices.
-- **Amazon Aurora PostgreSQL Serverless v2**: Scalable, multi-AZ relational database.
-- **Amazon ElastiCache Serverless (Redis)**: In-memory caching for low-latency data access.
-- **Amazon API Gateway**: Secure REST API entry point integrated via PrivateLink.
-- **Amazon Cognito**: User authentication and authorization with JWT and MFA.
-- **Amazon CloudFront + S3**: Global content delivery and static hosting with WAF protection.
-- **AWS Secrets Manager**: Centralized secret storage and automatic rotation.
-- **Amazon CloudWatch**: Unified monitoring, logging, and alerting for all services.
-- **AWS WAF + ACM**: Edge-level security and SSL/TLS certificate management.
+# AWS First Cloud AI Journey – **Project Plan**
 
 
-### Component Design
-- **Frontend**:React/Vue.js web application hosted on Amazon S3 and delivered via CloudFront, secured with AWS WAF and ACM SSL/TLS certificates.
-- **API Layer**: Amazon API Gateway provides the public API endpoint, connecting privately to backend services through AWS PrivateLink to an internal Network Load Balancer.
-- **Compute Layer**:  Amazon ECS Fargate runs containerized microservices across multiple Availability Zones, scaling automatically based on CPU and memory utilization.
-- **Database Layer**:Amazon Aurora PostgreSQL Serverless v2 stores relational data with a writer and read replica for high availability and automated scaling.
-- **Caching Layer**: Amazon ElastiCache Serverless (Redis) caches session and booking data to reduce database load and improve response time.
-- **Authentication**: Amazon Cognito handles user registration, login, and JWT-based authorization with optional MFA support.
-- **Storage**: Amazon S3 manages static assets and user uploads, accessible only through CloudFront via Origin Access Control (OAC).
-- **Monitoring & Security**: Amazon CloudWatch tracks logs and performance metrics, while AWS Secrets Manager securely stores credentials with automatic rotation.
+# T1VN – FPT University – Video Share
 
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two main parts—developing the backend locally and deploying it to the AWS cloud—each following four key phases:
-   - 1.Build and Design Architecture:
- Develop and test backend services locally using Docker Compose, PostgreSQL, and Redis. Design the AWS serverless architecture including ECS Fargate, Aurora Serverless, ElastiCache, and API Gateway with PrivateLink connections. (Pre-deployment phase)
-   - 2.Estimate Cost and Validate Feasibility:
- Use AWS Pricing Calculator to estimate the monthly cost of ECS tasks, Aurora capacity units, and CloudFront bandwidth. Adjust design decisions to ensure cost-effectiveness and smooth migration.
-   - 3.Configure and Deploy Infrastructure:
- Build and deploy cloud infrastructure using Terraform for IaC. Configure VPC, ECS, Aurora, ElastiCache, Cognito, and CloudFront. Validate IAM roles, networking, and private-only access via VPC Endpoints. 
-   - 4.Test, Optimize, and Release:
- Deploy Dockerized services to ECS Fargate, test API Gateway → PrivateLink → NLB → ECS flow, and verify database connections. Enable CloudWatch monitoring, auto-scaling, and WAF protection. Optimize scaling thresholds and document final architecture. 
+# 09/12/2025
+
+# Table of Contents
+
+**[1 BACKGROUND AND MOTIVATION	3](#background-and-motivation)**
+
+[1.1 EXECUTIVE SUMMARY	3](#executive-summary)
+
+[1.2 PROJECT SUCCESS CRITERIA	3](#heading=)
+
+[1.3 ASSUMPTIONS	3](#heading=)
+
+[**2 SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM	4**](#heading=)
+
+[2.1 TECHNICAL ARCHITECTURE DIAGRAM	4](#technical-architecture-diagram)
+
+[2.2 TECHNICAL PLAN	4](#technical-plan)
+
+[2.3 PROJECT PLAN	5](#heading=)
+
+[2.4 SECURITY CONSIDERATIONS	5](#security-considerations)
+
+[**3 ACTIVITIES AND DELIVERABLES	6**](#activities-and-deliverables)
+
+[3.1 ACTIVITIES AND DELIVERABLES	6](#activities-and-deliverables-1)
+
+[3.2 OUT OF SCOPE	8](#out-of-scope)
+
+[3.3 PATH TO PRODUCTION	8](#path-to-production)
+
+[**4 EXPECTED AWS COST BREAKDOWN BY SERVICES	9**](#expected-aws-cost-breakdown-by-services)
+
+[**5 TEAM	10**](#team)
+
+[**6 RESOURCES & COST ESTIMATES	10**](#resources-&-cost-estimates)
+
+[**7 ACCEPTANCE	11**](#acceptance)
+
+# **BACKGROUND AND MOTIVATION** 
+
+## 1. **EXECUTIVE SUMMARY**
+
+The AWS Jewelry Web project entails the development of a comprehensive Jewelry E-commerce Platform. The system architecture comprises a backend and database infrastructure hosted on AWS Lightsail, coupled with a React-based frontend deployed via Amazon S3 and CloudFront. This architecture is designed to ensure scalability, high security, and operational cost optimization by leveraging essential yet highly effective Cloud services.
+
+**The system provides main features such as:**
+
+* Jewelry product management.  
+* Product image uploading capabilities.  
+* Shopping cart functionality.  
+* User registration and authentication via AWS Cognito.  
+* Backend API operations on Lightsail with MySQL/Postgres data storage.  
+* Content delivery acceleration and international standard SSL processing via CDN.
+
+## 2.**PROJECT SUCCESS CRITERIA**
+
+* **Performance:** Website load time under 2 seconds for international access, facilitated by CloudFront CDN.  
+* **Stability:** Backend operates stably on Lightsail under actual traffic conditions.  
+* **Data Integrity:** Secure database operations with rapid retrieval speeds.  
+* **User Management:** Stable and secure user management via Amazon Cognito.  
+* **Security:** Secure image uploading processes via Amazon S3.  
+* **Monitoring:** Comprehensive API logging through Amazon CloudWatch.
+
+## 3.**ASSUMPTIONS**
+
+* **Traffic Volume:** Moderate traffic levels (less than 100,000 requests/month).  
+* **Scaling:** No requirement for advanced autoscaling configurations.  
+* **Domain:** Domain name is pre-acquired or will be purchased via Amazon Route 53\.  
+* **Competency:** The development team possesses proficiency in Node.js and React.
+
+# **SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM**
+
+## 1.**TECHNICAL ARCHITECTURE DIAGRAM** 
+
+![Architecture](/images/imageworkshop.png)
+
+## 2.**TECHNICAL PLAN** 
+
+* **Frontend:** Hosted on Amazon S3 with Amazon CloudFront CDN and HTTPS enabled via AWS Certificate Manager (ACM).  
+* **Backend API:** .NET runtime environment on AWS Lightsail.  
+* **Database:** MySQL/PostgreSQL hosted on AWS Lightsail.  
+* **Authentication:** Amazon Cognito User Pool.  
+* **Image Storage:** Amazon S3.  
+* **Logging:** Amazon CloudWatch.  
+* **Secrets Management:** AWS Secrets Manager.
+
+## 3.**PROJECT PLAN**
+
+The implementation timeline is estimated to range from 6 to 12 weeks, contingent upon the final project scope.
+
+## 4.**SECURITY CONSIDERATIONS** 
+
+* **Access Control:** S3 private access configured, granting read permissions exclusively to CloudFront.  
+* **Credential Management:** API utilizes private keys stored securely in AWS Secrets Manager.  
+* **Encryption:** Full system-wide HTTPS implementation.  
+* **Authentication Security:** User login protected by Amazon Cognito.
+
+# **ACTIVITIES AND DELIVERABLES** 
+
+## 1.**ACTIVITIES AND DELIVERABLES** 
+
+| Project Phase | Timeline | Activities | Deliverables / Milestones | MD |
+| :---: | :---: | ----- | ----- | :---: |
+| **Assessment** | Week 1 | \-  Analyze the Jewelry Web system requirements. \- Draft the Architecture Diagram. **\-**  Design the Database Schema (Lightsail MySQL/Postgres). \-  Identify necessary secrets (DB password, bucket name). | \- Architecture Diagram \- DB Schema \- List of Secrets | **5** |
+| **Setup Base Infrastructure** | Week 2 | \-  Configure S3 hosting and React build. \-  Configure CloudFront CDN and ACM SSL. \-  Map domain via Route 53\. \-  Provision Lightsail API instance. \-  Provision Lightsail Database. \-  Configure Cognito Login. \-  Create Secrets Manager entries:   + Secret 1: DB\_PASSWORD   + Secret 2: APP\_CONFIG (bucket-name) \-  Assign IAM roles to API instances for secret retrieval permissions. \-  Enable CloudWatch logs. | \- Functional Frontend CDN \- Operational Backend API \- Database connectivity established \- Functional Cognito login \- Secrets Manager populated with DB password & bucket name | **7** |
+
+| Setup Component 1 – Backend API | Week 3 | \- Implement API logic to retrieve DB password from Secrets Manager. \- Implement API logic to retrieve bucket names from Secrets Manager. \- Implement image upload to S3 (via presigned URL). \- Develop CRUD operations for jewelry products. \- Integrate Cognito authentication. \- Implement log transmission to CloudWatch. | \- Stable API operations \- Successful image upload functionality \- Successful Login functionality \- Hardcoded configurations fully replaced by Secrets Manager | 7 |
+| :---: | :---: | :---- | :---- | :---: |
+| **Setup Component 2 – Frontend React** | Week 4 | \- Develop Jewelry Shop UI. \- Implement Cognito Login interface. \- Implement jewelry image upload interface. \- Fetch data from API. \- Build and deploy to S3 \+ CloudFront. | \- Complete User Interface (UI) \- API Integration established | **7** |
+| **Testing &  Go-live** | Week 5 | \- Integration testing (FE ↔ BE ↔ S3 ↔ DB). \- Security testing (IAM \+ Secrets Manager). \- End-to-end testing. | \- Test Report \- Security checklist | **5** |
+| **Handover** | Week 6 | \- Provide instruction on using Secrets Manager for updating bucket names/DB passwords. \- Transfer AWS account ownership. \- Provide Runbook Documentation. | \- Comprehensive Runbook \- Project Closure | **5** |
+
+## 
+
+## 2.**OUT OF SCOPE** 
+
+* AI/Machine Learning features.  
+* Complex E-commerce functionalities.  
+* Advanced image processing capabilities.  
+* Multi-region deployment or Disaster Recovery (DR) sites.  
+* Complex administrative systems.  
+* Integration with third-party systems.
+
+## 3.**PATH TO PRODUCTION**
+
+* Operational Excellence Optimization.  
+* Secrets Management – Production Hardening.  
+* Extended Error Handling.  
+* Deployment & Production Verification.  
+* Disaster Recovery Plan.  
+* Production Handover.
+
+# **EXPECTED AWS COST BREAKDOWN BY SERVICES** 
+
+| Service Name | Upfront cost | Monthly cost | Region |
+| :---- | :---- | :---- | :---- |
+| Amazon S3 | 0.00 USD |  0.26 USD | Asia Pacific (Singapore) |
+| Amazon CloudFront (CDN cho FE) | 0.00 USD | 0.17 USD | Asia Pacific (Singapore) |
+| AWS ACM | 0.00 USD | 0 USD | Asia Pacific (Singapore) |
+| Amazon Route 53 | 0.00 USD | 0.50–1.00 USD | Asia Pacific (Singapore) |
+| AWS Lightsail – Database  | 0.00 USD | 10–15 USD | Asia Pacific (Singapore) |
+| Amazon Cognito | 0.00 USD | 2.00 USD | Asia Pacific (Singapore) |
+| AWS Secrets Manager   | 0.00 USD | 0.40 USD | Asia Pacific (Singapore) |
+| Amazon CloudWatch | 0.00 USD | 0.30 USD | Asia Pacific (Singapore) |
+| AWS Lightsail – API Server | 0.00 USD | 5 \- 10 USD | Asia Pacific (Singapore) |
+
+# **TEAM** 
+
+**Partner Executive Sponsor**
+
+| Name | Title | Description | Email / Contact Info |
+| :---- | :---- | :---- | :---- |
+|  |  |  |  |
+
+**Project Stakeholders**
+
+| Name | Title | Stakeholder for | Email / Contact Info |
+| :---- | :---- | :---- | :---- |
+|  |  |  |  |
+
+**Partner Project Team**
+
+| Name | Title | Role | Email / Contact Info |
+| :---- | :---- | :---- | :---- |
+| Nguyễn Duy Hiếu  | Product Owner | Project Manager (BE) | Hieundse185047@fpt.edu.vn |
+| Lưu Ngọc Ngân Giang | Software Developer | Developer (BE) | luungocngangiang25@gmail.com |
+| Nguyễn Huy Hoàng  | Software Developer | Developer (FE) | Hoangnhse185092@fpt.edu.vn |
+| Trần Hồ Phương Khanh | Software Developer | Developer (FE) | khanhthpse185070@fpt.edu.vn |
+| Tăng Khanh Nhi | Software Developer | Developer (FE) | tangkhanhnhi111@gmail.com |
+
+**Project Escalation Contacts**
+
+| Name | Title | Role | Email / Contact Info |
+| :---- | :---- | :---- | :---- |
+|  |  |  |  |
+
+# **RESOURCES & COST ESTIMATES** 
+| Resource | Responsibility | Rate (USD) / Hour |
+| :---- | :---- | ----- |
+| Solution Architects \[number of assigned headcount\] | \- Design and architect the AWS infrastructure ecosystem, incorporating services such as S3, CloudFront, Lightsail, ACM, Route 53, and Secrets Manager \- |12|
+| Solution Architects \[number of assigned headcount\] |\-Provide strategic consultancy regarding security protocols and operational cost optimization.|12|
+| Solution Architects \[number of assigned headcount\] |\- Conduct comprehensive reviews of deployment procedures to ensure adherence to industry best practices.|12| 
+| Engineers \[number of assigned headcount\] | \- Execute the provisioning and deployment of core infrastructure components, including S3, CloudFront, Route 53, ACM, and Lightsail. |6|
+| Engineers \[number of assigned headcount\] |\- Establish Continuous Integration/Continuous Deployment (CI/CD) pipelines and facilitate the deployment of frontend assets to Amazon S3. |6|
+| Engineers \[number of assigned headcount\] |\- Deploy and configure the Node.js API runtime environment within the AWS Lightsail infrastructure.|6| 
+| Engineers \[number of assigned headcount\] |\- Configure secure credential management via AWS Secrets Manager and establish logging mechanisms using Amazon CloudWatch. | 6 |
+| Other (Please specify) | \- Perform rigorous post-deployment system verification and integration testing.|0|
 
 
-**Technical Requirements**
-- Backend Services:
- Node.js or Spring Boot microservices for Auth, Booking, and Payment, containerized with Docker and deployed to ECS Fargate (2–10 tasks, auto-scaling).
-- Database Layer:
- Amazon Aurora PostgreSQL Serverless v2 with writer and reader instances, supporting automatic scaling and multi-AZ high availability.
-- Caching Layer:
- Amazon ElastiCache Serverless (Redis 7.1) for session caching and frequently accessed data.
-- Authentication:
- Amazon Cognito manages user registration, JWT-based authentication, and optional MFA, integrated with API Gateway.
-- Storage & Content Delivery:
- Frontend hosted on Amazon S3 and distributed via CloudFront, protected by AWS WAF and ACM SSL/TLS certificates.
-- Secrets & Monitoring:
- AWS Secrets Manager for storing credentials (DB, Redis, JWT keys) with 30-day rotation. Amazon CloudWatch for logging, metrics, and scaling alarms.
+
+\* Note: Refer to section “activities & deliverables” for the list of project phases
+
+| Project Phase | Solution Architects | Engineers | Other  (Please specify) | Total Hours |
+| :---: | :---: | :---: | :---: | :---: |
+| S3 \+ CloudFront | 1 | 2 |  | 3 |
+| Lightsail API \+ DB | 1 | 4 |  | 4 |
+| Cognito | 1 | 2 |  | 5 |
+| Logging & Monitoring | 1 | 1 |  | 3 |
+| Total Hours | 4 | 12 |  | 15 |
+| Total Cost |  |  |  |  |
+
+Cost Contribution distribution between Partner, Customer, AWS:
+
+| Party | Contribution (USD) | % Contribution of Total |
+| :---- | :---- | :---- |
+| Customer |  |  |
+| Partner |  |  |
+| AWS |  |  |
+
+# **ACCEPTANCE** 
+
+Project is complete when: 9/12/2025
+
+Website runs stably on real domain.
+
+API fully connects to DB.
+
+Upload product images works.
+
+CloudWatch log & Cognito login works.
+
+Accepted by customer/stakeholder.
 
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Phase 1: Foundation & Design (Weeks 1-2)
-  - Week 1: Finalize MVP scope (P0 User Stories), define user flows, and approve the AWS architecture.
-  - Week 2: FE Lead finalizes UI/UX mockups. Backend provisions core AWS (VPC, S3, ECR, Aurora).
-- Phase 2: Core MVP Development (Weeks 3-8)
-    - Weeks 3-4: Backend builds User Auth (Cognito) & core APIs (API Gateway, ECS).
-    - Weeks 5-6: All teams (FE/BE/Mobile) build core screens (Login, Search, Details) and the Booking Engine APIs.
-    - Weeks 7-8: Integration of KYC flow (Lambda, Textract, Rekognition) and Payment Gateway integration.
-- Phase 3: Testing & UAT (Weeks 9-10)
-    - Week 9: Full End-to-End (E2E) testing. QA is performed by the 5-person dev team, as no dedicated QA is allocated.
-    - Week 10: Stakeholder User Acceptance Testing (UAT) and final critical bug fixing.
-- Phase 4: Launch (Week 11)
-    - Week 11: Production deployment, Go-live, and intensive Hypercare monitoring via CloudWatch. 
-
-
-### 6. Budget Estimation
-This budget estimate is based on the provided AWS architecture diagram and the "cheapest possible" MVP launch strategy, maximizing Free Tier usage.
-
-### Infrastructure Costs
-- AWS Services (Monthly Estimate):
-    - Amazon Route 53: $0.50/month (1 hosted zone).
-    - AWS WAF: $6.00/month (1 WebACL + 1 Rule + minimal requests).
-    - AWS S3 Standard: $0.00/month (Stays within 5GB Always Free tier).
-    - Amazon CloudFront: $0.00/month (Stays within 1TB/10M request Always Free tier).
-    - AWS Cognito: $0.00/month (Stays within 10,000 MAU free tier).
-    - Amazon API Gateway: $0.00/month (Stays within 1M request 12-month free tier).
-    - AWS Lambda: $0.00/month (Stays within 1M request Always Free tier).
-    - Amazon Textract/Rekognition: $0.00/month (Stays within 12-month free tier for KYC).
-    - Application Load Balancer: $17.52/month (1 ALB, minimal processing).
-    - VPC Endpoint (PrivateLink): $7.30/month (1 Endpoint, 1 AZ, 1GB data).
-    - Amazon ECS on Fargate: ~$20.00/month (Assumes 2 minimal 24/7 containers, e.g., 0.25 vCPU/0.5GB RAM).
-    - Amazon Aurora Serverless v2: ~$25.00/month (Minimal ACUs, configured to scale to near-zero).
-    - Amazon ElastiCache Serverless: ~$10.00/month (Minimal usage).
-    - Amazon CloudWatch: $0.00/month (Stays within 5GB log Always Free tier).
-    - Amazon ECR: ~$0.10/month (Minimal storage over 500MB free tier).
-
-Total: ~$86.42/month, ~$1,037.04/12 months
-
-
-### 7. Risk Assessment
-#### Risk Matrix
-- System Downtime: High impact, medium probability.
-- Data Sync Errors (Between Stations & Server): Medium impact, high probability.
-- OCR Verification Failure: Medium impact, medium probability.
-- Vehicle Shortage or Low Battery at Stations: High impact, high probability.
-- Operational Mistakes by Staff: Medium impact, medium probability.
-- Cost Overruns: Medium impact, low probability.
-
-#### Mitigation Strategies
-- System: Use load-balanced cloud servers with auto-scaling and failover backup.
-- Data Sync: Implement offline caching and periodic background synchronization.
-- OCR Verification: Combine AI-based ID recognition with manual approval option.
-- Vehicle Management: Real-time tracking of battery and vehicle status; predictive restocking via analytics.
-- Staff Operations: Provide training and digital checklists to reduce human error.
-- Cost: Set up cloud cost monitoring and optimization alerts.
-
-#### Contingency Plans
-- Enable offline mode for station staff when Internet is unavailable.
-- Activate backup servers in case of major downtime.
-- Provide manual check-in/out workflow for rentals during system outages.
-- Deploy mobile maintenance team to handle vehicle or battery issues at stations.
-- Suspend or limit reservations dynamically if vehicle supply falls below safe threshold.
-
-### 8. Expected Outcomes
-#### Technical Improvements: 
-- Real-time monitoring of all EV stations and rental status.
-- Automated verification and e-contract signing replace manual paperwork.
-- Centralized dashboard for admins to manage fleet, customers, and staff.
-- System scalable to 20+ rental stations in the next deployment phase.
-#### Long-term Value
-- Establishes a reliable EV mobility infrastructure for urban areas.
-- Builds data foundation for future AI-powered demand forecasting.
-- Enables integration with smart city and green transportation networks.
-- Serves as a reusable platform for expanding to nationwide EV-sharing projects.
-#### Short to Medium-term Benefits
-- Faster customer onboarding (from 15 mins → <5 mins).
-- Increased fleet utilization rate by 30% through data-driven scheduling.
-- Improved accuracy of rental records and payment reconciliation.
-- Enhanced user satisfaction via seamless booking and transparent billing.
+## File TEMPLETE DOCX: [DOWLOAD Proposal (DOCX)](https://drive.google.com/drive/folders/1TLXOU4XDvSqv1hfWYhXhWilc5G53iN2H?usp=sharing)
+ 

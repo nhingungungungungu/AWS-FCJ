@@ -1,54 +1,43 @@
 ---
 title: "Worklog Tuần 3"
-weight: 3
+ 
+weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
+{{% notice warning %}}
+⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
+{{% /notice %}}
+
 
 ### Mục tiêu tuần 3:
 
-* Chuyển đổi từ việc tự quản lý cơ sở dữ liệu trên EC2 sang sử dụng các dịch vụ cơ sở dữ liệu được quản lý (Managed Database) như Amazon RDS và DynamoDB nhằm giảm tải vận hành.
-* Nắm vững mô hình Multi-AZ, cơ chế sao chép và quy trình failover của RDS.
-* Hiểu và thao tác với cơ sở dữ liệu NoSQL DynamoDB, bao gồm thiết kế bảng, thao tác đọc/ghi và sử dụng Indexes.
-* Tăng tốc ứng dụng bằng bộ nhớ đệm (Caching) thông qua ElastiCache.
-* Tổng hợp kiến thức để xây dựng kiến trúc Web Application có tính sẵn sàng cao (Highly Available).
-* Làm quen với AWS Directory Services để mô phỏng môi trường doanh nghiệp.
+* Bảo mật môi trường bằng chính sách Đặc quyền tối thiểu (IAM) và thiết lập giám sát chi phí.
 
 ### Các công việc cần triển khai trong tuần này:
-| Task ID | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
-| --- | --- | --- | --- | --- | --- | --- |
-| T3.1 | 15 | **RDS – Relational Database:** <br> - Triển khai Amazon RDS (MySQL hoặc PostgreSQL) <br> - Kích hoạt Multi-AZ Deployment <br> - Phân tích cơ chế sao chép đồng bộ & failover tự động | 15/09/2025 | 15/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
-| T3.2 | 16 | **RDS – Vận hành & Kết nối:** <br> - Cấu hình Security Group chỉ cho phép EC2 truy cập RDS <br> - Tùy chỉnh Parameter Groups <br> - Cấu hình Automated Backup & tạo Manual Snapshot <br> - Kiểm thử Restore DB để đánh giá RPO | 16/09/2025 | 16/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
-| T3.3 | 17 | **DynamoDB – NoSQL Cơ bản:** <br> - Tìm hiểu tư duy NoSQL <br> - Tạo bảng Users với Partition Key = UserId <br> - So sánh Provisioned vs On-Demand Capacity <br> - Chọn On-Demand cho môi trường dev | 17/09/2025 | 17/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
-| T3.4 | 18 | **DynamoDB – Nâng cao:** <br> - Thực hành PutItem, GetItem, Query, Scan <br> - Đánh giá hiệu năng Query vs Scan <br> - Tạo Global Secondary Index (GSI) để truy vấn theo Email | 18/09/2025 | 18/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
-| T3.5 | 19 | **ElastiCache – In-Memory Cache:** <br> - Triển khai ElastiCache Redis <br> - Áp dụng chiến lược Lazy Loading <br> - Đặt Redis cluster trong Private Subnet | 19/09/2025 | 19/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
-| T3.6 | 20 | **Web Architecture – Highly Available:** <br> - Kết hợp EC2 + RDS Multi-AZ + S3 <br> - Triển khai Application Load Balancer (ALB) <br> - Mô phỏng failover khi 1 AZ gặp sự cố | 20/09/2025 | 20/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
-| T3.7 | 21 | **Directory Services:** <br> - Tìm hiểu AWS Managed Microsoft AD <br> - Tích hợp Windows EC2 vào Domain <br> - Áp dụng GPO để quản lý tập trung | 21/09/2025 | 21/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 2   | - Nắm vững IAM cốt lõi: Users, Groups, Roles, và cấu trúc Policy JSON.                                                                                            | 21/09/2025   | 22/09/2025      | <https://cloudjourney.awsstudygroup.com/>|
+| 3   | - Áp dụng nguyên tắc Đặc quyền Tối thiểu (Least Privilege) qua Chính sách tùy chỉnh.                                            | 22/09/2025   | 23/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Tạo và gán IAM Role cho EC2 để truy cập S3 một cách an toàn. | 23/09/2025   | 24/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | - Thiết lập AWS Budgets để theo dõi và cảnh báo chi phí.                  | 24/09/2025   | 25/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | - Cấu hình Amazon SSO và MFA (Xác thực đa yếu tố) để bảo mật tài khoản.                                                                                         | 25/09/2025   | 26/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+
 
 ### Kết quả đạt được tuần 3:
 
-* **Cơ sở dữ liệu quan hệ (RDS):**
-  * Triển khai thành công DB MySQL/PostgreSQL.
-  * Hiểu và kiểm thử cơ chế Multi-AZ Failover.
-  * Thiết lập Parameter Groups và cấu hình Backup hoàn chỉnh.
+* Thiết kế Chính sách IAM: Có thể viết, kiểm tra và áp dụng các Chính sách IAM phức tạp:
 
-* **Cơ sở dữ liệu NoSQL:**
-  * Tạo DynamoDB table đúng chuẩn Partition Key.
-  * Phân biệt rõ giữa Query và Scan về chi phí & hiệu năng.
-  * Xây dựng GSI để truy vấn linh hoạt hơn.
+   * Tạo các chính sách tùy chỉnh bằng cú pháp JSON để thực thi các quy tắc truy cập nghiêm ngặt, chi tiết.
 
-* **Caching:**
-  * Tích hợp Redis để giảm tải truy vấn RDS.
-  * Ứng dụng chiến lược Lazy Loading cho hiệu suất tối ưu.
+   * Triển khai và xác minh thành công các chính sách tuân thủ Nguyên tắc Đặc quyền Tối thiểu (PoLP).
 
-* **Kiến trúc Web HA:**
-  * EC2 đa AZ + RDS Multi-AZ + S3 + ALB vận hành đồng bộ.
-  * Mô phỏng failover thành công khi 1 AZ ngừng hoạt động.
+* Bảo mật giữa các Dịch vụ: Thiết lập giao tiếp an toàn giữa các dịch vụ:
 
-* **Directory Services:**
-  * Hiểu kiến trúc và use-case của AWS Managed Microsoft AD.
-  * Tích hợp Windows EC2 vào Domain và áp dụng GPO cơ bản.
+   * Cấu hình IAM Role và gắn nó vào một phiên bản EC2.
 
-* **Tổng kết:**
-  * Hoàn thiện nền tảng Database & Application Architecture.
-  * Sẵn sàng bước sang tuần 4 với chủ đề Network Scaling, Auto Scaling và Monitoring.
+* Quản trị chi phí Chủ động: Thiết lập và cấu hình AWS Budgets để kiểm soát chi tiêu dịch vụ:
+
+    * Thiết lập ngân sách với các ngưỡng cụ thể và cơ chế cảnh báo (qua SNS).
+
+    * Đảm bảo tuân thủ các hướng dẫn quản lý chi phí.
