@@ -1,3 +1,11 @@
+---
+title: "Worklog"
+date: 2025-09-08
+weight: 1
+chapter: false
+pre: " <b> 1. </b> "
+---
+
 ### 12-Week Learning Roadmap:
 
 **Week 1:** [Identity Management & Network Architecture (IAM, VPC)](1.1-week1/)  
