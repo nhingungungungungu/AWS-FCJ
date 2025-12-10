@@ -5,7 +5,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong thời gian thực tập tại **AMAZON WEB SERVICES VIETNAM COMPANY LIMITED** từ **09/08** đến **[ngày kết thúc]**, tôi tham gia dự án **Web Trang Sức** với vai trò **Frontend developer** kiêm hỗ trợ nội dung. Nhiệm vụ chính của tôi bao gồm phát triển các thành phần giao diện bằng **React/Next.js** và chuẩn bị nội dung sản phẩm cho website.  
+Trong thời gian thực tập tại **AMAZON WEB SERVICES VIETNAM COMPANY LIMITED** từ **12/08** đến **12/12**, tôi tham gia dự án **Web Trang Sức** với vai trò **Frontend developer** kiêm hỗ trợ nội dung. Nhiệm vụ chính của tôi bao gồm phát triển các thành phần giao diện bằng **React/Next.js** và chuẩn bị nội dung sản phẩm cho website.  
 
 Dựa trên **sơ đồ kiến trúc AWS** của dự án, backend được phát triển bằng **.NET**, và tôi phối hợp với nhóm để tích hợp các thành phần frontend. Mặc dù tôi không trực tiếp phát triển backend, tôi đã làm quen với một số **dịch vụ AWS** được sử dụng trong dự án, bao gồm:  
 - **Amazon S3:** lưu trữ hình ảnh sản phẩm và tài nguyên tĩnh.  
