@@ -1,5 +1,5 @@
 ---
-title: "Bản đề xuất"
+title: "Proposal"
  
 weight: 2
 chapter: false
