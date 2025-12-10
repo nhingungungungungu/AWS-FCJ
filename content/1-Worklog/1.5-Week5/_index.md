@@ -1,31 +1,42 @@
 ---
 title: "Worklog Week 5"
-date: 2025-10-10
-weight: 1
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
-### Week 5 Goals:
+### Week 5 Objectives:
+Eliminate manual operations, manage large-scale server fleets, and fully codify infrastructure using IaC.
 
-* Learn about **AWS CloudWatch** for monitoring and managing AWS services.  
-* Explore **CloudTrail** and **AWS Config** for tracking and auditing changes in the AWS environment.  
-* Practice setting up monitoring and auditing resources on AWS.
+### Tasks completed this week:
 
-### Tasks for Week 5
+| Task ID | Day | Task | Start Date | End Date | Status | Reference |
+| --- | --- | --- | --- | --- | --- | --- |
+| T5.1 | 01 | **AWS Systems Manager:** <br> - Ensure EC2 has AmazonSSMManagedInstanceCore role <br> - Use Run Command to execute shell commands across instances without SSH <br> - Enable Inventory for audit data collection | 01/10/2025 | 01/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.2 | 02 | **Session Manager:** <br> - Remove SSH access entirely, close port 22 <br> - Access EC2 via Session Manager (IAM + HTTPS) <br> - Log all sessions to S3/CloudWatch Logs | 02/10/2025 | 02/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.3 | 03 | **CloudFormation – IaC:** <br> - Understand IaC and CloudFormation workflow <br> - Write YAML template for VPC + EC2 <br> - Practice Stack create/update/delete + Drift Detection | 03/10/2025 | 03/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.4 | 04 | **AWS CDK – Basics:** <br> - Learn CDK and Imperative IaC <br> - Define infrastructure using TypeScript/Python <br> - Create VPC using L2 Construct | 04/10/2025 | 04/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.5 | 05 | **AWS CDK – Advanced:** <br> - Build custom Constructs (e.g., StandardS3Bucket) <br> - Participate in IaC Workshop to handle circular dependencies <br> - Manage Context and environment configs | 05/10/2025 | 05/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.6 | 06 | **Tagging & Resource Groups:** <br> - Design consistent tagging strategy (CostCenter, Env, Owner) <br> - Create Resource Groups based on tags | 06/10/2025 | 06/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T5.7 | 07 | **Tag-based Access Control – ABAC:** <br> - Learn ABAC <br> - Write IAM Policy allowing Developers to Start/Stop EC2 with tags Env=Dev & Owner=User | 07/10/2025 | 07/10/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
 
-| Day | Task | Start Date | End Date | Reference Material |
-|-----|------------|---------------|-----------------|----------------|
-| 1   | - **Learn about AWS CloudWatch** <br>&emsp;+ Configure and monitor AWS resources with CloudWatch <br>&emsp;+ Create alerts and graphs | 06/10/2025 | 06/10/2025 | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)** |
-| 2   | - **Learn about AWS CloudTrail** <br>&emsp;+ Monitor user actions and events on AWS <br>&emsp;+ Analyze event logs | 07/10/2025 | 07/10/2025 | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)** |
-| 3   | - **Learn about AWS Config** <br>&emsp;+ Track resource changes and compliance on AWS | 08/10/2025 | 08/10/2025 | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)** |
-| 4   | - **Practice with CloudWatch, CloudTrail, and AWS Config** <br>&emsp;+ Set up monitoring on EC2 instances <br>&emsp;+ Analyze CloudTrail logs <br>&emsp;+ Create configuration rules with AWS Config | 09/10/2025 | 09/10/2025 | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)** |
-| 5   | - **Learn about AWS Security Services** <br>&emsp;+ Implement security monitoring with AWS GuardDuty | 10/10/2025 | 10/10/2025 | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)** |
+### Week 5 Achievements:
 
-### Achievements of Week 5:
-* Successfully configured **AWS CloudWatch** to monitor AWS resources and created alerts.
-* Monitored user activity and analyzed logs with **AWS CloudTrail**.
-* Utilized **AWS Config** to track and manage resource configurations.
-* Gained practical experience with **AWS security services** like **GuardDuty** for threat detection.
+* **Systems Manager & Session Manager:**
+  * Manage systems without SSH access.
+  * Improve EC2 security through IAM + HTTPS.
+  * Collect logs and inventory from all instances.
 
----
+* **Infrastructure as Code:**
+  * Automate infrastructure using CloudFormation.
+  * Use AWS CDK to write IaC with TypeScript/Python.
+  * Build reusable Constructs for organizational standards.
+
+* **Resource Management:**
+  * Implement consistent tagging strategy.
+  * Build Resource Groups based on tags.
+  * Apply flexible access control using ABAC.
+
+* **Summary:**
+  * Strengthened DevOps mindset and Operational Excellence.
+  * Ready for Week 6: CI/CD, Lambda, and Containers.
