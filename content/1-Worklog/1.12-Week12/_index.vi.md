@@ -1,5 +1,5 @@
 ---
-title: "Worklog Week 12"
+title: "Worklog tuần 12"
 weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "

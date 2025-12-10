@@ -1,5 +1,5 @@
 ---
-title: "Worklog Week 3"
+title: "Week 3 worklog"
 weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
