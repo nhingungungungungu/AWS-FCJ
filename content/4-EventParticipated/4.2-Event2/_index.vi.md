@@ -1,5 +1,5 @@
 ---
-title: "Sự kiện 2, 3, 4 - AWS Cloud Mastery Series #1#2#3"
+title: "Sự kiện 2, 3, 4 - AWS Cloud Mastery Series #1 #2 #3"
 weight: 1
 chapter: false
 pre: " <b> 4.2. </b> "

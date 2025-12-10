@@ -11,7 +11,7 @@ pre: " <b> 4.1. </b> "
 **Event Objectives**  
 - Introduce the AWS FCJ Workforce program and the OJT Fall 2025 plan  
 - Guide students on OJT workflow, timeline, and key activities  
-- Set expectations for skills development and learning outcomes  
+- Set expectation for skills development and learning outcomes  
 - Provide information on AWS tools and platforms to be used  
 
 **Speakers / Organizers**  

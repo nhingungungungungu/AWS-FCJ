@@ -18,7 +18,7 @@ pre: " <b> 4.1. </b> "
 
 **Nội dung chính**  
 - Sự kiện diễn ra vào **Thứ Bảy, 6 tháng 9, 2025, 8:30 - 12:00 GMT+7** tại **Bitexco Financial Tower, Quận 1, TP. HCM**  
-- Giới thiệu tổng quan chương trình: cấu trúc OJT, các mô-đun AWS, timeline và milestones quan trọng  
+- Giới thiệu tổng quan chương trình: Cấu trúc OJT, các mô-đun AWS, timeline và milestones quan trọng  
 - Giới thiệu nền tảng, công cụ và hướng dẫn thiết lập môi trường AWS cho sinh viên  
 - Tương tác trực tiếp giữa sinh viên và mentor về kỳ vọng học tập và phương pháp học hiệu quả  
 
