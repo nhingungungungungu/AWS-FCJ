@@ -1,27 +1,36 @@
 ---
 title: "Worklog Week 11"
-date: 2025-11-21
-weight: 1
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-### Week 11 Goals:
 
-* Provision AWS Lightsail instance and managed PostgreSQL for the backend.
-* Prepare deployment pipeline/environment variables for AWS Jewelry API.
+### Week 11 Objectives:
 
-### Tasks for Week 11
+* Transition an application from Monolith to Microservices architecture.
+* Apply DevOps culture and full CI/CD automation.
+* Split functional modules and databases following the database-per-service model.
+* Use messaging/eventing to decouple microservice communication.
+* Understand and deploy Elastic Beanstalk and large-scale WordPress architecture.
 
-| Day | Task | Start Date | End Date | Reference Material |
-|-----|------|------------|----------|--------------------|
-| 1   | Create Lightsail instance (tk giang), configure networking, SSH keys, firewall rules. | 17/11/2025 | 17/11/2025 | AWS Lightsail docs |
-| 2   | Provision Lightsail PostgreSQL; create DB/user, set parameter group, capture connection string. | 18/11/2025 | 18/11/2025 | AWS Lightsail docs |
-| 3   | Harden instance (updates, fail2ban/basic firewall), install runtime and reverse proxy. | 19/11/2025 | 19/11/2025 | Team playbook |
-| 4   | Prepare environment configs (.env) for DB, Cognito, S3, Secrets Manager placeholders. | 20/11/2025 | 20/11/2025 | `AWSJewelry` proposal |
-| 5   | Dry-run deployment build on Lightsail; verify DB connectivity and migrations. | 21/11/2025 | 21/11/2025 | Deployment notes |
+### Tasks to be carried out this week:
 
-### Achievements of Week 11:
-* Lightsail instance created (user giang) with secured SSH access and firewall aligned to API ports.
-* Managed PostgreSQL set up with dedicated DB/user; connection string validated from instance.
-* Server hardened and runtime stack installed with reverse proxy ready for API hosting.
-* Environment variables prepared for Cognito, S3, DB, Secrets Manager to support deployment.
+| Task ID | Day | Work | Start Date | Completion Date | Status | Reference Material |
+| --- | --- | --- | --- | --- | --- | --- |
+| T11.1 | 15 | **Monolith Decomposition Strategy:** <br> - Study the Strangler Fig Pattern <br> - Identify the Cart module to extract into a Microservice | 15/11/2025 | 15/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.2 | 16 | **Building a Microservice:** <br> - Rebuild the Cart module using Node.js running on Lambda or Fargate <br> - Split data into a separate DynamoDB table (Database-per-service) | 16/11/2025 | 16/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.3 | 17 | **Microservices Communication:** <br> - Implement messaging/eventing using EventBridge or SNS | 17/11/2025 | 17/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.4 | 18 | **Release Automation (CI/CD):** <br> - Build a Release Pipeline with CodePipeline <br> - Source → Build → Test → Deploy <br> - Add Manual Approval before Production deployment | 18/11/2025 | 18/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.5 | 19 | **Advanced DevOps:** <br> - Adopt DevOps culture <br> - Shift-left security: add SAST/DAST to Build stage | 19/11/2025 | 19/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.6 | 20 | **Elastic Beanstalk:** <br> - Study Beanstalk <br> - Deploy Node.js app without managing EC2/ALB <br> - Compare Beanstalk vs ECS/EKS | 20/11/2025 | 20/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+| T11.7 | 21 | **Large-scale WordPress:** <br> - Build WordPress on AWS <br> - Aurora Serverless + EFS + ElastiCache + CloudFront | 21/11/2025 | 21/11/2025 | Completed | https://cloudjourney.awsstudygroup.com/ |
+
+### Week 11 Achievements:
+
+* Clear understanding of the Strangler Fig strategy for monolith decomposition.  
+* Built an independent Microservice with its own logic and database.  
+* Implemented asynchronous communication via EventBridge/SNS.  
+* Completed CI/CD Release Pipeline with Manual Approval.  
+* Applied shift-left security via SAST/DAST scanning in the pipeline.  
+* Deployed an app using Elastic Beanstalk and compared with ECS/EKS.  
+* Designed a large-scale WordPress architecture optimized for performance and cost.
