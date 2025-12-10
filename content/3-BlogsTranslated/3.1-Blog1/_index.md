@@ -96,7 +96,7 @@ Across all internal benchmarks, Amazon Q outperforms modern tools in **precision
 
 Amazon Q Developer’s source code security scanning feature enables developers to identify and fix vulnerabilities efficiently. By providing recommendations directly inside the IDE, Amazon Q helps integrate secure coding practices early in the SDLC. Developers can proactively scan legacy code and remediate vulnerabilities, while new code is continuously evaluated through auto-scanning with real-time suggestions.
 
-Natural-language explanations help developers understand the vulnerabilities and write safer code. Amazon Q empowers developers to build secure, resilient software while reducing the cost and risk of addressing security issues later in the development cycle.
+Natural-language explanation helps developers understand the vulnerabilities and write safer code. Amazon Q empowers developers to build secure, resilient software while reducing the cost and risk of addressing security issues later in the development cycle.
 
 ### Learn more about Amazon Q Developer:
 

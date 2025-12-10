@@ -43,7 +43,7 @@ Khi lập trình viên đang gõ mã, Amazon Q sẽ đánh dấu lời gọi hà
 ### Scan as You Code  
 (Quét theo thời gian thực trong IDE)
 
-Dù auto-scan chỉ có trong bản Pro, **quét dự án thủ công** vẫn khả dụng ở cả Pro Tier và Free Tier. Bạn có thể đánh giá toàn bộ mã nguồn bằng cách chọn **Run Project Scan**, lệnh này sẽ kích hoạt tất cả các bộ phát hiện trên dự án.
+Dù auto-scan chỉ có trong bản Pro, **quét dự án thủ công** vẫn khả dụng ở cả Pro Tier và Free Tier. Bạn có thể đánh giá toàn bộ mã nguồn bằng cách chọn **Run Project Scan**, lệnh này sẽ kích hoạt tất cả bộ phát hiện trên dự án.
 
 ### Full Project Scan
 

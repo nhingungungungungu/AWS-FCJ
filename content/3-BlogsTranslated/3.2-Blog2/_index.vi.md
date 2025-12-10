@@ -7,7 +7,7 @@ pre: " <b> 3.2. </b> "
 
 # Các khóa học và cập nhật chứng chỉ mới từ AWS Training and Certification trong tháng 3 năm 2025
 
-Chào mừng bạn đến với bản cập nhật tháng 3 thông báo các khóa đào tạo và chứng chỉ mới – giúp bạn và đội ngũ của mình trang bị kỹ năng làm việc với các dịch vụ và giải pháp AWS.
+Chào mừng bạn đến với bản cập nhật tháng 3/2025 thông báo các khóa đào tạo và chứng chỉ mới – giúp bạn và đội ngũ của mình trang bị kỹ năng làm việc với các dịch vụ và giải pháp AWS.
 
 Bỏ lỡ bản cập nhật khóa học tháng 2? Xem tại đây.
 

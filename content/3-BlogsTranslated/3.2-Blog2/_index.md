@@ -7,7 +7,7 @@ pre: " <b> 3.2. </b> "
 
 # AWS Training and Certification – March 2025 Course and Certification Updates
 
-Welcome to the March update announcing new training and certification releases—helping you and your team build skills with AWS services and solutions.
+Welcome to the March 2025 update announcing new training and certification releases—helping you and your team build skills with AWS services and solutions.
 
 Missed the February course update? View it here.
 
