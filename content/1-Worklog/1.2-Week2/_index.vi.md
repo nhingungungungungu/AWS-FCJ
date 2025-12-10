@@ -1,39 +1,51 @@
 ---
 title: "Worklog Tuần 2"
- 
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 2:
 
-* Triển khai VPC đa tầng an toàn và nắm vững các tính năng lưu trữ S3 nâng cao.
+* Điện toán: Khởi tạo và quản lý EC2 theo best practices.
+* Lưu trữ: Làm việc với EBS, Snapshot và lưu trữ đối tượng S3.
+* Phát triển: Thiết lập và sử dụng AWS Cloud9 như IDE chạy trên nền tảng đám mây.
+* Điện toán đơn giản hóa: Khám phá Amazon Lightsail phục vụ triển khai nhanh và nhẹ.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Thiết lập VPC 2-Tầng (Public/Private Subnets, IGW, Bảng định tuyến).                                                                                    | 15/09/2025   | 17/09/2025      | <https://cloudjourney.awsstudygroup.com/>|
-| 3   | - Triển khai NAT Gateway/Instance để cấp Internet cho Private Subnet.                                            | 16/09/2025   | 18/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Hiểu và áp dụng Nhóm bảo mật (Security Group) và ACL mạng (NACL). | 16/09/2025   | 18/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Cấu hình S3 Bucket cho lưu trữ Trang web Tĩnh (Static Website Hosting).                  | 17/09/2025   | 19/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - Thực hành quản lý Lớp lưu trữ S3 (Storage Classes) và Chính sách vòng đời (Lifecycle Policies).                                                                                         | 17/09/2025   | 19/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Task ID | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Trạng thái | Nguồn tài liệu |
+| --- | --- | --- | --- | --- | --- | --- |
+| T2.1 | 8 | **EC2 – Khởi tạo & Kết nối:** <br> - Chọn Instance Type phù hợp (T3, C5, R5) <br> - Khởi chạy Amazon Linux 2023 AMI <br> - Tạo & sử dụng Key Pair để SSH vào EC2 | 09/08/2025 | 09/08/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T2.2 | 9 | **EBS & Windows Workloads:** <br> - Tạo & gắn EBS Volume gp3 <br> - Mount volume vào EC2 <br> - Khởi động Windows Server & kết nối RDP <br> - Cài IIS Web Server <br> - Tạo Snapshot EBS | 09/09/2025 | 09/09/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T2.3 | 10 | **Cloud9 – Cloud IDE:** <br> - Thiết lập môi trường AWS Cloud9 <br> - Kiểm tra terminal, AWS CLI, SAM và Docker <br> - Thử phát triển từ xa không cần mở cổng SSH | 09/10/2025 | 09/10/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T2.4 | 11 | **Amazon S3 – Cơ bản:** <br> - Tạo S3 Bucket và upload file <br> - Bật Static Website Hosting <br> - Viết Bucket Policy JSON cho phép Public Read | 09/11/2025 | 09/11/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T2.5 | 12 | **Amazon S3 – Nâng cao:** <br> - Phân tích Storage Classes (Standard, IA, Glacier, …) <br> - Cấu hình Lifecycle Policy (chuyển object >30 ngày sang Glacier) <br> - Bật Block Public Access, Versioning và Default Encryption | 09/12/2025 | 09/12/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T2.6 | 13 | **Amazon Lightsail – Triển khai VM:** <br> - Tìm hiểu tính năng Lightsail <br> - Triển khai WordPress bằng LAMP Blueprint <br> - So sánh EC2 và Lightsail (chi phí & use-case) | 09/13/2025 | 09/13/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
+| T2.7 | 14 | **Lightsail Containers:** <br> - Build ứng dụng Node.js thành Docker Image <br> - Push và deploy bằng Lightsail Container Service <br> - So sánh với ECS/EKS | 09/14/2025 | 09/14/2025 | Hoàn thành | https://cloudjourney.awsstudygroup.com/ |
 
 ### Kết quả đạt được tuần 2:
 
-* Triển khai mạng Nâng cao: Thiết kế và triển khai một kiến trúc VPC 2-Tầng mạnh mẽ, xác nhận các khái niệm mạng cơ bản:
-    * Thiết lập các Subnet Public và Private riêng biệt trên hai Vùng sẵn sàng (AZ) để có khả năng phục hồi cao.
+* **Compute:**  
+  - Khởi tạo thành công EC2 Linux & Windows.  
+  - Hiểu về các dòng instance (T3, C5, R5) và mục đích sử dụng.  
+  - SSH và RDP vào máy ảo an toàn.
 
-    * Cấu hình NAT Gateway an toàn để kiểm soát truy cập Internet đi ra từ Private Subnets.
+* **Storage:**  
+  - Làm việc với EBS: tạo, gắn, mount.  
+  - Tạo Snapshot để sao lưu dữ liệu.  
+  - Cấu hình S3 để Static Website Hosting và Bucket Policy.  
+  - Thực hành Lifecycle, Versioning và Encryption.
 
-* Thực hiện kiểm soát Bảo mật: Hiểu sự khác biệt giữa và triển khai thành công Security Groups và Network ACLs. 
+* **Môi trường phát triển:**  
+  - Thiết lập Cloud9 như IDE trên cloud.  
+  - Phát triển mà không cần mở cổng SSH.
 
-* Cấu hình lưu trữ Doanh nghiệp: Nắm vững và cấu hình Amazon S3 cho các trường hợp sử dụng nâng cao:
-    * Thiết lập Chính sách Bucket và bật Tính năng lưu trữ Trang web Tĩnh.
+* **Lightsail:**  
+  - Deploy WordPress bằng Lightsail VM.  
+  - Build & deploy ứng dụng container trên Lightsail.
 
-    * Triển khai Chính sách Vòng đời (Lifecycle Policy) toàn diện để tự động chuyển đổi dữ liệu sang các tầng chi phí thấp hơn
+* **Tổng kết:**  
+  - Nắm vững Compute & Storage căn bản.  
+  - Sẵn sàng bước sang tuần 3 (Load Balancing, Auto Scaling, AWS Architecture nâng cao).
+ 
