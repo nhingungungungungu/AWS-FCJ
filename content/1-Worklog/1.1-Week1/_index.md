@@ -1,49 +1,36 @@
 ---
-title: "Week 1 Worklog "
- 
+title: "Week 1 Worklog"
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-nnnnnn
 
 ### Week 1 Objectives:
-
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand AWS and basic service groups (Compute, Storage, Networking, Database).
+* Set up a secure AWS account following enterprise standards.
+* Learn Identity and Access Management (IAM) fundamentals.
+* Design and deploy a secure Virtual Private Cloud (VPC).
+* Understand cloud network security components such as Security Groups and NACLs.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | -  Successfully create and configure an AWS Free Tier account.                                                                                                 | 08/09/2025 | 08/09/2025      | <https://cloudjourney.awsstudygroup.com/>|
-| 3   | - Become familiar with the AWS Management Console and web interface. <br>                                              | 09/09/2025 | 09/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Install and configure AWS CLI (Access Key, Secret Key, Default Region) | 10/09/2025 | 10/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - Use AWS CLI to perform basic operations (View EC2, Create Key Pairs). <br> - Acquire the ability to connect between the web interface and CLI.                            | 12/09/2025 | 12/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 7   | - Launch and connect to the first EC2 instance via SSH/Key Pair.                                                                               | 13/09/2025 | 13/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+
+| Day | Task | Start Date | Completion Date | Status | Reference Material |
+| --- | ---- | ---------- | ---------------- | ------- | ------------------ |
+| 1 | - Create AWS root account <br> - Enable MFA for Root User <br> - Set up AWS Budgets + SNS Alerts <br> - Learn AWS Support plans | 01/09/2025 | 01/09/2025 | **Completed** | https://cloudjourney.awsstudygroup.com/ |
+| 2 | - Learn IAM basics <br> - Create IAM Users & Groups <br> - Apply Least Privilege <br> - Configure Password Policy | 02/09/2025 | 02/09/2025 | **Completed** | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Create IAM Roles for EC2 <br> - Learn Instance Profiles & IMDS <br> - Write custom JSON policies | 03/09/2025 | 03/09/2025 | **Completed** | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Learn VPC concepts (CIDR, Subnets, IGW) <br> - Design Multi-AZ network layout | 04/09/2025 | 04/09/2025 | **Completed** | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Deploy Custom VPC <br> - Create Subnets, Route Tables, IGW <br> - Set up NAT Gateway | 05/09/2025 | 05/09/2025 | **Completed** | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Study Security Groups vs NACLs <br> - Configure Web-SG & App-SG <br> - Troubleshoot networking issues | 06/09/2025 | 06/09/2025 | **Completed** | https://cloudjourney.awsstudygroup.com/ |
+| 7 | - Review week’s work <br> - Summarize IAM & VPC knowledge | 07/09/2025 | 07/09/2025 | **Completed** | — |
 
 
 ### Week 1 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * View EC2 service
-  * Create and manage key pairs
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* Successfully launched and connected to the first EC2 instance via SSH/Key Pair.
+* Secured AWS account using MFA, Budgets, and SNS alerts.  
+* Created IAM Users, Groups, Roles, and Custom Policies.  
+* Designed and deployed a complete Custom VPC with:  
+  * Public & Private Subnets  
+  * Internet Gateway  
+  * NAT Gateway  
+  * Route Tables  
+* Configured multi-layer network security using Security Groups and NACLs.  
+* Gained troubleshooting experience from AWS Networking workshops.  
