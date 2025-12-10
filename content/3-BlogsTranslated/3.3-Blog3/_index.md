@@ -10,7 +10,7 @@ pre: " <b> 3.3. </b> "
 Author: Philippe El Asmar – May 08, 2025  
 Category: .NET, Announcements, AWS .NET Development, AWS SDK for .NET, AWS Toolkit for Visual Studio, Developer Tools, Visual Studio
 
-We are excited to announce that **AWS Deploy Tool for .NET** now supports deploying .NET applications to **ARM-based compute platforms** on AWS! Whether deploying from Visual Studio or using the .NET CLI, you can now target cost-efficient ARM infrastructures like AWS Graviton with the same smooth, familiar experience.
+We are thankfully to announce that **AWS Deploy Tool for .NET** now supports deploying .NET applications to **ARM-based compute platforms** on AWS! Whether deploying from Visual Studio or using the .NET CLI, you can now target cost-efficient ARM infrastructures like AWS Graviton with the same smooth, familiar experience.
 
 ---
 

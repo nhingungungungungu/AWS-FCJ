@@ -10,7 +10,7 @@ pre: " <b> 3.3. </b> "
 Tác giả: Philippe El Asmar – ngày 08 tháng 05 năm 2025  
 Chuyên mục: .NET, Announcements, AWS .NET Development, AWS SDK for .NET, AWS Toolkit for Visual Studio, Developer Tools, Visual Studio
 
-Chúng tôi rất vui mừng thông báo rằng **AWS Deploy Tool for .NET** hiện đã hỗ trợ triển khai các ứng dụng .NET lên **nền tảng tính toán dựa trên ARM** trên AWS! Dù bạn triển khai từ Visual Studio hay sử dụng .NET CLI, giờ đây bạn có thể nhắm mục tiêu vào các cơ sở hạ tầng ARM tiết kiệm chi phí như **AWS Graviton** với trải nghiệm quen thuộc và mượt mà như trước.
+Chúng tôi rất mừng khi thông báo rằng **AWS Deploy Tool for .NET** hiện đã hỗ trợ triển khai các ứng dụng .NET lên **nền tảng tính toán dựa trên ARM** trên AWS! Dù bạn triển khai từ Visual Studio hay sử dụng .NET CLI, giờ đây bạn có thể nhắm mục tiêu vào các cơ sở hạ tầng ARM tiết kiệm chi phí như **AWS Graviton** với trải nghiệm quen thuộc và mượt mà như trước.
 
 ---
 
