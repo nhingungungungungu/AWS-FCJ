@@ -1,243 +1,151 @@
 ---
 title: "Proposal"
- 
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# **Jewelry E-Commerce Platform**  
-## **Cloud-Based Online Sales System Using React, .NET, and MySQL on AWS Lightsail**  
+# Project Plan: AWS Jewelry Web Store
 
+## 1. Background and Motivation
 
+### 1.1 Executive Summary
+This project aims to build an e-commerce platform for jewelry. The architecture includes a backend and database hosted on **AWS Lightsail**, and a **React** frontend stored on **Amazon S3** and delivered through **CloudFront** with HTTPS via ACM. The goal is to ensure easy scalability, strong security, and cost optimization using essential AWS services.
 
-# AWS First Cloud AI Journey – **Project Plan**
+**Key Features**
+- Jewelry product management.
+- Product image uploads.
+- Shopping cart.
+- User registration/login using **Amazon Cognito**.
+- Backend API on Lightsail with **MySQL/Postgres** database.
+- CloudFront CDN + global SSL.
 
+### 1.2 Success Criteria
+- Performance: page load < 2s via CloudFront.
+- Stability: Lightsail API supports realistic traffic.
+- Data integrity: secure and efficient database operations.
+- User management: reliable and secure Cognito authentication.
+- Security: safe S3 image uploads.
+- Monitoring: complete API logging via CloudWatch.
 
-# T1VN – FPT University – Video Share
+### 1.3 Assumptions
+- Traffic < 100,000 requests/month.
+- No advanced autoscaling requirements.
+- Domain already available or purchased through Route 53.
+- Team is experienced with .NET/React (migration from Node.js to .NET).
 
-# 09/12/2025
+## 2. Solution Architecture
 
-# Table of Contents
+### 2.1 Architecture Diagram
+![alt text](/images/Diagram.jpg)
 
-**[1 BACKGROUND AND MOTIVATION	3](#background-and-motivation)**
+### 2.2 Technical Plan
+- Configure S3 hosting + CloudFront, set up HTTPS/ACM, map domain with Route 53.
+- Deploy Lightsail API, connect DB, integrate Cognito, load secrets from Secrets Manager.
+- Image upload workflow: API provides presigned URLs; S3 remains private with CloudFront access only.
+- Logging/metrics through CloudWatch.
 
-[1.1 EXECUTIVE SUMMARY	3](#executive-summary)
+### 2.3 Project Plan
+Estimated timeline: 6–12 weeks depending on final scope.
 
-[1.2 PROJECT SUCCESS CRITERIA	3](#heading=)
+### 2.4 Security
+- S3 private access, readable only through CloudFront.
+- API secrets stored in Secrets Manager.
+- Full HTTPS enforcement.
+- Cognito-protected login.
 
-[1.3 ASSUMPTIONS	3](#heading=)
+## 3. Activities and Deliverables
 
-[**2 SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM	4**](#heading=)
+| Phase | Week | Main Activities | Deliverable | MD |
+|-----------|------|-------------------------|-------------------------|----|
+| Assessment | 1 | Requirement gathering, architecture design, DB schema drafting, secrets listing | Architecture diagram, DB schema, secrets inventory | 5 |
+| Core Infrastructure | 2 | S3 + CloudFront + ACM + Route 53 setup; Lightsail API & DB; Cognito; secrets creation; enable CloudWatch | Working CDN frontend, ready API & DB, Cognito login, secrets configured | 7 |
+| Component 1 – Backend | 3 | API reads secrets, presigned uploads, product CRUD, Cognito authentication, CloudWatch logs | Stable API, successful uploads, working login, no hardcoded configs | 7 |
+| Component 2 – Frontend | 4 | React shop UI, Cognito login UI, image upload UI, API integration, build & deploy to S3+CF | Complete UI with API integration | 7 |
+| Testing & Go-live | 5 | FE↔BE↔S3↔DB integration test, security test (IAM + Secrets Manager), E2E tests | Test report, security checklist | 5 |
+| Handover | 6 | Secrets update guide, account transfer, runbook | Full runbook, project closure | 5 |
 
-[2.1 TECHNICAL ARCHITECTURE DIAGRAM	4](#technical-architecture-diagram)
+### 3.2 Out of Scope
+- AI/ML, advanced e-commerce systems, complex image processing.
+- Multi-region/DR deployment, complex admin systems, third-party integrations.
+- Advanced autoscaling, complex CI/CD pipelines.
 
-[2.2 TECHNICAL PLAN	4](#technical-plan)
+### 3.3 Production Roadmap
+- Improve operations.
+- Strengthen production secrets.
+- Add error-handling.
+- Deploy & validate in production.
+- DR planning.
+- Operations handover.
 
-[2.3 PROJECT PLAN	5](#heading=)
+## 4. Estimated AWS Costs (Reference)
 
-[2.4 SECURITY CONSIDERATIONS	5](#security-considerations)
+| Service | Upfront | Monthly | Region |
+|---------|---------|---------|---------|
+| S3 | 0.00 USD | 0.26 USD | AP-Singapore |
+| CloudFront | 0.00 USD | 0.17 USD | AP-Singapore |
+| ACM | 0.00 USD | 0 USD | AP-Singapore |
+| Route 53 | 0.00 USD | 0.50–1.00 USD | AP-Singapore |
+| Lightsail – DB | 0.00 USD | 10–15 USD | AP-Singapore |
+| Cognito | 0.00 USD | 2.00 USD | AP-Singapore |
+| Secrets Manager | 0.00 USD | 0.40 USD | AP-Singapore |
+| CloudWatch | 0.00 USD | 0.30 USD | AP-Singapore |
+| Lightsail – API | 0.00 USD | 5–10 USD | AP-Singapore |
 
-[**3 ACTIVITIES AND DELIVERABLES	6**](#activities-and-deliverables)
+## 5. Project Team
+- Product Owner / PM: Nguyễn Duy Hiếu  
+- Backend Developer: Lưu Ngọc Ngân Giang  
+- Frontend Developers: Nguyễn Huy Hoàng, Trần Hồ Phương Khanh, Tăng Khánh Nhi  
+- (Fill detailed contact info as needed)
 
-[3.1 ACTIVITIES AND DELIVERABLES	6](#activities-and-deliverables-1)
+## 6. Resources & Estimated Costs
 
-[3.2 OUT OF SCOPE	8](#out-of-scope)
-
-[3.3 PATH TO PRODUCTION	8](#path-to-production)
-
-[**4 EXPECTED AWS COST BREAKDOWN BY SERVICES	9**](#expected-aws-cost-breakdown-by-services)
-
-[**5 TEAM	10**](#team)
-
-[**6 RESOURCES & COST ESTIMATES	10**](#resources-&-cost-estimates)
-
-[**7 ACCEPTANCE	11**](#acceptance)
-
-# **BACKGROUND AND MOTIVATION** 
-
-## 1. **EXECUTIVE SUMMARY**
-
-The AWS Jewelry Web project entails the development of a comprehensive Jewelry E-commerce Platform. The system architecture comprises a backend and database infrastructure hosted on AWS Lightsail, coupled with a React-based frontend deployed via Amazon S3 and CloudFront. This architecture is designed to ensure scalability, high security, and operational cost optimization by leveraging essential yet highly effective Cloud services.
-
-**The system provides main features such as:**
-
-* Jewelry product management.  
-* Product image uploading capabilities.  
-* Shopping cart functionality.  
-* User registration and authentication via AWS Cognito.  
-* Backend API operations on Lightsail with MySQL/Postgres data storage.  
-* Content delivery acceleration and international standard SSL processing via CDN.
-
-## 2.**PROJECT SUCCESS CRITERIA**
-
-* **Performance:** Website load time under 2 seconds for international access, facilitated by CloudFront CDN.  
-* **Stability:** Backend operates stably on Lightsail under actual traffic conditions.  
-* **Data Integrity:** Secure database operations with rapid retrieval speeds.  
-* **User Management:** Stable and secure user management via Amazon Cognito.  
-* **Security:** Secure image uploading processes via Amazon S3.  
-* **Monitoring:** Comprehensive API logging through Amazon CloudWatch.
-
-## 3.**ASSUMPTIONS**
-
-* **Traffic Volume:** Moderate traffic levels (less than 100,000 requests/month).  
-* **Scaling:** No requirement for advanced autoscaling configurations.  
-* **Domain:** Domain name is pre-acquired or will be purchased via Amazon Route 53\.  
-* **Competency:** The development team possesses proficiency in Node.js and React.
-
-# **SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM**
-
-## 1.**TECHNICAL ARCHITECTURE DIAGRAM** 
-
-![Architecture](/images/imageworkshop.png)
-
-## 2.**TECHNICAL PLAN** 
-
-* **Frontend:** Hosted on Amazon S3 with Amazon CloudFront CDN and HTTPS enabled via AWS Certificate Manager (ACM).  
-* **Backend API:** .NET runtime environment on AWS Lightsail.  
-* **Database:** MySQL/PostgreSQL hosted on AWS Lightsail.  
-* **Authentication:** Amazon Cognito User Pool.  
-* **Image Storage:** Amazon S3.  
-* **Logging:** Amazon CloudWatch.  
-* **Secrets Management:** AWS Secrets Manager.
-
-## 3.**PROJECT PLAN**
-
-The implementation timeline is estimated to range from 6 to 12 weeks, contingent upon the final project scope.
-
-## 4.**SECURITY CONSIDERATIONS** 
-
-* **Access Control:** S3 private access configured, granting read permissions exclusively to CloudFront.  
-* **Credential Management:** API utilizes private keys stored securely in AWS Secrets Manager.  
-* **Encryption:** Full system-wide HTTPS implementation.  
-* **Authentication Security:** User login protected by Amazon Cognito.
-
-# **ACTIVITIES AND DELIVERABLES** 
-
-## 1.**ACTIVITIES AND DELIVERABLES** 
-
-| Project Phase | Timeline | Activities | Deliverables / Milestones | MD |
-| :---: | :---: | ----- | ----- | :---: |
-| **Assessment** | Week 1 | \-  Analyze the Jewelry Web system requirements. \- Draft the Architecture Diagram. **\-**  Design the Database Schema (Lightsail MySQL/Postgres). \-  Identify necessary secrets (DB password, bucket name). | \- Architecture Diagram \- DB Schema \- List of Secrets | **5** |
-| **Setup Base Infrastructure** | Week 2 | \-  Configure S3 hosting and React build. \-  Configure CloudFront CDN and ACM SSL. \-  Map domain via Route 53\. \-  Provision Lightsail API instance. \-  Provision Lightsail Database. \-  Configure Cognito Login. \-  Create Secrets Manager entries:   + Secret 1: DB\_PASSWORD   + Secret 2: APP\_CONFIG (bucket-name) \-  Assign IAM roles to API instances for secret retrieval permissions. \-  Enable CloudWatch logs. | \- Functional Frontend CDN \- Operational Backend API \- Database connectivity established \- Functional Cognito login \- Secrets Manager populated with DB password & bucket name | **7** |
-
-| Setup Component 1 – Backend API | Week 3 | \- Implement API logic to retrieve DB password from Secrets Manager. \- Implement API logic to retrieve bucket names from Secrets Manager. \- Implement image upload to S3 (via presigned URL). \- Develop CRUD operations for jewelry products. \- Integrate Cognito authentication. \- Implement log transmission to CloudWatch. | \- Stable API operations \- Successful image upload functionality \- Successful Login functionality \- Hardcoded configurations fully replaced by Secrets Manager | 7 |
-| :---: | :---: | :---- | :---- | :---: |
-| **Setup Component 2 – Frontend React** | Week 4 | \- Develop Jewelry Shop UI. \- Implement Cognito Login interface. \- Implement jewelry image upload interface. \- Fetch data from API. \- Build and deploy to S3 \+ CloudFront. | \- Complete User Interface (UI) \- API Integration established | **7** |
-| **Testing &  Go-live** | Week 5 | \- Integration testing (FE ↔ BE ↔ S3 ↔ DB). \- Security testing (IAM \+ Secrets Manager). \- End-to-end testing. | \- Test Report \- Security checklist | **5** |
-| **Handover** | Week 6 | \- Provide instruction on using Secrets Manager for updating bucket names/DB passwords. \- Transfer AWS account ownership. \- Provide Runbook Documentation. | \- Comprehensive Runbook \- Project Closure | **5** |
-
-## 
-
-## 2.**OUT OF SCOPE** 
-
-* AI/Machine Learning features.  
-* Complex E-commerce functionalities.  
-* Advanced image processing capabilities.  
-* Multi-region deployment or Disaster Recovery (DR) sites.  
-* Complex administrative systems.  
-* Integration with third-party systems.
-
-## 3.**PATH TO PRODUCTION**
-
-* Operational Excellence Optimization.  
-* Secrets Management – Production Hardening.  
-* Extended Error Handling.  
-* Deployment & Production Verification.  
-* Disaster Recovery Plan.  
-* Production Handover.
-
-# **EXPECTED AWS COST BREAKDOWN BY SERVICES** 
-
-| Service Name | Upfront cost | Monthly cost | Region |
-| :---- | :---- | :---- | :---- |
-| Amazon S3 | 0.00 USD |  0.26 USD | Asia Pacific (Singapore) |
-| Amazon CloudFront (CDN cho FE) | 0.00 USD | 0.17 USD | Asia Pacific (Singapore) |
-| AWS ACM | 0.00 USD | 0 USD | Asia Pacific (Singapore) |
-| Amazon Route 53 | 0.00 USD | 0.50–1.00 USD | Asia Pacific (Singapore) |
-| AWS Lightsail – Database  | 0.00 USD | 10–15 USD | Asia Pacific (Singapore) |
-| Amazon Cognito | 0.00 USD | 2.00 USD | Asia Pacific (Singapore) |
-| AWS Secrets Manager   | 0.00 USD | 0.40 USD | Asia Pacific (Singapore) |
-| Amazon CloudWatch | 0.00 USD | 0.30 USD | Asia Pacific (Singapore) |
-| AWS Lightsail – API Server | 0.00 USD | 5 \- 10 USD | Asia Pacific (Singapore) |
-
-# **TEAM** 
-
-**Partner Executive Sponsor**
-
-| Name | Title | Description | Email / Contact Info |
-| :---- | :---- | :---- | :---- |
-|  |  |  |  |
-
-**Project Stakeholders**
-
-| Name | Title | Stakeholder for | Email / Contact Info |
-| :---- | :---- | :---- | :---- |
-|  |  |  |  |
-
-**Partner Project Team**
-
-| Name | Title | Role | Email / Contact Info |
-| :---- | :---- | :---- | :---- |
-| Nguyễn Duy Hiếu  | Product Owner | Project Manager (BE) | Hieundse185047@fpt.edu.vn |
-| Lưu Ngọc Ngân Giang | Software Developer | Developer (BE) | luungocngangiang25@gmail.com |
-| Nguyễn Huy Hoàng  | Software Developer | Developer (FE) | Hoangnhse185092@fpt.edu.vn |
-| Trần Hồ Phương Khanh | Software Developer | Developer (FE) | khanhthpse185070@fpt.edu.vn |
-| Tăng Khanh Nhi | Software Developer | Developer (FE) | tangkhanhnhi111@gmail.com |
-
-**Project Escalation Contacts**
-
-| Name | Title | Role | Email / Contact Info |
-| :---- | :---- | :---- | :---- |
-|  |  |  |  |
-
-# **RESOURCES & COST ESTIMATES** 
 | Resource | Responsibility | Rate (USD) / Hour |
-| :---- | :---- | ----- |
-| Solution Architects \[number of assigned headcount\] | \- Design and architect the AWS infrastructure ecosystem, incorporating services such as S3, CloudFront, Lightsail, ACM, Route 53, and Secrets Manager \- |12|
-| Solution Architects \[number of assigned headcount\] |\-Provide strategic consultancy regarding security protocols and operational cost optimization.|12|
-| Solution Architects \[number of assigned headcount\] |\- Conduct comprehensive reviews of deployment procedures to ensure adherence to industry best practices.|12| 
-| Engineers \[number of assigned headcount\] | \- Execute the provisioning and deployment of core infrastructure components, including S3, CloudFront, Route 53, ACM, and Lightsail. |6|
-| Engineers \[number of assigned headcount\] |\- Establish Continuous Integration/Continuous Deployment (CI/CD) pipelines and facilitate the deployment of frontend assets to Amazon S3. |6|
-| Engineers \[number of assigned headcount\] |\- Deploy and configure the Node.js API runtime environment within the AWS Lightsail infrastructure.|6| 
-| Engineers \[number of assigned headcount\] |\- Configure secure credential management via AWS Secrets Manager and establish logging mechanisms using Amazon CloudWatch. | 6 |
-| Other (Please specify) | \- Perform rigorous post-deployment system verification and integration testing.|0|
+| :---- | :---- | :---- |
+| Solution Architects \[assigned count\] | - Design AWS infrastructure ecosystem, integrate key services such as S3, CloudFront, Lightsail, ACM, Route 53, and Secrets Manager. - Advise on security and cost optimization strategies. - Conduct comprehensive deployment assessments to ensure best practices. | 12 |
+| Engineers \[assigned count\] | - Provision and deploy core infrastructure components including S3, CloudFront, Route 53, ACM, and Lightsail. - Set up CI/CD pipelines and assist with frontend deployment to S3. - Deploy and configure .NET API runtime on AWS Lightsail. - Configure secure credential management using Secrets Manager and set up CloudWatch logging. | 6 |
+| Others (Specify) | - Perform rigorous post-deployment validation and integration testing. - Provide ongoing technical consulting and dedicated customer support. | 0 |
 
+\* Refer to "Activities & Deliverables" for phase breakdown.
 
-
-\* Note: Refer to section “activities & deliverables” for the list of project phases
-
-| Project Phase | Solution Architects | Engineers | Other  (Please specify) | Total Hours |
+| Project Phase | Solution Architects | Engineers | Others | Total Hours |
 | :---: | :---: | :---: | :---: | :---: |
-| S3 \+ CloudFront | 1 | 2 |  | 3 |
-| Lightsail API \+ DB | 1 | 4 |  | 4 |
+| S3 + CloudFront | 1 | 2 |  | 3 |
+| Lightsail API + DB | 1 | 4 |  | 4 |
 | Cognito | 1 | 2 |  | 5 |
 | Logging & Monitoring | 1 | 1 |  | 3 |
 | Total Hours | 4 | 12 |  | 15 |
 | Total Cost |  |  |  |  |
 
-Cost Contribution distribution between Partner, Customer, AWS:
+Budget estimates available at:  
+[AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)
 
-| Party | Contribution (USD) | % Contribution of Total |
+| Service Name | Upfront Cost | Monthly Cost | Description | Region | Configuration Summary |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| AWS Secrets Manager | 0.00 USD | 0.13 USD | DB password management | Asia Pacific (Singapore) | Secrets (1), Average rotation (10 days), API calls (1/mo) |
+| AWS Certificate Manager | 15.00 USD | 0.00 USD | SSL Certificate | Asia Pacific (Singapore) | FQDNs (1) |
+| Amazon S3 | 0.00 USD | 0.03 USD | Host React + store images | Asia Pacific (Singapore) | 1 GB storage, no data transfer |
+| Amazon Route 53 | 0.00 USD | 3.50 USD | Domain management | Asia Pacific (Singapore) | Hosted Zone (1) |
+| Amazon Lightsail | 0.00 USD | 3.20 USD | API + Database Server | Asia Pacific (Singapore) | 1 instance, 100GB storage, 250GB bandwidth |
+| Amazon Cognito | 0.00 USD | 0.05 USD | User Login/Auth | Asia Pacific (Singapore) | MAU (1), security features enabled |
+| Amazon CloudWatch | 0.00 USD | 0.30 USD | API Logging | Asia Pacific (Singapore) | Metrics (1), widget image (1), custom metrics (1) |
+| Amazon CloudFront | 0.00 USD | 0.00 USD | Frontend CDN | Asia Pacific (Singapore) | Free tier |
+
+Allocation of cost contributions among Partner, Customer, AWS:
+
+| Party | Contribution (USD) | % of Total |
 | :---- | :---- | :---- |
 | Customer |  |  |
 | Partner |  |  |
 | AWS |  |  |
 
-# **ACCEPTANCE** 
+## 7. Acceptance Criteria
+- Website runs stably on the actual domain.
+- API fully connected to the database.
+- Image upload works properly.
+- CloudWatch logging & Cognito login operate correctly.
+- Approved by client/project owner.
 
-Project is complete when: 9/12/2025
+## DOCX TEMPLATE FILE:  
 
-Website runs stably on real domain.
-
-API fully connects to DB.
-
-Upload product images works.
-
-CloudWatch log & Cognito login works.
-
-Accepted by customer/stakeholder.
-
-
-## File TEMPLETE DOCX: [DOWLOAD Proposal (DOCX)](https://drive.google.com/drive/folders/1TLXOU4XDvSqv1hfWYhXhWilc5G53iN2H?usp=sharing)
- 
+[**DOWNLOAD Proposal (DOCX)**](https://drive.google.com/drive/folders/1TLXOU4XDvSqv1hfWYhXhWilc5G53iN2H?usp=sharing)
